@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../styles/Home.module.css'
-import Header from '../components/header'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../../styles/Home.module.css";
+import Header from "../components/header";
+import { getSortedPostsData, Post } from "../lib/posts";
 
-const Home: NextPage = () => {
+export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,51 +18,27 @@ const Home: NextPage = () => {
         <div>
           <h1 className="text-3xl">Recent changes</h1>
           <div className="my-6 border-b-2"></div>
-          <div className="pb-14">
-            <h2 className="text-2xl">2022.02.12 - 글 제목이 들어간다. 대충 이런식으로.</h2>
-            <div>
-              <span className="first:pl-0 pl-2.5">#태그</span>
-              <span className="first:pl-0 pl-2.5">#태그2</span>
-              <span className="first:pl-0 pl-2.5">#태그3</span>
-            </div>
-            <p>글에 대한 간단한 description이 들어간다. desc 따로 적어줄지, 아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지 못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?</p>
-          </div>
-          <div className="pb-14">
-            <h2 className="text-2xl">2022.02.12 - 글 제목이 들어간다. 대충 이런식으로.</h2>
-            <div>
-              <span className="first:pl-0 pl-2.5">#태그</span>
-              <span className="first:pl-0 pl-2.5">#태그2</span>
-              <span className="first:pl-0 pl-2.5">#태그3</span>
-            </div>
-            <p>글에 대한 간단한 description이 들어간다. desc 따로 적어줄지, 아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지 못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?</p>
-          </div>
-          <div className="pb-14">
-            <h2 className="text-2xl">2022.02.12 - 글 제목이 들어간다. 대충 이런식으로.</h2>
-            <div>
-              <span className="first:pl-0 pl-2.5">#태그</span>
-              <span className="first:pl-0 pl-2.5">#태그2</span>
-              <span className="first:pl-0 pl-2.5">#태그3</span>
-            </div>
-            <p>글에 대한 간단한 description이 들어간다. desc 따로 적어줄지, 아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지 못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?</p>
-          </div>
-          <div className="pb-14">
-            <h2 className="text-2xl">2022.02.12 - 글 제목이 들어간다. 대충 이런식으로.</h2>
-            <div>
-              <span className="first:pl-0 pl-2.5">#태그</span>
-              <span className="first:pl-0 pl-2.5">#태그2</span>
-              <span className="first:pl-0 pl-2.5">#태그3</span>
-            </div>
-            <p>글에 대한 간단한 description이 들어간다. desc 따로 적어줄지, 아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지 못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?</p>
-          </div>
-          <div className="pb-14">
-            <h2 className="text-2xl">2022.02.12 - 글 제목이 들어간다. 대충 이런식으로.</h2>
-            <div>
-              <span className="first:pl-0 pl-2.5">#태그</span>
-              <span className="first:pl-0 pl-2.5">#태그2</span>
-              <span className="first:pl-0 pl-2.5">#태그3</span>
-            </div>
-            <p>글에 대한 간단한 description이 들어간다. desc 따로 적어줄지, 아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지 못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?</p>
-          </div>
+          {allPostsData.map((post: Post) => {
+            return (
+              <div key={post.id} className="pb-14">
+                <h2 className="text-2xl">
+                  {post.id}
+                </h2>
+                <div>
+                  {post.tags.map((tag) => {
+                    return (
+                      <span key={tag} className="first:pl-0 pl-2.5">#{tag}</span>
+                    )
+                  })}
+                </div>
+                <p>
+                  글에 대한 간단한 description이 들어간다. desc 따로 적어줄지,
+                  아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지
+                  못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?
+                </p>
+              </div>
+            );
+          })}
           <div className="text-center mb-14">
             <button className="w-60 btn-primary">More</button>
           </div>
@@ -75,14 +51,21 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Home
+export async function getStaticProps() {
+  const allPostsData: Post[] = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
