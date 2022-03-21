@@ -22,19 +22,17 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
             return (
               <div key={post.id} className="pb-14">
                 <h2 className="text-2xl">
-                  {post.id}
+                  {post.title}
                 </h2>
                 <div>
-                  {post.tags.map((tag) => {
+                  {post.tags?.map((tag) => {
                     return (
                       <span key={tag} className="first:pl-0 pl-2.5">#{tag}</span>
                     )
                   })}
                 </div>
                 <p>
-                  글에 대한 간단한 description이 들어간다. desc 따로 적어줄지,
-                  아니면 기존 글 내용 몇줄 정도 잘라서 보여준지는 아직 정하지
-                  못했음. 호버 했을 때 재밌는 효과를 주고 싶다. 가능할까?
+                  {post.content}
                 </p>
               </div>
             );

@@ -5,6 +5,8 @@ import matter from "gray-matter";
 // TODO: Post 인터페이스 필드 수정
 export interface Post {
   id: string;
+  title: string;
+  content: string;
   tags: string[];
   date: string;
 }
@@ -15,11 +17,10 @@ export function getSortedPostsData() {
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
     const matterResult = matter(fileContents);
-    // TODO: remove hardcoded
     const result: Post = {
       id: curr,
-      tags: ['리액트', 'next.js', 'test'],
-      date: '2022-02-19',
+      ...matterResult.data,
+      content: matterResult.content
     } as Post;
     return [...acc, result];
   }, [] as Post[]);
