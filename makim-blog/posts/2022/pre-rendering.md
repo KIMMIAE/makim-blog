@@ -1,6 +1,10 @@
 ---
-title: "Two Forms of Pre-rendering"
-date: "2020-01-01"
+title: 'Two Forms of Pre-rendering'
+tag:
+  - 리액트
+  - next.js
+  - test
+date: '2020-01-01'
 ---
 next.js tutorial 내용 가져왔음
 

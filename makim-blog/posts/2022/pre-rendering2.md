@@ -1,6 +1,10 @@
 ---
-title: "임시 포스트 내용 가져오기"
-date: "2022-02-19"
+title: '임시 포스트 내용 가져오기'
+tags:
+  - javascript
+  - chrome
+  - browser
+date: '2022-02-19'
 ---
 next.js tutorial 내용 가져왔음
 

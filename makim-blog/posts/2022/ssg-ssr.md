@@ -1,6 +1,10 @@
 ---
-title: "When to Use Static Generation v.s. Server-side Rendering"
-date: "2020-01-02"
+title: 'When to Use Static Generation v.s. Server-side Rendering'
+tags:
+  - 배고프다
+  - 배고픔
+  - 초콜릿
+date: '2020-01-02'
 ---
 
 next.js tutorial 내용 가져왔음
