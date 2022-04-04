@@ -8,6 +8,8 @@ export interface Post {
   title: string;
   content: string;
   tags: string[];
+  description: string;
+  slug: string;
   date: string;
 }
 const postsDirectory = `${process.cwd()}/posts`;

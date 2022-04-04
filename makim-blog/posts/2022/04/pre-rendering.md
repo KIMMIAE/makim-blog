@@ -1,10 +1,12 @@
 ---
-title: '임시 포스트 내용 가져오기'
-tags:
-  - javascript
-  - chrome
-  - browser
-date: '2022-02-19'
+title: 'Two Forms of Pre-rendering'
+tag:
+  - 리액트
+  - next.js
+  - test
+description: 'Next.js has two forms of pre-rendering: 길지 않은 내용 설명..'
+slug: /2022/04/pre-rendering
+date: '2020-04-01'
 ---
 next.js tutorial 내용 가져왔음
 

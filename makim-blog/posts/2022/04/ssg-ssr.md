@@ -4,7 +4,9 @@ tags:
   - 배고프다
   - 배고픔
   - 초콜릿
-date: '2020-01-02'
+description: 'next.js tutorial 내용 가져왔음'
+slug: /2022/04/ssg-ssr
+date: '2020-04-02'
 ---
 
 next.js tutorial 내용 가져왔음

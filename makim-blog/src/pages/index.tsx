@@ -22,9 +22,11 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
             return (
               <div key={post.id} className="pb-14">
                 <h2 className="text-2xl">
-                  {post.title}
+                  <a href={post.slug}>
+                    {post.title}
+                  </a>
                 </h2>
-                <div>
+                <div className="mb-2">
                   {post.tags?.map((tag) => {
                     return (
                       <span key={tag} className="first:pl-0 pl-2.5">#{tag}</span>
@@ -32,7 +34,7 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
                   })}
                 </div>
                 <p>
-                  {post.content}
+                  {post.description}
                 </p>
               </div>
             );
