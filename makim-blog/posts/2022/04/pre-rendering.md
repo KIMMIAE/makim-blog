@@ -1,10 +1,12 @@
 ---
 title: 'Two Forms of Pre-rendering'
-tag:
+tags:
   - 리액트
   - next.js
   - test
-date: '2020-01-01'
+description: 'Next.js has two forms of pre-rendering: 길지 않은 내용 설명..'
+slug: 2022/04/pre-rendering
+date: '2020-04-01'
 ---
 next.js tutorial 내용 가져왔음
 

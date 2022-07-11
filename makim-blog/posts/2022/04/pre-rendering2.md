@@ -4,7 +4,9 @@ tags:
   - javascript
   - chrome
   - browser
-date: '2022-02-19'
+description: '포스트 설명 쓰기...'
+slug: 2022/04/pre-rendering2
+date: '2022-04-19'
 ---
 next.js tutorial 내용 가져왔음
 

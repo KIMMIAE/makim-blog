@@ -13,33 +13,30 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
-        <Header></Header>
-        <div>
-          <h1 className="text-3xl">Recent changes</h1>
-          <div className="my-6 border-b-2"></div>
-          {allPostsData.map((post: Post) => {
-            return (
-              <div key={post.id} className="pb-14">
-                <h2 className="text-2xl">
-                  {post.title}
-                </h2>
-                <div>
-                  {post.tags?.map((tag) => {
-                    return (
-                      <span key={tag} className="first:pl-0 pl-2.5">#{tag}</span>
-                    )
-                  })}
-                </div>
-                <p>
-                  {post.content}
-                </p>
+      <div>
+        <h1 className="text-3xl">Recent changes</h1>
+        <div className="my-6 border-b-2"></div>
+        {allPostsData.map((post: Post) => {
+          return (
+            <div key={post.id} className="pb-14">
+              <h2 className="text-2xl">
+                <a href={post.slug}>{post.title}</a>
+              </h2>
+              <div className="mb-2">
+                {post.tags?.map((tag) => {
+                  return (
+                    <span key={tag} className="first:pl-0 pl-2.5">
+                      #{tag}
+                    </span>
+                  );
+                })}
               </div>
-            );
-          })}
-          <div className="text-center mb-14">
-            <button className="w-60 btn-primary">More</button>
-          </div>
+              <p>{post.description}</p>
+            </div>
+          );
+        })}
+        <div className="text-center mb-14">
+          <button className="w-60 btn-primary">More</button>
         </div>
       </div>
       {/* TODO: footer 컴포넌트로 분리 */}
