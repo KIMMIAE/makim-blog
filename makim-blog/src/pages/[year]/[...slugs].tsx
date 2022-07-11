@@ -3,16 +3,18 @@ import { getSortedPostsData, Post } from "../../lib/posts";
 
 export default function PostPage({ post }: { post: Post }) {
   // TODO: 삭제한 포스트 레이아웃 관련 코드 추가
-  return <div>
-    <h1>{post.title}</h1>
-    <span>{post.date}</span>
-    {
-      post.tags.forEach((tag: string) => {
+  return (
+    <div>
+      <header className="py-6">
+        <h1 className="text-3xl text-center font-extrabold">{post.title}</h1>
+        <p className="text-center">{post.date}</p>
+      </header>
+      {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
-      })
-    }
-    <p>{post.content}</p>
-  </div>;
+      })}
+      <p>{post.content}</p>
+    </div>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
