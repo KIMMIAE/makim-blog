@@ -1,18 +1,30 @@
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getSortedPostsData, Post } from "../../lib/posts";
 
-export default function PostPage({ post }: { post: Post }) {
+export default function PostPage({
+  post,
+  mdx,
+}: {
+  post: Post;
+  mdx: MDXRemoteSerializeResult;
+}) {
   // TODO: 삭제한 포스트 레이아웃 관련 코드 추가
-  return <div>
-    <h1>{post.title}</h1>
-    <span>{post.date}</span>
-    {
-      post.tags.forEach((tag: string) => {
+  return (
+    <div>
+      <header className="py-6">
+        <h1 className="text-5xl text-center font-extrabold">{post.title}</h1>
+        <p className="text-center">{post.date}</p>
+      </header>
+      {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
-      })
-    }
-    <p>{post.content}</p>
-  </div>;
+      })}
+      <article className="pt-8 pb-10 prose prose-slate max-w-none">
+        <MDXRemote {...mdx} />
+      </article>
+    </div>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -47,9 +59,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return p?.slug === slug;
   });
   if (post) {
+    const source = post.content;
+    const mdxSource = await serialize(source);
     return {
       props: {
         post,
+        mdx: mdxSource,
       },
     };
   }
