@@ -1,7 +1,15 @@
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getSortedPostsData, Post } from "../../lib/posts";
 
-export default function PostPage({ post }: { post: Post }) {
+export default function PostPage({
+  post,
+  mdx,
+}: {
+  post: Post;
+  mdx: MDXRemoteSerializeResult;
+}) {
   // TODO: 삭제한 포스트 레이아웃 관련 코드 추가
   return (
     <div>
@@ -12,7 +20,7 @@ export default function PostPage({ post }: { post: Post }) {
       {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
       })}
-      <p>{post.content}</p>
+      <MDXRemote {...mdx} />
     </div>
   );
 }
@@ -49,9 +57,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return p?.slug === slug;
   });
   if (post) {
+    const source = post.content;
+    const mdxSource = await serialize(source);
     return {
       props: {
         post,
+        mdx: mdxSource,
       },
     };
   }
