@@ -14,13 +14,15 @@ export default function PostPage({
   return (
     <div>
       <header className="py-6">
-        <h1 className="text-3xl text-center font-extrabold">{post.title}</h1>
+        <h1 className="text-5xl text-center font-extrabold">{post.title}</h1>
         <p className="text-center">{post.date}</p>
       </header>
       {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
       })}
-      <MDXRemote {...mdx} />
+      <article className="pt-8 pb-10 prose prose-slate max-w-none">
+        <MDXRemote {...mdx} />
+      </article>
     </div>
   );
 }
