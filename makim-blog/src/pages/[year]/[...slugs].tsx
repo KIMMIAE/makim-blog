@@ -2,6 +2,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getSortedPostsData, Post } from "../../lib/posts";
+import prism from '@mapbox/rehype-prism';
 
 export default function PostPage({
   post,
@@ -60,7 +61,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
   if (post) {
     const source = post.content;
-    const mdxSource = await serialize(source);
+    const mdxSource = await serialize(source, {
+      mdxOptions: {
+        rehypePlugins: [prism]
+      }
+    });
     return {
       props: {
         post,
