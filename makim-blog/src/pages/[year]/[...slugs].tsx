@@ -2,6 +2,37 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getSortedPostsData, Post } from "../../lib/posts";
+import { visit } from "unist-util-visit";
+import { Node } from 'unist'
+// @ts-ignore
+import prism from '@mapbox/rehype-prism';
+
+type TokenType =
+    | 'tag'
+    | 'attr-name'
+    | 'attr-value'
+    | 'deleted'
+    | 'inserted'
+    | 'punctuation'
+    | 'keyword'
+    | 'string'
+    | 'function'
+    | 'boolean'
+    | 'comment'
+
+const tokenClassNames: { [key in TokenType]: string } = {
+    tag: 'text-code-blue',
+    'attr-name': 'text-code-sky',
+    'attr-value': 'text-code-orange',
+    deleted: 'text-code-orange',
+    inserted: 'text-code-lime',
+    punctuation: 'text-code-stone',
+    keyword: 'text-code-blue',
+    string: 'text-code-orange',
+    function: 'text-code-yellow',
+    boolean: 'text-code-lime',
+    comment: 'text-code-green',
+}
 
 export default function PostPage({
   post,
@@ -50,6 +81,17 @@ interface aa {
   slugs: string[];
 }
 
+function parseCodeSnippet() {
+    return (tree: Node) => {
+        visit(tree, 'element', (node: any) => {
+            const [token, type]: [string, TokenType] = node.properties.className || []
+            if (token === 'token') {
+                node.properties.className = [tokenClassNames[type]]
+            }
+        })
+    }
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { year, slugs } = params as unknown as aa;
 
@@ -60,7 +102,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
   if (post) {
     const source = post.content;
-    const mdxSource = await serialize(source);
+    const mdxSource = await serialize(source, {
+      mdxOptions: {
+        rehypePlugins: [prism, parseCodeSnippet]
+      }
+    });
     return {
       props: {
         post,
