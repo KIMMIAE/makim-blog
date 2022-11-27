@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Footer from "./Footer";
 import Header from "./header";
 
 const LayoutWrapper = ({ children }: { children: ReactNode }) => {
@@ -8,6 +9,7 @@ const LayoutWrapper = ({ children }: { children: ReactNode }) => {
       <article>
         {children}
       </article>
+      <Footer />
     </div>
   );
 };
