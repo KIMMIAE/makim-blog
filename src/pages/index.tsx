@@ -17,7 +17,8 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
         {allPostsData.map((post: Post) => {
           return (
             <div key={post.id} className="pb-14">
-              <h2 className="text-2xl">
+              <time dateTime={post.date} className="text-base text-gray-500">{post.date}</time>
+              <h2 className="text-2xl mt-1">
                 <a href={post.slug}>{post.title}</a>
               </h2>
               <div className="mb-2">
