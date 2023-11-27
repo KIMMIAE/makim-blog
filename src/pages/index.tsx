@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import { getSortedPostsData, Post } from "../lib/posts";
 
@@ -17,7 +18,9 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
         {allPostsData.map((post: Post) => {
           return (
             <div key={post.id} className="pb-14">
-              <time dateTime={post.date} className="text-base text-gray-500">{post.date}</time>
+              <time dateTime={post.date} className="text-base text-gray-500">
+                {post.date}
+              </time>
               <h2 className="text-2xl mt-1">
                 <a href={post.slug}>{post.title}</a>
               </h2>
@@ -35,7 +38,9 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
           );
         })}
         <div className="text-center mb-14">
-          <button className="w-60 btn-primary">More</button>
+          <Link href="/pages/1" passHref>
+            <button className="w-60 btn-primary">More</button>
+          </Link>
         </div>
       </div>
     </div>
@@ -43,7 +48,7 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData: Post[] = getSortedPostsData();
+  const allPostsData: Post[] = getSortedPostsData().slice(0, 5);
   return {
     props: {
       allPostsData,
