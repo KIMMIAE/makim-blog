@@ -29,9 +29,18 @@ const Header = () => {
         <a href="#" className="p-1 font-medium sm:p-4 cursor-pointer">
           Tags
         </a>
-        <a href="#" className="p-1 font-medium sm:p-4 cursor-pointer">
-          About
-        </a>
+        <Link
+          href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
+          passHref
+        >
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-1 font-medium sm:p-4 cursor-pointer"
+          >
+            About
+          </a>
+        </Link>
         {/* 다크모드 버튼 추가 */}
       </div>
     </header>
