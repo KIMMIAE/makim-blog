@@ -93,7 +93,7 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
               <time dateTime={post.date} className="text-base text-gray-500">
                 {post.date}
               </time>
-              <h2 className="mt-1 text-2xl">
+              <h2 className="text-2xl mt-1">
                 <a href={post.slug}>{post.title}</a>
               </h2>
               <div className="mb-2">
