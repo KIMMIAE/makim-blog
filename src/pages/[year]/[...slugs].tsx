@@ -45,11 +45,11 @@ export default function PostPage({
   return (
     <div>
       <header className="py-6">
-        <h1 className="text-5xl text-center font-extrabold">{post.title}</h1>
+        <h1 className="text-5xl font-extrabold text-center">{post.title}</h1>
         <p className="text-center">{post.date}</p>
       </header>
-      {post.tags.forEach((tag: string) => {
-        return <p>{tag}</p>;
+      {post.tags.map((tag: string, index: number) => {
+        return <p key={tag+index}>{tag}</p>;
       })}
       <article className="pt-8 pb-10 prose prose-slate max-w-none">
         <MDXRemote {...mdx} />
