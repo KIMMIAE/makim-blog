@@ -1,7 +1,7 @@
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getSortedPostsData, Post } from "../../lib/posts";
+import { getSortedPostsData, Post } from "../../lib/api";
 import { visit } from "unist-util-visit";
 import { Node } from 'unist'
 // @ts-ignore
@@ -45,7 +45,7 @@ export default function PostPage({
   return (
     <div>
       <header className="py-6">
-        <h1 className="text-5xl text-center font-extrabold">{post.title}</h1>
+        <h1 className="text-5xl font-extrabold text-center">{post.title}</h1>
         <p className="text-center">{post.date}</p>
       </header>
       {post.tags.forEach((tag: string) => {
