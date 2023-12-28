@@ -23,12 +23,9 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex items-center">
-        <a href="#" className="p-1 font-medium sm:p-4 cursor-pointer">
-          Posts
-        </a>
-        <a href="#" className="p-1 font-medium sm:p-4 cursor-pointer">
-          Tags
-        </a>
+        <Link href="/posts/1" passHref>
+          <span  className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
+        </Link>
         <Link
           href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
           passHref
@@ -36,7 +33,7 @@ const Header = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1 font-medium sm:p-4 cursor-pointer"
+            className="p-1 font-medium cursor-pointer sm:p-4"
           >
             About
           </a>
