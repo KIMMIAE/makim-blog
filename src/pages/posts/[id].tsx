@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import PostListItem from "../../components/PostListItem";
 import { Post, getSortedPostsData } from "../../lib/api";
 import Link from "next/link";
+import { Card } from "../../components/Card";
 
 const DEFAULT_NUMBER_OF_POSTS = 4;
 
@@ -19,9 +19,21 @@ export default function Posts({
       <h1 className="text-3xl">Page {pageNo}</h1>
       <div className="my-6 border-b-2"></div>
       {posts.map((post: Post) => {
-        return <PostListItem post={post} key={post.id} />;
+        return (
+          <div key={post.id} className="flex md:grid md:grid-cols-5 md:items-baseline md:border-l md:border-gray-100 md:dark:border-gray-700/40">
+            <Card.Time dateTime={post.date} horizontal></Card.Time>
+            <Card href={post.slug} className="md:col-span-4">
+              <a>
+                <Card.Title title={post.title} className="text-2xl" />
+                <Card.Tags tags={post.tags} />
+                <Card.Description desc={post.description} className="mb-2" />
+                <Card.Cta name="Read More &rarr;" ariaLabel="Read More" />
+              </a>
+            </Card>
+          </div>
+        );
       })}
-      <div className="flex">
+      <div className="flex mt-2">
         <div className="flex justify-start w-1/2 text-base font-medium leading-6">
           {pageNo !== 1 && (
             <Link href={`/posts/${pageNo - 1}`} aria-label="all posts" passHref>
