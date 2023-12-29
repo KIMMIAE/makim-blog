@@ -93,7 +93,7 @@ div {color: red;}
 
 ```html
 <!-- 그다음 <link>을 이용해서 CSS 파일을 연결하면 됩니다. -->
-<link rel="stylesheet" href="css/style.css">
+3 rel="stylesheet" href="css/style.css">
 <!-- 
   <head> 내부에 <link>를 선언한 후 href 속성을 이용해 CSS 파일의 경로를 적는다.
   rel 속성은 연결되는 파일이 문서와 어떤 관계인지를 명시하는 속성으로, CSS 파일은 'stylesheet' 라고 적어야 한다.
