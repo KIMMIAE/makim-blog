@@ -1,10 +1,10 @@
 ---
-title: 'html css 강의 내용 정리'
+title: '시멘틱 마크업에 대해서'
 tags:
   - html
   - css
   - 시멘틱 마크업
-description: 'html css 기초강의 내용 정리'
+description: '요즘 자주 듣는 노래는 비비의 파도...'
 slug: 2023/12/chapter1
 date: '2023-12-12'
 ---

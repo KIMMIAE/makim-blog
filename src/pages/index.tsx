@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import { getSortedPostsData, Post } from "../lib/api";
-import PostListItem from "../components/PostListItem";
+import { Card } from "../components/Card";
 
 export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
   return (
@@ -81,19 +81,32 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ffffff" />
-        <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
+        <meta
+          name="msapplication-TileImage"
+          content="/favicon/ms-icon-144x144.png"
+        />
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <div>
         <h1 className="text-3xl">Recent changes</h1>
         <div className="my-6 border-b-2"></div>
-        {allPostsData.map((post: Post) => {
-          return (
-            <PostListItem post={post} key={post.id} />
-          );
-        })}
-        <div className="text-center mb-14">
+        <article>
+          {allPostsData.map((post: Post) => {
+            return (
+              <Card key={post.id} href={post.slug}>
+                <a>
+                  <Card.Time dateTime={post.date} decorate></Card.Time>
+                  <Card.Title title={post.title} className="mt-1 text-2xl" />
+                  <Card.Tags tags={post.tags} />
+                  <Card.Description desc={post.description} className="mb-2" />
+                  <Card.Cta name="Read More &rarr;" ariaLabel="Read More" />
+                </a>
+              </Card>
+            );
+          })}
+        </article>
+        <div className="text-center my-14">
           <Link href="/posts/1" passHref>
             <button className="w-60 btn-primary">More</button>
           </Link>

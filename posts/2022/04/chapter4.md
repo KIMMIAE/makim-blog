@@ -4,7 +4,7 @@ tags:
   - html
   - css
   - 시멘틱 마크업
-description: 'html css 기초강의 내용 정리444444'
+description: '44444444444html css 기초강의 내용 정리444444'
 slug: 2022/04/chapter4
 date: '2022-07-12'
 ---
