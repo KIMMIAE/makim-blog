@@ -1,10 +1,10 @@
 ---
-title: 'html css 강의 내용 정리'
+title: '기초 강의 내용 정리'
 tags:
   - html
   - css
   - 시멘틱 마크업
-description: 'html css 기초강의 내용 정리'
+description: '내용이 다 똑같아서 엄청 헷갈린다..'
 slug: 2023/12/chapter3
 date: '2023-12-23'
 ---
