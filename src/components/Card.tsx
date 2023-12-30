@@ -26,6 +26,7 @@ interface ICardTags {
 interface ICardTime {
   dateTime: string;
   decorate?: boolean;
+  horizontal?: boolean;
 }
 
 interface ICardCta {
@@ -35,7 +36,7 @@ interface ICardCta {
 
 export function Card({ className, href, children }: ICard) {
   return (
-    <div
+    <article
       className={clsx(
         className,
         "block p-6 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer"
@@ -44,7 +45,7 @@ export function Card({ className, href, children }: ICard) {
       <Link href={`/${href}`} passHref>
         {children}
       </Link>
-    </div>
+    </article>
   );
 }
 
@@ -96,11 +97,12 @@ Card.Tags = function CardTags({ tags, className }: ICardTags) {
 
 Card.Time = function CardTimeDecorator({
   dateTime,
+  horizontal = false,
   decorate = false,
 }: ICardTime) {
   return (
     <time
-      className={clsx("relative text-base text-gray-400", decorate && "pl-3.5")}
+      className={clsx("relative text-base text-gray-400", decorate && "pl-3.5", horizontal && "p-6" )}
     >
       {dateTime}
 
@@ -109,7 +111,7 @@ Card.Time = function CardTimeDecorator({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className="h-4 w-0.5 rounded-full bg-gray-200 dark:bg-gray-500" />
+          <span className={clsx("h-4 w-0.5 rounded-full bg-gray-200 dark:bg-gray-500")} />
         </span>
       )}
     </time>
