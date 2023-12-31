@@ -39,7 +39,7 @@ export function Card({ className, href, children }: ICard) {
     <article
       className={clsx(
         className,
-        "block p-6 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer"
+        "block p-6 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/50 cursor-pointer"
       )}
     >
       <Link href={`/${href}`} passHref>

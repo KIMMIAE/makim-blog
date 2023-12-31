@@ -91,7 +91,7 @@ export default function Home({ allPostsData }: { allPostsData: Array<Post> }) {
       <div>
         <h1 className="text-3xl">Recent changes</h1>
         <div className="my-6 border-b-2"></div>
-        <div>
+        <div className="flex flex-col gap-4">
           {allPostsData.map((post: Post) => {
             return (
               <Card key={post.id} href={post.slug}>

@@ -3,36 +3,36 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getSortedPostsData, Post } from "../../lib/api";
 import { visit } from "unist-util-visit";
-import { Node } from 'unist'
+import { Node } from "unist";
 // @ts-ignore
-import prism from '@mapbox/rehype-prism';
+import prism from "@mapbox/rehype-prism";
 
 type TokenType =
-    | 'tag'
-    | 'attr-name'
-    | 'attr-value'
-    | 'deleted'
-    | 'inserted'
-    | 'punctuation'
-    | 'keyword'
-    | 'string'
-    | 'function'
-    | 'boolean'
-    | 'comment'
+  | "tag"
+  | "attr-name"
+  | "attr-value"
+  | "deleted"
+  | "inserted"
+  | "punctuation"
+  | "keyword"
+  | "string"
+  | "function"
+  | "boolean"
+  | "comment";
 
 const tokenClassNames: { [key in TokenType]: string } = {
-    tag: 'text-code-blue',
-    'attr-name': 'text-code-sky',
-    'attr-value': 'text-code-orange',
-    deleted: 'text-code-orange',
-    inserted: 'text-code-lime',
-    punctuation: 'text-code-stone',
-    keyword: 'text-code-blue',
-    string: 'text-code-orange',
-    function: 'text-code-yellow',
-    boolean: 'text-code-lime',
-    comment: 'text-code-green',
-}
+  tag: "text-code-blue",
+  "attr-name": "text-code-sky",
+  "attr-value": "text-code-orange",
+  deleted: "text-code-orange",
+  inserted: "text-code-lime",
+  punctuation: "text-code-stone",
+  keyword: "text-code-blue",
+  string: "text-code-orange",
+  function: "text-code-yellow",
+  boolean: "text-code-lime",
+  comment: "text-code-green",
+};
 
 export default function PostPage({
   post,
@@ -51,7 +51,7 @@ export default function PostPage({
       {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
       })}
-      <article className="pt-8 pb-10 prose prose-slate max-w-none">
+      <article className="pt-8 pb-10 prose prose-slate dark:prose-invert max-w-none">
         <MDXRemote {...mdx} />
       </article>
     </div>
@@ -82,14 +82,15 @@ interface aa {
 }
 
 function parseCodeSnippet() {
-    return (tree: Node) => {
-        visit(tree, 'element', (node: any) => {
-            const [token, type]: [string, TokenType] = node.properties.className || []
-            if (token === 'token') {
-                node.properties.className = [tokenClassNames[type]]
-            }
-        })
-    }
+  return (tree: Node) => {
+    visit(tree, "element", (node: any) => {
+      const [token, type]: [string, TokenType] =
+        node.properties.className || [];
+      if (token === "token") {
+        node.properties.className = [tokenClassNames[type]];
+      }
+    });
+  };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -104,8 +105,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const source = post.content;
     const mdxSource = await serialize(source, {
       mdxOptions: {
-        rehypePlugins: [prism, parseCodeSnippet]
-      }
+        rehypePlugins: [prism, parseCodeSnippet],
+      },
     });
     return {
       props: {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/applejam_logo.png";
+import ModeToggle from "./ModeToggle";
 
 const Header = () => {
   return (
@@ -24,7 +25,7 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <Link href="/posts/1" passHref>
-          <span  className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
+          <span className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
         </Link>
         <Link
           href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
@@ -38,7 +39,7 @@ const Header = () => {
             About
           </a>
         </Link>
-        {/* 다크모드 버튼 추가 */}
+        <ModeToggle />
       </div>
     </header>
   );
