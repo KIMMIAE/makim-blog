@@ -47,8 +47,6 @@ const ModeToggle = () => {
     setTheme(currentTheme === "dark" ? "light" : "dark");
   }
 
-  console.log(currentTheme, "makim", theme === "light");
-
   return (
     <button
       type="button"
