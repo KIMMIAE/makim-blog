@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/applejam_logo.png";
 import ModeToggle from "./ModeToggle";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
@@ -24,22 +25,27 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex items-center">
-        <Link href="/posts/1" passHref>
-          <span className="hidden p-1 font-medium cursor-pointer sm:block sm:p-4">Posts</span>
-        </Link>
-        <Link
-          href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
-          passHref
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden p-1 font-medium cursor-pointer sm:block sm:p-4"
+        <div className="hidden sm:block">
+          <Link href="/posts/1" passHref>
+            <span className="p-1 font-medium cursor-pointer sm:p-4">
+              Posts
+            </span>
+          </Link>
+          <Link
+            href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
+            passHref
           >
-            About
-          </a>
-        </Link>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 font-medium cursor-pointer sm:p-4"
+            >
+              About
+            </a>
+          </Link>
+        </div>
         <ModeToggle />
+        <MobileNav />
       </div>
     </header>
   );
