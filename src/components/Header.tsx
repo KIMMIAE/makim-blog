@@ -17,7 +17,7 @@ const Header = () => {
               className="w-16 h-16"
               alt="logo"
             />
-            <span className="text-3xl font-semibold cursor-pointer">
+            <span className="text-xl font-semibold cursor-pointer md:text-3xl">
               개발이 재밌는 날
             </span>
           </div>
@@ -25,7 +25,7 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <Link href="/posts/1" passHref>
-          <span className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
+          <span className="hidden p-1 font-medium cursor-pointer sm:block sm:p-4">Posts</span>
         </Link>
         <Link
           href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
@@ -34,7 +34,7 @@ const Header = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1 font-medium cursor-pointer sm:p-4"
+            className="hidden p-1 font-medium cursor-pointer sm:block sm:p-4"
           >
             About
           </a>
