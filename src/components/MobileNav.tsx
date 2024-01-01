@@ -1,0 +1,75 @@
+import Link from "next/link";
+import { useState } from "react";
+
+const MobileNav = () => {
+  const [navShow, setNavShow] = useState(false);
+  function handleMenuClick() {
+    setNavShow((status) => {
+      if (status) {
+        document.body.style.overflowY = "auto";
+      } else {
+        document.body.style.overflowY = "hidden";
+      }
+      return !status;
+    });
+  }
+  return (
+    <div className="sm:hidden">
+      <button
+        type="button"
+        aria-label="Toggle Menu"
+        className="w-8 h-8 ml-1 mr-1 rounded"
+        onClick={handleMenuClick}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          {navShow ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          )}
+        </svg>
+      </button>
+      <div
+        className={`z-10 fixed top-32 bg-zinc-200 w-full h-full right-0 transform opacity-90 duration-300 ease-in-out ${
+          navShow ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <nav className="flex flex-col h-full mt-8">
+          <Link href="/posts/1" passHref>
+            <span className="px-6 py-4 text-2xl font-semibold" onClick={handleMenuClick}>Posts</span>
+          </Link>
+          <Link
+            href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
+            passHref
+          >
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 text-2xl font-semibold"
+              onClick={handleMenuClick}
+            >
+              About
+            </a>
+          </Link>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
+export default MobileNav;
