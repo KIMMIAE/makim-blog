@@ -25,6 +25,7 @@ interface ICardTags {
 
 interface ICardTime {
   dateTime: string;
+  className?: string;
   decorate?: boolean;
   horizontal?: boolean;
 }
@@ -97,12 +98,18 @@ Card.Tags = function CardTags({ tags, className }: ICardTags) {
 
 Card.Time = function CardTimeDecorator({
   dateTime,
+  className,
   horizontal = false,
   decorate = false,
 }: ICardTime) {
   return (
     <time
-      className={clsx("relative text-base text-gray-400", decorate && "pl-3.5", horizontal && "p-6" )}
+      className={clsx(
+        className,
+        "relative text-base text-gray-400",
+        decorate && "pl-3.5",
+        horizontal && "p-6"
+      )}
     >
       {dateTime}
 
@@ -111,7 +118,11 @@ Card.Time = function CardTimeDecorator({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className={clsx("h-4 w-0.5 rounded-full bg-gray-200 dark:bg-gray-500")} />
+          <span
+            className={clsx(
+              "h-4 w-0.5 rounded-full bg-gray-200 dark:bg-gray-500"
+            )}
+          />
         </span>
       )}
     </time>
