@@ -44,14 +44,14 @@ export default function PostPage({
   // TODO: 삭제한 포스트 레이아웃 관련 코드 추가
   return (
     <div>
-      <header className="py-6">
-        <h1 className="text-5xl font-extrabold text-center">{post.title}</h1>
-        <p className="text-center">{post.date}</p>
+      <header className="py-6 border-b">
+        <h1 className="text-3xl font-extrabold md:text-4xl">{post.title}</h1>
+        <p className="mt-2 font-semibold text-gray-400">posted by <span className="text-black">mia</span> · {post.date}</p>
       </header>
       {post.tags.forEach((tag: string) => {
         return <p>{tag}</p>;
       })}
-      <article className="pt-8 pb-10 prose prose-slate dark:prose-invert max-w-none">
+      <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
         <MDXRemote {...mdx} />
       </article>
     </div>

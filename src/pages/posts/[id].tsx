@@ -20,10 +20,11 @@ export default function Posts({
       <div className="my-6 border-b-2"></div>
       {posts.map((post: Post) => {
         return (
-          <div key={post.id} className="flex md:grid md:grid-cols-5 md:items-baseline md:border-l md:border-gray-100 md:dark:border-gray-700/40">
-            <Card.Time dateTime={post.date} horizontal></Card.Time>
+          <div key={post.id} className="md:grid md:grid-cols-5 md:items-baseline md:border-l md:border-gray-100 md:dark:border-gray-700/40">
+            <Card.Time dateTime={post.date} className="hidden md:block" horizontal></Card.Time>
             <Card href={post.slug} className="md:col-span-4">
               <a>
+                <Card.Time dateTime={post.date} className="md:hidden" decorate></Card.Time>
                 <Card.Title title={post.title} className="text-2xl" />
                 <Card.Tags tags={post.tags} />
                 <Card.Description desc={post.description} className="mb-2" />
