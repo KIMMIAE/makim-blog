@@ -18,7 +18,7 @@ const MobileNav = () => {
       <button
         type="button"
         aria-label="Toggle Menu"
-        className="w-8 h-8 ml-1 mr-1 rounded"
+        className="flex items-center justify-center w-8 h-8 ml-2 mr-2 rounded"
         onClick={handleMenuClick}
       >
         <svg
@@ -45,7 +45,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`z-10 fixed top-32 bg-zinc-200 w-full h-full right-0 transform opacity-90 duration-300 ease-in-out ${
+        className={`fixed right-0 z-10 w-full h-full duration-300 ease-in-out transform top-32 bg-zinc-200 dark:bg-zinc-700 opacity-90 ${
           navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
