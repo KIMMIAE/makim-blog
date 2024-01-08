@@ -4,7 +4,7 @@ tags:
   - git
   - convention
 description: '편리하면서도 불편한 커밋 메시지 컨벤션. 꼭 지켜야 될까?'
-publiched: true
+published: true
 slug: 2022/11/commit-conventions
 date: '2022-11-13'
 ---
