@@ -20,6 +20,7 @@ tags: # 태그
   - book
   - UX
 description: "사용성 개선은 늘 어렵다..." # 글 설명
+published: true # 게시물 게재 유무
 slug: 2023/11/book-101-ux-principles # path
 date: "2023-11-29" # 작성일
 ---

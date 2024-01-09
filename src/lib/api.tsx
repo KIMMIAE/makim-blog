@@ -9,6 +9,7 @@ export interface Post {
   content: string;
   tags: string[];
   description: string;
+  published: boolean;
   slug: string;
   date: string;
 }
@@ -19,10 +20,14 @@ export function getSortedPostsData() {
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
     const matterResult = matter(fileContents);
+    const { published } = matterResult.data;
+    if (!published) {
+      return acc;
+    }
     const result: Post = {
       id: curr,
       ...matterResult.data,
-      content: matterResult.content
+      content: matterResult.content,
     } as Post;
     return [...acc, result];
   }, [] as Post[]);
