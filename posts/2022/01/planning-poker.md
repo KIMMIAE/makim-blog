@@ -4,6 +4,7 @@ tags:
   - Agile
   - Planning Poker
 description: "효과가 좋은진 모르겠지만 일단 치면 재밌는 포커~"
+published: true
 slug: 2022/01/planning-poker
 date: "2022-01-03"
 ---
