@@ -27,7 +27,7 @@ date: "2022-01-03"
     - scrum poker cards (agile)
     - [Agile Poker for Jira - planning & estimation | Atlassian Marketplace](https://marketplace.atlassian.com/apps/700473/agile-poker-for-jira-planning-estimation?hosting=datacenter&tab=overview&utm_source=google&utm_medium=cpc&utm_campaign=agile_poker_search&gclid=CjwKCAiAlrSPBhBaEiwAuLSDUMMdJfUqqrLyWgl8zO5wDyVcHmQY0SDg8ZcPzMlQEstz-g58npUYCxoCiTgQAvD_BwE)
     - scrum poker cards (agile)
-    - ![poker cards](../../../public/2022/01/images/poker-cards.png)
+    - ![poker cards](/2022/01/images/poker-cards.png)
 
 **역할**
 
