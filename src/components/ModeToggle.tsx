@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "next-themes";
 
 const MoonIcon = () => {
@@ -37,7 +39,6 @@ const SunIcon = () => {
     </svg>
   );
 };
-
 
 const ModeToggle = () => {
   const { systemTheme, theme, setTheme } = useTheme();

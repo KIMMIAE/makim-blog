@@ -80,7 +80,7 @@ Card.Description = function CardDescription({
 };
 
 Card.Tags = function CardTags({ tags, className }: ICardTags) {
-  const tags2 = tags.map((tag) => {
+  const result = tags.map((tag) => {
     return (
       <span
         key={tag}
@@ -93,7 +93,7 @@ Card.Tags = function CardTags({ tags, className }: ICardTags) {
       </span>
     );
   });
-  return <div className="mb2">{tags2}</div>;
+  return <div className="mb-2">{result}</div>;
 };
 
 Card.Time = function CardTimeDecorator({

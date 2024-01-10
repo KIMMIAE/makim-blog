@@ -1,4 +1,4 @@
-import glob from "glob";
+import { sync } from "glob";
 import fs from "fs";
 import matter from "gray-matter";
 
@@ -16,7 +16,7 @@ export interface Post {
 const postsDirectory = `${process.cwd()}/posts`;
 
 export function getSortedPostsData() {
-  const fileNames: string[] = glob.sync(`${postsDirectory}/**/*.md`);
+  const fileNames: string[] = sync(`${postsDirectory}/**/*.md`);
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
     const matterResult = matter(fileContents);
