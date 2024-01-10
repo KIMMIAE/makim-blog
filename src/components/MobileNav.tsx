@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useState } from "react";
 
@@ -51,7 +53,12 @@ const MobileNav = () => {
       >
         <nav className="flex flex-col h-full mt-8">
           <Link href="/posts/1" passHref>
-            <span className="px-6 py-4 text-2xl font-semibold" onClick={handleMenuClick}>Posts</span>
+            <span
+              className="px-6 py-4 text-2xl font-semibold"
+              onClick={handleMenuClick}
+            >
+              Posts
+            </span>
           </Link>
           <Link
             href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"

@@ -2,6 +2,7 @@ import "../../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import LayoutWrapper from "../components/LayoutWrapper";
 import { Metadata } from "next";
+import { Providers } from "../components/Provider";
 
 export const metadata: Metadata = {
   title: 'applejam',
@@ -44,9 +45,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased text-black bg-white dark:bg-zinc-900 dark:text-white">
-        <ThemeProvider attribute="class">
+        <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
