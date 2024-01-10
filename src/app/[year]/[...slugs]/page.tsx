@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { Post, getSortedPostsData } from "../../../lib/api";
-import { serialize } from "next-mdx-remote/serialize";
 import prism from "@mapbox/rehype-prism";
 import { visit } from "unist-util-visit";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { Card } from "../../../components/Card";
 
 type TokenType =
   | "tag"
@@ -76,25 +76,21 @@ export default async function Page({
   }
 
   const source = post.content;
-  const mdxSource = await serialize(source, {
-    mdxOptions: {
-      rehypePlugins: [prism, parseCodeSnippet],
-    },
-  });
 
   return (
     <div>
       <header className="py-6 border-b">
+        <Card.Tags tags={post.tags} />
         <h1 className="text-3xl font-extrabold md:text-4xl">{post.title}</h1>
         <p className="mt-2 font-semibold text-gray-400">
           posted by <span className="text-black">mia</span> · {post.date}
         </p>
       </header>
-      {post.tags.map((tag: string) => {
-        return <p key={tag}>{tag}</p>;
-      })}
       <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
-        <MDXRemote {...mdxSource} />
+        <MDXRemote
+          source={source}
+          options={{ mdxOptions: { rehypePlugins: [prism, parseCodeSnippet] } }}
+        />
       </article>
     </div>
   );
