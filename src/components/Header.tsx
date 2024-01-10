@@ -27,21 +27,16 @@ const Header = () => {
       <div className="flex items-center">
         <div className="hidden sm:block">
           <Link href="/posts/1" passHref>
-            <span className="p-1 font-medium cursor-pointer sm:p-4">
-              Posts
-            </span>
+            <span className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
           </Link>
           <Link
             href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
             passHref
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-1 font-medium cursor-pointer sm:p-4"
           >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1 font-medium cursor-pointer sm:p-4"
-            >
-              About
-            </a>
+            About
           </Link>
         </div>
         <ModeToggle />

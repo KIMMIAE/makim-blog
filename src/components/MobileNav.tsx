@@ -63,15 +63,12 @@ const MobileNav = () => {
           <Link
             href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
             passHref
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-4 text-2xl font-semibold"
+            onClick={handleMenuClick}
           >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-4 text-2xl font-semibold"
-              onClick={handleMenuClick}
-            >
-              About
-            </a>
+            About
           </Link>
         </nav>
       </div>
