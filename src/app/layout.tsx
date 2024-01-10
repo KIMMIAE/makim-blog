@@ -1,5 +1,4 @@
 import "../../styles/globals.css";
-import { ThemeProvider } from "next-themes";
 import LayoutWrapper from "../components/LayoutWrapper";
 import { Metadata } from "next";
 import { Providers } from "../components/Provider";
