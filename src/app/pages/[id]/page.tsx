@@ -7,6 +7,16 @@ export const dynamic = "error";
 
 const DEFAULT_NUMBER_OF_POSTS = 4;
 
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  return {
+    title: `Page ${id}`,
+  };
+}
+
 export async function generateStaticParams() {
   const posts = await getSortedPostsData();
 

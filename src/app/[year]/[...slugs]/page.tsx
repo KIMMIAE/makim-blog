@@ -55,6 +55,22 @@ async function findPost(year: string, slugs: string[]) {
   return post;
 }
 
+export async function generateMetadata({
+  params: { year, slug },
+}: {
+  params: { year: string; slug: string[] }
+}) {
+  const post = await findPost(year, slug)
+
+  if (!post) {
+    return {}
+  }
+
+  return {
+    title: post.title,
+  }
+}
+
 export async function generateStaticParams() {
   const allPosts = await getSortedPostsData();
 
