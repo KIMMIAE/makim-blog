@@ -33,7 +33,7 @@ date: "2023-12-03"
   * fibonacci 수열
 
 ### 빅오의 그래프 형태
-![Big O Notation Graph](./images/big-o-notation-graph.jpg "출처: Udemy JavaScript 알고리즘 & 자료구조 마스터클래스 강의")
+![Big O Notation Graph](./images/big-o-notation-graph.png "출처: Udemy JavaScript 알고리즘 & 자료구조 마스터클래스 강의")
 
 O(1) < O(logn) < O(n) < O(nlogn) < O(n^2) < O(2^n)
 
