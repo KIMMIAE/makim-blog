@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { findPost, getSortedPostsData, parseCodeSnippet } from "../../../lib/Post";
+import {
+  findPost,
+  getSortedPostsData,
+  parseCodeSnippet,
+} from "../../../lib/Post";
 import prism from "@mapbox/rehype-prism";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Card } from "../../../components/Card";
@@ -7,30 +11,28 @@ import { Card } from "../../../components/Card";
 export const dynamic = "error";
 
 export async function generateMetadata({
-  params: { year, slug },
+  params: { year, slugs },
 }: {
-  params: { year: string; slug: string[] }
+  params: { year: string; slugs: string[] };
 }) {
-  const post = await findPost(year, slug)
+  const post = await findPost(year, slugs);
 
   if (!post) {
-    return {}
+    return {};
   }
 
   return {
     title: post.title,
-  }
+  };
 }
 
 export async function generateStaticParams() {
   const allPosts = await getSortedPostsData();
 
-  const paths: Array<{
-    params: { year: string; slugs: string[] };
-  }> = allPosts.reduce<Array<{ params: { year: string; slugs: string[] } }>>(
+  const paths = allPosts.reduce<Array<{ year: string; slugs: string[] }>>(
     (prev, post) => {
       const [year, ...slugs] = post.slug.split("/");
-      prev.push({ params: { year, slugs } });
+      prev.push({ year, slugs });
       return prev;
     },
     []

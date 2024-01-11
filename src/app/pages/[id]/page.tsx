@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
   const paths = [
     ...new Array(Math.round(posts.length / DEFAULT_NUMBER_OF_POSTS)).keys(),
-  ].map((i) => ({ params: { id: `${i + 1}` } }));
+  ].map((i) => ({ id: `${i + 1}` }));
 
   return paths;
 }
