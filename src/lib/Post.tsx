@@ -1,6 +1,9 @@
 import fs from "fs";
 import { sync } from "glob";
 import matter from "gray-matter";
+import { visit } from "unist-util-visit";
+
+const postsDirectory = `${process.cwd()}/posts`;
 
 // TODO: Post 인터페이스 필드 수정
 export interface Post {
@@ -13,10 +16,58 @@ export interface Post {
   slug: string;
   date: string;
 }
-const postsDirectory = `${process.cwd()}/posts`;
+
+type TokenType =
+  | "tag"
+  | "attr-name"
+  | "attr-value"
+  | "deleted"
+  | "inserted"
+  | "punctuation"
+  | "keyword"
+  | "string"
+  | "function"
+  | "boolean"
+  | "comment";
+
+const tokenClassNames: { [key in TokenType]: string } = {
+  tag: "text-code-blue",
+  "attr-name": "text-code-sky",
+  "attr-value": "text-code-orange",
+  deleted: "text-code-orange",
+  inserted: "text-code-lime",
+  punctuation: "text-code-stone",
+  keyword: "text-code-blue",
+  string: "text-code-orange",
+  function: "text-code-yellow",
+  boolean: "text-code-lime",
+  comment: "text-code-green",
+};
+
+export function parseCodeSnippet() {
+  return (tree: Node) => {
+    visit(tree, "element", (node: any) => {
+      const [token, type]: [string, TokenType] =
+        node.properties.className || [];
+      if (token === "token") {
+        node.properties.className = [tokenClassNames[type]];
+      }
+    });
+  };
+}
+
+export async function findPost(year: string, slugs: string[]) {
+  const slug = [year, ...(slugs as string[])].join("/");
+  const posts = await getSortedPostsData();
+  const post = posts.find((p: Post) => {
+    return p?.slug === slug;
+  });
+  return post;
+}
+
 
 export async function getSortedPostsData(): Promise<Post[]> {
-  const fileNames: string[] = sync(`${postsDirectory}/**/*.md`);
+  const fileNames: string[] = sync(`${postsDirectory}/**/*.md*`);
   console.log(fileNames, 'makkim');
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");

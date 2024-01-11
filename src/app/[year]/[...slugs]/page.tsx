@@ -1,59 +1,10 @@
 import { notFound } from "next/navigation";
-import { Post, getSortedPostsData } from "../../../lib/Post";
+import { findPost, getSortedPostsData, parseCodeSnippet } from "../../../lib/Post";
 import prism from "@mapbox/rehype-prism";
-import { visit } from "unist-util-visit";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Card } from "../../../components/Card";
 
 export const dynamic = "error";
-
-type TokenType =
-  | "tag"
-  | "attr-name"
-  | "attr-value"
-  | "deleted"
-  | "inserted"
-  | "punctuation"
-  | "keyword"
-  | "string"
-  | "function"
-  | "boolean"
-  | "comment";
-
-const tokenClassNames: { [key in TokenType]: string } = {
-  tag: "text-code-blue",
-  "attr-name": "text-code-sky",
-  "attr-value": "text-code-orange",
-  deleted: "text-code-orange",
-  inserted: "text-code-lime",
-  punctuation: "text-code-stone",
-  keyword: "text-code-blue",
-  string: "text-code-orange",
-  function: "text-code-yellow",
-  boolean: "text-code-lime",
-  comment: "text-code-green",
-};
-
-function parseCodeSnippet() {
-  return (tree: Node) => {
-    visit(tree, "element", (node: any) => {
-      const [token, type]: [string, TokenType] =
-        node.properties.className || [];
-      if (token === "token") {
-        node.properties.className = [tokenClassNames[type]];
-      }
-    });
-  };
-}
-
-async function findPost(year: string, slugs: string[]) {
-  const slug = [year, ...(slugs as string[])].join("/");
-  const posts = await getSortedPostsData();
-  const post = posts.find((p: Post) => {
-    return p?.slug === slug;
-  });
-  return post;
-}
 
 export async function generateMetadata({
   params: { year, slug },
