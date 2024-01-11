@@ -49,7 +49,7 @@ export default async function Page({
   const posts = allPosts.slice(startIndex, endIndex);
 
   const hasNextPage =
-    Math.floor(allPosts.length / DEFAULT_NUMBER_OF_POSTS) >= pageNo;
+    Math.floor(allPosts.length / DEFAULT_NUMBER_OF_POSTS) > pageNo;
 
   return (
     <div>
