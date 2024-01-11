@@ -66,7 +66,7 @@ export default async function Page({
   params: { year: string; slugs: string[] };
 }) {
   const slug = [year, ...(slugs as string[])].join("/");
-  const posts = getSortedPostsData();
+  const posts = await getSortedPostsData();
   const post = posts.find((p: Post) => {
     return p?.slug === slug;
   });
