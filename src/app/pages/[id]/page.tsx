@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Post, getSortedPostsData } from "../../../lib/api";
+import { Post, getSortedPostsData } from "../../../lib/Post";
 import { Card } from "../../../components/Card";
 import Link from "next/link";
 

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Post, getSortedPostsData } from "../../../lib/api";
+import { Post, getSortedPostsData } from "../../../lib/Post";
 import prism from "@mapbox/rehype-prism";
 import { visit } from "unist-util-visit";
 import { MDXRemote } from "next-mdx-remote/rsc";

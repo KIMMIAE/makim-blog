@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import { Card } from "../components/Card";
-import { Post, getSortedPostsData } from "../lib/api";
+import { Post, getSortedPostsData } from "../lib/Post";
 
 export default async function Page() {
   const allPostsData: Post[] = await getSortedPostsData()
