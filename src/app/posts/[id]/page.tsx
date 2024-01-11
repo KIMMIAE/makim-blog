@@ -21,6 +21,7 @@ export default async function Page({
   params: { id: string };
 }) {
   const allPosts = await getSortedPostsData();
+  console.log(allPosts, 'posts page')
   const pageNo = parseInt(id);
 
   if (
