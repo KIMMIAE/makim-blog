@@ -72,7 +72,8 @@ export default async function Page({
   });
 
   if (!post) {
-    return notFound();
+    console.log(post, 'makim 디버깅용 revert 예정');
+    return <span>12</span>
   }
 
   const source = post.content;

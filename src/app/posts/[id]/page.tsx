@@ -28,6 +28,7 @@ export default async function Page({
     pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||
     pageNo < 1
   ) {
+    console.log(pageNo, '임시');
     return notFound();
   }
 
