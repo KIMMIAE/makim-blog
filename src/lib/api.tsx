@@ -1,5 +1,5 @@
-import { sync } from "glob";
 import fs from "fs";
+import { sync } from "glob";
 import matter from "gray-matter";
 
 // TODO: Post 인터페이스 필드 수정
@@ -15,7 +15,7 @@ export interface Post {
 }
 const postsDirectory = `${process.cwd()}/posts`;
 
-export function getSortedPostsData() {
+export async function getSortedPostsData() {
   const fileNames: string[] = sync(`${postsDirectory}/**/*.md`);
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");

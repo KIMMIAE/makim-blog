@@ -21,7 +21,6 @@ export default async function Page({
   params: { id: string };
 }) {
   const allPosts = await getSortedPostsData();
-  console.log(allPosts.length,allPosts[0].title, 'posts page')
   const pageNo = parseInt(id);
 
   if (
@@ -29,7 +28,6 @@ export default async function Page({
     pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||
     pageNo < 1
   ) {
-    console.warn(pageNo, Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS), 'posts notfound');
     return notFound();
   }
 

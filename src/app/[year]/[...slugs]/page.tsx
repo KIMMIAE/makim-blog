@@ -47,7 +47,6 @@ function parseCodeSnippet() {
 async function findPost(year: string, slugs: string[]) {
   const slug = [year, ...(slugs as string[])].join("/");
   const posts = await getSortedPostsData();
-  console.log('findPost',posts[0].title, 'detail');
   const post = posts.find((p: Post) => {
     return p?.slug === slug;
   });
@@ -77,7 +76,6 @@ export default async function Page({
 }) {
   const post = await findPost(year, slugs);
   if (!post) {
-    console.warn(post,year,...slugs, 'detail notfound');
     return notFound();
   }
 

@@ -3,15 +3,16 @@ import styles from "../../styles/Home.module.css";
 import { Card } from "../components/Card";
 import { Post, getSortedPostsData } from "../lib/api";
 
-export default function Page() {
-  const allPostsData: Post[] = getSortedPostsData().slice(0, 5);
+export default async function Page() {
+  const allPostsData: Post[] = await getSortedPostsData()
+  const recentPosts = allPostsData.slice(0, 5);
   return (
     <div className={styles.container}>
       <div>
         <h1 className="text-3xl">Recent changes</h1>
         <div className="my-6 border-b-2"></div>
         <div className="flex flex-col gap-4">
-          {allPostsData.map((post: Post) => {
+          {recentPosts.map((post: Post) => {
             return (
               <Card key={post.id} href={post.slug}>
                 <Card.Time dateTime={post.date} decorate></Card.Time>
