@@ -3,6 +3,8 @@ import { Post, getSortedPostsData } from "../../../lib/api";
 import { Card } from "../../../components/Card";
 import Link from "next/link";
 
+export const dynamic = "error";
+
 const DEFAULT_NUMBER_OF_POSTS = 4;
 
 export async function generateStaticParams() {

@@ -5,6 +5,8 @@ import { visit } from "unist-util-visit";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Card } from "../../../components/Card";
 
+export const dynamic = "error";
+
 type TokenType =
   | "tag"
   | "attr-name"
