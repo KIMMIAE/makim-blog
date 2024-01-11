@@ -28,6 +28,7 @@ export default async function Page({
     pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||
     pageNo < 1
   ) {
+    console.warn(pageNo, Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS), 'posts notfound');
     return notFound();
   }
 

@@ -44,6 +44,15 @@ function parseCodeSnippet() {
   };
 }
 
+async function findPost(year: string, slugs: string[]) {
+  const slug = [year, ...(slugs as string[])].join("/");
+  const posts = await getSortedPostsData();
+  const post = posts.find((p: Post) => {
+    return p?.slug === slug;
+  });
+  return post;
+}
+
 export async function generateStaticParams() {
   const allPosts = await getSortedPostsData();
 
@@ -65,13 +74,9 @@ export default async function Page({
 }: {
   params: { year: string; slugs: string[] };
 }) {
-  const slug = [year, ...(slugs as string[])].join("/");
-  const posts = await getSortedPostsData();
-  const post = posts.find((p: Post) => {
-    return p?.slug === slug;
-  });
-
+  const post = await findPost(year, slugs);
   if (!post) {
+    console.warn(post,year,slugs[0], 'notfound');
     return notFound();
   }
 
