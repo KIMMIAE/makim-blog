@@ -55,15 +55,15 @@ export default async function Page({
               horizontal
             ></Card.Time>
             <Card href={post.slug} className="md:col-span-4">
-                <Card.Time
-                  dateTime={post.date}
-                  className="md:hidden"
-                  decorate
-                ></Card.Time>
-                <Card.Title title={post.title} className="text-2xl" />
-                <Card.Tags tags={post.tags} />
-                <Card.Description desc={post.description} className="mb-2" />
-                <Card.Cta name="Read More &rarr;" ariaLabel="Read More" />
+              <Card.Time
+                dateTime={post.date}
+                className="md:hidden"
+                decorate
+              ></Card.Time>
+              <Card.Title title={post.title} className="text-2xl" />
+              <Card.Tags tags={post.tags} />
+              <Card.Description desc={post.description} className="mb-2" />
+              <Card.Cta name="Read More &rarr;" ariaLabel="Read More" />
             </Card>
           </div>
         );
