@@ -3,7 +3,7 @@ title: "블로그 업데이트(feat.Next14/React18) 후기"
 tags:
   - Next.js
   - React
-description: "제법 끔찍한 시간을 보냈다..:confounded:"
+description: "제법 끔찍한 시간을 보냈다..😫"
 published: true
 slug: 2024/01/update-my-blog-to-next-14
 date: "2024-01-12"
@@ -21,7 +21,7 @@ date: "2024-01-12"
 
 ### Posts, 글 상세 페이지 404에러
 
-![blog-404-error]('./images/2024/01')
+![blog-404-error](./images/blog-404-error.png)
 
 ```bash
 $ npm run dev
@@ -109,11 +109,11 @@ export async function getSortedPostsData(): Promise<Post[]> {
 1. vercel에서 로그 확인했을 때 getSortedPostsData()에서 undefined 리턴해서 notFound()로 빠지고 있었다는 걸 확인함.
   * 아무래도 이상하다. build한 source코드에 posts가 누락되어 있는 것 같다 판단. vercel에는 마침 해당 빌드의 source와 output을 확인할 수 있는 gui가 있어서 확인해보았다.
 
-![vercel-source]('./images/2024/01/vercel-source.png')
+![vercel-source](./images/vercel-source.png)
 
 아니나 다를까, source에는 있는 posts 파일들이
 
-![vercel-output]('./images/2024/01/vercel-output.png')
+![vercel-output](./images/vercel-output.png)
 
 실제 빌드 결과물에는 없었다.
 
