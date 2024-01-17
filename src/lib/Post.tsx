@@ -2,8 +2,9 @@ import fs from "fs";
 import { sync } from "glob";
 import matter from "gray-matter";
 import { visit } from "unist-util-visit";
+import path from "path";
 
-const postsDirectory = `${process.cwd()}/posts`;
+const postsDirectory = path.resolve('./posts');
 
 // TODO: Post 인터페이스 필드 수정
 export interface Post {
@@ -68,6 +69,7 @@ export async function findPost(year: string, slugs: string[]) {
 
 export async function getSortedPostsData(): Promise<Post[]> {
   const fileNames: string[] = sync(`${postsDirectory}/**/*.md*`);
+
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
     const matterResult = matter(fileContents);
