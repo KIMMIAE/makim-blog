@@ -100,8 +100,8 @@ export async function getSortedPostsData(): Promise<Post[]> {
 2. `src/pages` 방식에서는 사용자가 페이지에 접근하였을 때 어떤 `props`를 클라이언트에 반환할지 `getStaticProps` 메서드에서 정의했다. 따라서 렌더링하는 영역에선 `props`를 받아서 표시하는 역할만 하기 때문에 `async`해질 필요가 없었다. 하지만 `src/app` 방식에선 기존의 `getStaticProps`가 사라지고 페이지를 `async`하게 만드는 게 가능해진다. 렌더링 영역에서 호출하는 `getSortedPostsData` 함수를 `await` 연산자를 사용해서 동기적으로 처리하도록 수정해준다.
     * **result:** 처리를 다 했는데도 여전히 에러 발생했다.
 3. glob 다운그레이드
-  * next.js, react 버전업과 관련이 없고, 변수를 하나라도 더 줄이기 위해서 다운그레이드 함.
-  * **result:** 별다른 효과는 없었다.
+    * next.js, react 버전업과 관련이 없고, 변수를 하나라도 더 줄이기 위해서 다운그레이드 함.
+    * **result:** 별다른 효과는 없었다.
 
 ## Troubleshooting 2
 
