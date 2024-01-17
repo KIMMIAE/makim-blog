@@ -37,7 +37,7 @@ $ npm run start
 
 ```tsx
 /* src/app/posts/[id]/page.tsx */
-const allPosts = await getSortedPostsData();
+const allPosts = getSortedPostsData(); // await 빼먹었었음.
 const pageNo = parseInt(id);
 
 if (
@@ -50,7 +50,7 @@ if (
 
 /* src/app/[year]/[...slugs]/page.tsx */
 const slug = [year, ...(slugs as string[])].join("/");
-const posts = await getSortedPostsData();
+const posts = getSortedPostsData(); // 마찬가지
 const post = posts.find((p: Post) => {
   return p?.slug === slug;
 });
@@ -89,25 +89,25 @@ export async function getSortedPostsData(): Promise<Post[]> {
 }
 ```
 
-1. getSortedPostsData() 함수 호출시에 빈값 혹은 undefined를 리턴하고 있는 것 같다
-2. 위의 코드는 수정 후 코드인데, 코드 수정전에는 getSortedPostsData를 동기적으로 처리하지 않고 있었다.
-3. react, nextjs 업데이트하면서 다른 dependencies들도 업데이트 해줬는데 glob 라이브러리 업데이트 하면서 문법이 좀 바뀜.
+1. `getSortedPostsData()` 함수 호출시에 빈값 혹은 `undefined`를 리턴하고 있는 것 같다
+2. `page`쪽에서 `getSortedPostsData` 함수를 호출할 때 동기적으로 처리해줘야 되는데 빼먹었음 
+3. react, nextjs 업데이트하면서 다른 dependencies들도 업데이트 해줬는데 glob 라이브러리 업데이트 하면서 문법이 좀 바뀜.(어떤 영향이 갔을지 모르는 상태)
 
 #### Solution
 
-1. getSortedPostsData() 함수 호출시에 빈값 혹은 undefined를 리턴하는 원인을 파악하기 위해 디버깅용 로그 찍기
-  * vercel에서 로그 확인했을 때 getSortedPostsData()에서 undefined 리턴해서 notFound()로 빠지고 있었다는 걸 확인함
-2. getSortedPostsData를 async, await 사용해서 동기적으로 처리하도록 수정
-  * 처리를 다 했는데도 여전히 에러 발생
-3. glob 다운그레이드 or https://github.com/isaacs/node-glob 보고 사용법에 맞게 수정
-  * 여기서는 다운그레이드를 선택했음. next.js, react 버전업과 연관 없고, 변수를 하나라도 더 줄이기 위해.
+1. `getSortedPostsData()` 함수 호출시에 빈값 혹은 `undefined`를 리턴하는 원인을 파악하기 위해 디버깅용 로그 찍기
+    * **result:** vercel에서 로그 확인했을 때 `getSortedPostsData()`에서 `undefined`를 리턴해서 `notFound()`로 빠지고 있었다는 걸 확인함.
+2. `src/pages` 방식에서는 사용자가 페이지에 접근하였을 때 어떤 `props`를 클라이언트에 반환할지 `getStaticProps` 메서드에서 정의했다. 따라서 렌더링하는 영역에선 `props`를 받아서 표시하는 역할만 하기 때문에 `async`해질 필요가 없었다. 하지만 `src/app` 방식에선 기존의 `getStaticProps`가 사라지고 페이지를 `async`하게 만드는 게 가능해진다. 렌더링 영역에서 호출하는 `getSortedPostsData` 함수를 `await` 연산자를 사용해서 동기적으로 처리하도록 수정해준다.
+    * **result:** 처리를 다 했는데도 여전히 에러 발생했다.
+3. glob 다운그레이드
+  * next.js, react 버전업과 관련이 없고, 변수를 하나라도 더 줄이기 위해서 다운그레이드 함.
+  * **result:** 별다른 효과는 없었다.
 
 ## Troubleshooting 2
 
 #### Problem
 
-1. vercel에서 로그 확인했을 때 getSortedPostsData()에서 undefined 리턴해서 notFound()로 빠지고 있었다는 걸 확인함.
-  * 아무래도 이상하다. build한 source코드에 posts가 누락되어 있는 것 같다 판단. vercel에는 마침 해당 빌드의 source와 output을 확인할 수 있는 gui가 있어서 확인해보았다.
+1. vercel에서 로그 확인했을 때 `getSortedPostsData`에서 `undefined` 리턴해서 `notFound()`로 빠지고 있었다는 걸 확인했기 때문에, 포스트 데이터 가져오는 쪽에서 문제가 되고 있다는 건 알았지만 정확한 원인은 파악하지 못했다. 하지만 예상 원인으로 build한 source코드에 posts 파일이 없어서 가져올 데이터가 없어서 문제가 발생하고 있을 거란 가설을 세웠다. vercel에는 마침 해당 빌드의 source와 output을 확인할 수 있는 gui가 있어서 확인해보았다.
 
 ![vercel-source](./images/vercel-source.png)
 
@@ -121,10 +121,12 @@ export async function getSortedPostsData(): Promise<Post[]> {
 
 #### Solution
 
-1. generateStaticParams 문서를 정독하며 example code를 내가 작성한 코드와 비교한다
-  * https://nextjs.org/docs/app/api-reference/functions/generate-static-params
-  * 결론적으로, 이게 정답이었다. 원인은 slug를 params 객체 안에 넣어서 넘기고 있었는데 이 부분에서 문제가 됐다. 이전에는(getStaticPaths) ```{params: {}}``` 형태의 객체로 보냈던 것과 다르게 이젠 단순히 필요한 조합을 객체로 전달해주면 된다. 그런데 나는 마이그레이션 하면서 이전 형태의 방식(```{params: {}}```)으로 전달해서 페이지가 안 뜨는 문제가 발생한 것이다.
-  * return값을 수정해주니 404에러가 해결됐다.
+1. `generateStaticParams` 문서를 정독하며 example code를 내가 작성한 코드와 비교한다
+    * https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+2. 결론적으로, 이게 정답이었다. 원인은 slug(접근 가능한 주소)를 `params` 객체 안에 넣어서 넘기고 있었는데 이 부분에서 문제가 됐다. 이전에는(`getStaticPaths`) `{params: {}}` 형태의 객체로 보냈던 것과 다르게 이젠 단순히 필요한 조합을 객체로 전달해주면 된다. 그런데 나는 마이그레이션 하면서 이전 형태의 방식(`{params: {}}`)으로 전달해서 빌드시 정적 페이지가 제대로 만들어지지 않아 페이지가 안 뜨는 문제가 발생한 걸로 추측되었다.
+    * return값을 수정해주니 404에러가 해결됐다.
+    * 하지만 이 부분에 대해선 여전히 의문이 있다. '로컬 환경에선 왜 재현이 되지 않았는가?' 이건 Next.js 빌드와 Vercel Deployment에 대해서 공부를 더 해야 알 수 있을 것 같다.
+
 
 ## 회고
 
