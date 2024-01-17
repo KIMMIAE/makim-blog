@@ -28,13 +28,12 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({
-  params: { id },
+  params,
 }: {
   params: { id: string };
 }) {
   const allPosts = await getSortedPostsData();
-  const pageNo = parseInt(id);
-
+  const pageNo = parseInt(params.id);
   if (
     isNaN(pageNo) ||
     pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||
@@ -49,7 +48,7 @@ export default async function Page({
   const posts = allPosts.slice(startIndex, endIndex);
 
   const hasNextPage =
-    Math.floor(allPosts.length / DEFAULT_NUMBER_OF_POSTS) >= pageNo;
+    Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) > pageNo;
 
   return (
     <div>
