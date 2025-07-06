@@ -5,7 +5,7 @@ tags:
   - React Native
 description: "나름대로 치열하게 고민했다.."
 published: true
-slug: 2025/01/flutter-vs-react-native
+slug: 2025/02/flutter-vs-react-native
 date: "2025-02-05"
 ---
 
