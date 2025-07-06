@@ -68,7 +68,10 @@ export async function findPost(year: string, slugs: string[]) {
 
 
 export async function getSortedPostsData(): Promise<Post[]> {
-  const fileNames: string[] = sync(`${postsDirectory}/**/*.md*`);
+  const pattern = path.join(postsDirectory, '**', '*.md*');
+  const normalizedPattern = pattern.replace(/\\/g, '/');
+
+  const fileNames: string[] = sync(normalizedPattern);
 
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
