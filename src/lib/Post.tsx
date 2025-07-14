@@ -98,3 +98,30 @@ export async function getSortedPostsData(): Promise<Post[]> {
     }
   });
 }
+
+export async function getAllTags(): Promise<{ [key: string]: number }> {
+  const posts = await getSortedPostsData();
+  const tagCount: { [key: string]: number } = {};
+  
+  posts.forEach((post) => {
+    if (post.tags && Array.isArray(post.tags)) {
+      post.tags.forEach((tag) => {
+        tagCount[tag] = (tagCount[tag] || 0) + 1;
+      });
+    }
+  });
+  
+  return tagCount;
+}
+
+export async function getPostsByTag(tag: string): Promise<Post[]> {
+  const posts = await getSortedPostsData();
+  return posts.filter((post) => 
+    post.tags && Array.isArray(post.tags) && post.tags.includes(tag)
+  );
+}
+
+export async function getAllTagNames(): Promise<string[]> {
+  const tagCount = await getAllTags();
+  return Object.keys(tagCount).sort();
+}

@@ -60,6 +60,14 @@ const MobileNav = () => {
               Posts
             </span>
           </Link>
+          <Link href="/tags" passHref>
+            <span
+              className="px-6 py-4 text-2xl font-semibold"
+              onClick={handleMenuClick}
+            >
+              Tags
+            </span>
+          </Link>
           <Link
             href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
             passHref
