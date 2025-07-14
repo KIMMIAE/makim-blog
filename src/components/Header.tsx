@@ -29,6 +29,11 @@ const Header = () => {
           <Link href="/posts/1" passHref>
             <span className="p-1 font-medium cursor-pointer sm:p-4">Posts</span>
           </Link>
+          
+          <Link href="/tags" passHref>
+            <span className="p-1 font-medium cursor-pointer sm:p-4">Tags</span>
+          </Link>
+          
           <Link
             href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4"
             passHref
