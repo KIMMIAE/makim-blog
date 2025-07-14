@@ -90,7 +90,6 @@ export default async function TagPage({
         );
       })}
 
-      {/* 페이지네이션 */}
       {totalPages > 1 && (
         <div className="flex mt-2">
           <div className="flex justify-start w-1/2 text-base font-medium leading-6">
