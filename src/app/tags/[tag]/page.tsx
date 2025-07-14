@@ -3,7 +3,7 @@ import { getPostsByTag, getAllTagNames } from "../../../lib/Post";
 import { Card } from "../../../components/Card";
 import Link from "next/link";
 
-export const dynamic = "error";
+export const dynamic = "force-dynamic";
 
 const POSTS_PER_PAGE = 4;
 
