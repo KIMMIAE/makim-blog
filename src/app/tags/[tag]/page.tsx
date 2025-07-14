@@ -5,6 +5,8 @@ import Link from "next/link";
 
 export const dynamic = "error";
 
+const POSTS_PER_PAGE = 4;
+
 export async function generateMetadata({
   params: { tag },
 }: {
@@ -26,21 +28,41 @@ export async function generateStaticParams() {
 
 export default async function TagPage({
   params,
+  searchParams,
 }: {
   params: { tag: string };
+  searchParams: { page?: string };
 }) {
   const decodedTag = decodeURIComponent(params.tag);
-  const posts = await getPostsByTag(decodedTag);
+  const allPosts = await getPostsByTag(decodedTag);
 
-  if (posts.length === 0) {
+  if (allPosts.length === 0) {
     return notFound();
   }
 
+  const currentPage = parseInt(searchParams.page || "1");
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const posts = allPosts.slice(startIndex, endIndex);
+
   return (
     <div>
-      <h1 className="text-3xl">
-        #{decodedTag} <span className="text-gray-500">({posts.length})</span>
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl">
+          #{decodedTag} <span className="text-gray-500">({allPosts.length})</span>
+        </h1>
+        <Link
+          href="/tags"
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"
+        >
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+          </svg>
+          모든 태그
+        </Link>
+      </div>
       <div className="my-6 border-b-2"></div>
       {posts.map((post) => {
         return (
@@ -67,11 +89,39 @@ export default async function TagPage({
           </div>
         );
       })}
-      <div className="mt-8">
-        <Link href="/tags" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-          ← 모든 태그 보기
-        </Link>
-      </div>
+
+      {/* 페이지네이션 */}
+      {totalPages > 1 && (
+        <div className="flex mt-2">
+          <div className="flex justify-start w-1/2 text-base font-medium leading-6">
+            {currentPage !== 1 && (
+              <Link
+                href={`/tags/${encodeURIComponent(decodedTag)}?page=${currentPage - 1}`}
+                aria-label="previous page"
+                passHref
+              >
+                <span className="text-blue-500 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
+                  &larr; Page {currentPage - 1}
+                </span>
+              </Link>
+            )}
+          </div>
+
+          <div className="flex justify-end w-1/2 text-base font-medium leading-6">
+            {currentPage < totalPages && (
+              <Link
+                href={`/tags/${encodeURIComponent(decodedTag)}?page=${currentPage + 1}`}
+                aria-label="next page"
+                passHref
+              >
+                <span className="text-blue-500 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
+                  Page {currentPage + 1} &rarr;
+                </span>
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 } 
