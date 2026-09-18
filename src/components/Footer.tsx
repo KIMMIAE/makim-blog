@@ -1,10 +1,10 @@
+import styles from "./Footer.module.css";
+
 const Footer = () => {
   return (
-    <footer className="py-8">
-      <div className="flex justify-center">
-        <span>{`© ${new Date().getFullYear()}`}</span>
-        <span className="ml-1">makim</span>
-      </div>
+    <footer className={styles.footer}>
+      <span>© Still Making</span>
+      <span>배우고, 만들고, 계속해 나갑니다.</span>
     </footer>
   );
 };
