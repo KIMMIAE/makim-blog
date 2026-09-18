@@ -4,11 +4,12 @@
 
 ## Dependencies
 
-- nodejs@16
-- React@17
-- Typescript@4
-- Nextjs@12
-- next-mdx-remote
+- nodejs@22 (`.nvmrc`, 최소 20.9)
+- React@19
+- TypeScript@6
+- Next.js@16 (App Router, Turbopack)
+- Tailwind CSS@4 (`styles/globals.css` 에서 CSS-first 설정)
+- next-mdx-remote@6
 - gray-matter
 
 ## Gray Matter 형식

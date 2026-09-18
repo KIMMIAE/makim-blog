@@ -52,7 +52,7 @@ const ModeToggle = () => {
     <button
       type="button"
       aria-label="Toggle Dark Mode"
-      className="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4"
+      className="w-8 h-8 p-1 ml-1 mr-1 rounded-sm sm:ml-4"
       onClick={handleModeClick}
     >
       {theme === "light" ? <SunIcon /> : <MoonIcon />}

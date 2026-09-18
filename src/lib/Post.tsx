@@ -1,7 +1,8 @@
 import fs from "fs";
-import { sync } from "glob";
+import { globSync } from "glob";
 import matter from "gray-matter";
 import { visit } from "unist-util-visit";
+import type { Node as UnistNode } from "unist";
 import path from "path";
 
 const postsDirectory = path.resolve('./posts');
@@ -45,12 +46,19 @@ const tokenClassNames: { [key in TokenType]: string } = {
   comment: "text-code-green",
 };
 
+// rehype-prism 이 생성하는 hast element 중 이 플러그인이 참조하는 최소 형태
+type HastElementLike = {
+  properties?: { className?: unknown };
+};
+
 export function parseCodeSnippet() {
-  return (tree: Node) => {
-    visit(tree, "element", (node: any) => {
-      const [token, type]: [string, TokenType] =
-        node.properties.className || [];
-      if (token === "token") {
+  return (tree: UnistNode) => {
+    visit(tree, "element", (node: HastElementLike) => {
+      const className = Array.isArray(node.properties?.className)
+        ? node.properties.className
+        : [];
+      const [token, type] = className as [string?, TokenType?];
+      if (token === "token" && type && node.properties) {
         node.properties.className = [tokenClassNames[type]];
       }
     });
@@ -71,7 +79,7 @@ export async function getSortedPostsData(): Promise<Post[]> {
   const pattern = path.join(postsDirectory, '**', '*.md*');
   const normalizedPattern = pattern.replace(/\\/g, '/');
 
-  const fileNames: string[] = sync(normalizedPattern);
+  const fileNames: string[] = globSync(normalizedPattern);
 
   const allPostsData = fileNames.reduce((acc: Post[], curr: string) => {
     const fileContents = fs.readFileSync(curr, "utf8");
