@@ -20,7 +20,7 @@ const MobileNav = () => {
       <button
         type="button"
         aria-label="Toggle Menu"
-        className="flex items-center justify-center w-8 h-8 ml-2 mr-2 rounded"
+        className="flex items-center justify-center w-8 h-8 ml-2 mr-2 rounded-sm"
         onClick={handleMenuClick}
       >
         <svg
