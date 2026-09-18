@@ -11,7 +11,8 @@ export function HomeHero() {
         </h1>
         <p className={styles.intro}>
           앞으로도 만드는 사람으로 살아가고 싶습니다.<br />
-          개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각,<br className={styles.desktopBreak} />
+          개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각,{" "}
+          <br className={styles.desktopBreak} />
           직접 만든 도구와 에이전트 이야기를 기록합니다.
         </p>
         <div className={styles.actions}>

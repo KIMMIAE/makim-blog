@@ -43,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="antialiased text-black bg-white dark:bg-zinc-900 dark:text-white">
+      <body className="antialiased bg-canvas text-ink">
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>

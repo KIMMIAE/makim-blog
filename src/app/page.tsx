@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
 import { Card } from "../components/Card";
 import { Post, getSortedPostsData } from "../lib/Post";
 import { HomeHero } from "../components/home/HomeHero";
@@ -8,7 +7,7 @@ export default async function Page() {
   const allPostsData: Post[] = await getSortedPostsData()
   const recentPosts = allPostsData.slice(0, 5);
   return (
-    <div className={styles.container}>
+    <div>
       <HomeHero />
       <div id="recent-posts">
         <h2 className="text-3xl">Recent changes</h2>
