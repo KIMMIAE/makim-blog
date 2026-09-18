@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Post } from "../../lib/Post";
 import { formatYearMonth } from "../../lib/format";
 import { DecorThumb, type ThumbVariant } from "./DecorThumb";
+import { ReadMoreTrail } from "./ReadMoreTrail";
 import styles from "./RecentPosts.module.css";
 
 export function PostRow({ post, variant }: { post: Post; variant: ThumbVariant }) {
@@ -20,12 +21,7 @@ export function PostRow({ post, variant }: { post: Post; variant: ThumbVariant }
         {post.description ? <p className={styles.description}>{post.description}</p> : null}
         <Link href={href} className={styles.read} aria-label={`${post.title} 읽기`}>
           Read more
-          <span className={styles.trail} aria-hidden="true">
-            <span className={styles.trailArrow}>→</span>
-            <span className={styles.chev}>›</span>
-            <span className={styles.chev}>›</span>
-            <span className={styles.chev}>›</span>
-          </span>
+          <ReadMoreTrail />
         </Link>
       </div>
       <DecorThumb variant={variant} label={category} />

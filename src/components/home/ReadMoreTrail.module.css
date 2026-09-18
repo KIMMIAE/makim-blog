@@ -1,0 +1,48 @@
+.trail {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.55em;
+  min-width: 3.3em; /* 꼬리가 켜져도 레이아웃이 밀리지 않도록 자리를 미리 확보 */
+  color: var(--sm-action);
+  line-height: 1;
+  vertical-align: -0.12em;
+}
+
+.arrow,
+.chev {
+  flex: none;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition:
+    opacity var(--sm-duration-fast) var(--sm-ease),
+    transform var(--sm-duration-fast) var(--sm-ease);
+}
+
+.chev { margin-left: -0.08em; }
+
+/* 꺼질 때: 첫 셰브론부터 순서대로, 화살표는 마지막 */
+.chev:nth-of-type(2) { transition-delay: 0ms; }
+.chev:nth-of-type(3) { transition-delay: 60ms; }
+.chev:nth-of-type(4) { transition-delay: 120ms; }
+.arrow { transition-delay: 120ms; }
+
+/* 켜질 때: 화살표 → 셰브론 1·2·3 순서, 뒤로 갈수록 연하게 */
+:global(a:hover) > .trail .arrow,
+:global(a:focus-visible) > .trail .arrow { opacity: 1; transform: none; transition-delay: 0ms; }
+:global(a:hover) > .trail .chev:nth-of-type(2),
+:global(a:focus-visible) > .trail .chev:nth-of-type(2) { opacity: 0.8; transform: none; transition-delay: 90ms; }
+:global(a:hover) > .trail .chev:nth-of-type(3),
+:global(a:focus-visible) > .trail .chev:nth-of-type(3) { opacity: 0.55; transform: none; transition-delay: 190ms; }
+:global(a:hover) > .trail .chev:nth-of-type(4),
+:global(a:focus-visible) > .trail .chev:nth-of-type(4) { opacity: 0.3; transform: none; transition-delay: 290ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow, .chev { transition-delay: 0ms !important; }
+}
+
+/* 터치 폭: hover 가 없으므로 화살표만 상시 표시, 꼬리는 숨김 */
+@media (max-width: 767px) {
+  .trail { min-width: 0; }
+  .arrow { opacity: 1; transform: none; }
+  .chev { display: none; }
+}
