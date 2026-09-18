@@ -19,7 +19,13 @@ export function PostRow({ post, variant }: { post: Post; variant: ThumbVariant }
         </h3>
         {post.description ? <p className={styles.description}>{post.description}</p> : null}
         <Link href={href} className={styles.read} aria-label={`${post.title} 읽기`}>
-          Read more <span className={styles.arrow} aria-hidden="true">→</span>
+          Read more
+          <span className={styles.trail} aria-hidden="true">
+            <span className={styles.trailArrow}>→</span>
+            <span className={styles.chev}>›</span>
+            <span className={styles.chev}>›</span>
+            <span className={styles.chev}>›</span>
+          </span>
         </Link>
       </div>
       <DecorThumb variant={variant} label={category} />
