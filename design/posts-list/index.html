@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Still Making — 전체 글 시안</title>
+<style>
+/* Still Making: shared source for CSS and Tailwind utilities. */
+:root {
+  --sm-white: #ffffff;
+  --sm-navy-950: #131735;
+  --sm-slate-600: #656d86;
+  --sm-blue-500: #4053ff;
+  --sm-blue-600: #3041df;
+  --sm-violet-500: #8b5cf6;
+  --sm-orange-400: #fb923c;
+  --sm-lavender-50: #f3f4ff;
+  --sm-lavender-100: #eeecff;
+  --sm-lavender-200: #e4e1ff;
+  --sm-lime-300: #c3f979;
+
+  --sm-canvas: var(--sm-white);
+  --sm-surface: var(--sm-lavender-50);
+  --sm-surface-raised: var(--sm-white);
+  --sm-text: var(--sm-navy-950);
+  --sm-text-muted: var(--sm-slate-600);
+  --sm-border: #e8eaf3;
+  --sm-action: var(--sm-blue-500);
+  --sm-action-hover: var(--sm-blue-600);
+  --sm-on-action: var(--sm-white);
+  --sm-focus: var(--sm-blue-500);
+  --sm-logo-purple: var(--sm-violet-500);
+  --sm-logo-orange: rgb(251 146 60 / 75%);
+  --sm-art-back: var(--sm-lavender-100);
+  --sm-art-front: var(--sm-lavender-200);
+  --sm-art-accent: var(--sm-lime-300);
+  --sm-text-faint: #939bbd;
+  --sm-surface-border: #e1e4f4;
+  --sm-thumb-violet: var(--sm-lavender-100);
+  --sm-thumb-violet-ink: #8880cf;
+  --sm-thumb-orb: #d3ccff;
+  --sm-thumb-orb-dot: #9374ff;
+  --sm-thumb-blue: #e4efff;
+  --sm-thumb-blue-ink: #526899;
+  --sm-thumb-blue-muted: #849bc1;
+  --sm-topic-icon-bg: #e0e5ff;
+  --sm-topic-icon-ink: #4c5fbc;
+
+  /* System fonts only until licensed webfont files are added. */
+  --sm-font-body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  --sm-font-heading: ui-rounded, var(--sm-font-body);
+  --sm-font-code: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --sm-text-caption: 0.75rem;
+  --sm-text-small: 0.875rem;
+  --sm-text-body: 1rem;
+  --sm-text-lead: 1.0625rem;
+  --sm-text-card: 1.3125rem;
+  --sm-text-section: 1.625rem;
+  --sm-text-hero: clamp(2.5rem, 4.7vw, 3.875rem);
+  --sm-leading-body: 1.8;
+  --sm-leading-heading: 1.25;
+  --sm-leading-hero: 1.16;
+  --sm-tracking-heading: -0.035em;
+
+  --sm-space-1: 0.25rem;
+  --sm-space-2: 0.5rem;
+  --sm-space-3: 0.75rem;
+  --sm-space-4: 1rem;
+  --sm-space-6: 1.5rem;
+  --sm-space-8: 2rem;
+  --sm-space-12: 3rem;
+  --sm-space-16: 4rem;
+  --sm-space-20: 5rem;
+  --sm-radius-small: 0.75rem;
+  --sm-radius-card: 1.5rem;
+  --sm-radius-pill: 9999px;
+  --sm-content-width: 75rem;
+  --sm-reading-width: 46rem;
+  --sm-page-gutter: clamp(1.375rem, 3vw, 2.25rem);
+  --sm-shadow-action: 0 5px 14px rgb(64 83 255 / 13%);
+  --sm-shadow-art: 0 12px 35px rgb(110 96 207 / 8%);
+  --sm-duration-fast: 160ms;
+  --sm-duration-normal: 240ms;
+  --sm-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --sm-cat-size: 8rem;
+  --sm-cat-icon-size: 4rem;
+}
+
+/* Functional dark baseline; the final dark composition is still to be designed. */
+.dark {
+  --sm-canvas: #141629;
+  --sm-surface: #20233c;
+  --sm-surface-raised: #292d49;
+  --sm-text: #f3f4ff;
+  --sm-text-muted: #b1b7d0;
+  --sm-border: #393e5c;
+  --sm-action: #a5adff;
+  --sm-action-hover: #c1c7ff;
+  --sm-on-action: #141629;
+  --sm-focus: #c1c7ff;
+  --sm-art-back: #2d294a;
+  --sm-art-front: #3c345f;
+  --sm-text-faint: #8b91b0;
+  --sm-surface-border: #393e5c;
+  --sm-thumb-violet: #2d294a;
+  --sm-thumb-violet-ink: #b7aefc;
+  --sm-thumb-orb: #4a4380;
+  --sm-thumb-orb-dot: #8c7cff;
+  --sm-thumb-blue: #23304a;
+  --sm-thumb-blue-ink: #c5d3ef;
+  --sm-thumb-blue-muted: #8a9cc0;
+  --sm-topic-icon-bg: #2c3358;
+  --sm-topic-icon-ink: #b9c3ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sm-duration-fast: 0ms;
+    --sm-duration-normal: 0ms;
+  }
+}
+
+/* ---- 시안 전용: 홈 컨테이너(64rem)와 헤더 골격을 그대로 흉내 낸다 ---- */
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--sm-canvas);color:var(--sm-text);font-family:var(--sm-font-body);-webkit-font-smoothing:antialiased;transition:background var(--sm-duration-normal)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:2.5rem 0}
+.brand{display:inline-flex;align-items:center;gap:var(--sm-space-3);font-family:var(--sm-font-heading);font-size:1.625rem;font-weight:800;letter-spacing:var(--sm-tracking-heading)}
+.logo{position:relative;width:35px;height:36px}.logo::before,.logo::after{content:"";position:absolute;width:23px;height:23px;border-radius:50%}.logo::before{top:1px;left:9px;background:var(--sm-logo-purple)}.logo::after{top:13px;left:0;background:var(--sm-logo-orange)}
+.nav{display:flex;align-items:center;gap:var(--sm-space-2);font-weight:500}.nav a{padding:var(--sm-space-2) var(--sm-space-4)}.nav a[aria-current]{color:var(--sm-action)}
+.toggle{margin-left:var(--sm-space-2);width:2rem;height:2rem;border:1px solid var(--sm-border);border-radius:var(--sm-radius-small);background:var(--sm-surface);color:var(--sm-text);cursor:pointer;font:inherit}
+
+/* ---- 페이지 헤더 ---- */
+.page-head{padding:var(--sm-space-4) 0 var(--sm-space-8);border-bottom:1px solid var(--sm-border)}
+.eyebrow{margin:0 0 var(--sm-space-2);color:var(--sm-text-faint);font:600 var(--sm-text-caption)/1 var(--sm-font-code);letter-spacing:.16em}
+.page-head h1{display:flex;align-items:baseline;gap:var(--sm-space-3);margin:0 0 var(--sm-space-3);font-family:var(--sm-font-heading);font-size:clamp(1.75rem,3vw,2.375rem);font-weight:800;letter-spacing:var(--sm-tracking-heading);line-height:var(--sm-leading-heading)}
+.count{padding:.15em .6em;border-radius:var(--sm-radius-pill);background:var(--sm-surface);color:var(--sm-action);font-size:var(--sm-text-small);font-weight:700;letter-spacing:0}
+.lead{margin:0 0 var(--sm-space-6);max-width:40rem;color:var(--sm-text-muted);font-size:var(--sm-text-body);line-height:var(--sm-leading-body)}
+.tagbar{display:flex;flex-wrap:wrap;gap:var(--sm-space-2);align-items:center}
+.chip{padding:.4rem .8rem;border-radius:var(--sm-radius-pill);background:var(--sm-surface);color:var(--sm-text);font-size:var(--sm-text-small);font-weight:600;transition:color var(--sm-duration-fast) var(--sm-ease),background var(--sm-duration-fast) var(--sm-ease)}
+.chip:hover{color:var(--sm-action);background:var(--sm-topic-icon-bg)}
+.chip.more{background:none;color:var(--sm-action);font-weight:700}
+
+/* ---- 목록 ---- */
+.list{list-style:none;margin:0;padding:0}
+.year{display:grid;grid-template-columns:8.5rem minmax(0,1fr);align-items:center;padding:var(--sm-space-8) 0 var(--sm-space-2)}
+.year span{grid-column:1;font-family:var(--sm-font-heading);font-size:var(--sm-text-caption);font-weight:700;letter-spacing:.12em;color:var(--sm-text-faint)}
+.year::after{content:"";grid-column:2;height:1px;background:var(--sm-border)}
+.post{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:var(--sm-space-4);padding:var(--sm-space-6) 0;border-bottom:1px solid var(--sm-border)}
+.date{padding-top:.35rem;color:var(--sm-text-faint);font-size:var(--sm-text-caption);font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.body{min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:var(--sm-space-2);margin-bottom:var(--sm-space-2)}
+.tag{color:var(--sm-topic-icon-ink);background:var(--sm-topic-icon-bg);border-radius:var(--sm-radius-pill);padding:.1rem .55rem;font-size:var(--sm-text-caption);font-weight:700}
+.tag:hover{color:var(--sm-on-action);background:var(--sm-action)}
+.title{margin:0 0 var(--sm-space-2);font-family:var(--sm-font-heading);font-size:var(--sm-text-card);font-weight:800;letter-spacing:-.03em;line-height:1.4;overflow-wrap:anywhere}
+.title a:hover{color:var(--sm-action)}
+.desc{margin:0 0 var(--sm-space-3);color:var(--sm-text-muted);font-size:var(--sm-text-small);line-height:1.7}
+.read{display:inline-flex;align-items:center;font-size:var(--sm-text-small);font-weight:700}
+.trail{display:inline-flex;align-items:center;margin-left:.55em;min-width:3.3em;color:var(--sm-action);line-height:1}
+.trail svg{flex:none;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:translateX(-5px);transition:opacity var(--sm-duration-fast) var(--sm-ease),transform var(--sm-duration-fast) var(--sm-ease)}
+.chev{margin-left:-.08em}.chev:nth-of-type(2){transition-delay:0ms}.chev:nth-of-type(3){transition-delay:60ms}.chev:nth-of-type(4){transition-delay:120ms}.arrow{transition-delay:120ms}
+.read:hover .arrow,.read:focus-visible .arrow{opacity:1;transform:none;transition-delay:0ms}
+.read:hover .chev:nth-of-type(2),.read:focus-visible .chev:nth-of-type(2){opacity:.8;transform:none;transition-delay:90ms}
+.read:hover .chev:nth-of-type(3),.read:focus-visible .chev:nth-of-type(3){opacity:.55;transform:none;transition-delay:190ms}
+.read:hover .chev:nth-of-type(4),.read:focus-visible .chev:nth-of-type(4){opacity:.3;transform:none;transition-delay:290ms}
+
+/* ---- 페이지네이션 ---- */
+.pager{display:flex;align-items:center;justify-content:space-between;gap:var(--sm-space-4);padding:var(--sm-space-8) 0 var(--sm-space-12)}
+.pill{display:inline-flex;align-items:center;gap:.5em;padding:.7rem 1.1rem;border:1px solid var(--sm-border);border-radius:var(--sm-radius-pill);color:var(--sm-action);font-size:var(--sm-text-small);font-weight:700;transition:background var(--sm-duration-fast) var(--sm-ease),border-color var(--sm-duration-fast) var(--sm-ease)}
+.pill:hover{background:var(--sm-surface);border-color:var(--sm-action)}
+.pill[aria-disabled]{color:var(--sm-text-faint);pointer-events:none}
+.pager .where{color:var(--sm-text-faint);font-size:var(--sm-text-caption);font-weight:600;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.pager .where b{color:var(--sm-text)}
+.footer{display:flex;justify-content:center;padding:var(--sm-space-6) 0 var(--sm-space-8);border-top:1px solid var(--sm-border);color:var(--sm-text-faint);font-size:var(--sm-text-caption)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-offset:3px;border-radius:var(--sm-radius-small)}
+
+@media (max-width:767px){
+  .site-header{padding:1.5rem 0}.nav a{padding:var(--sm-space-2)}
+  .year,.post{grid-template-columns:1fr}.year::after{display:none}.year{padding-top:var(--sm-space-6)}
+  .date{padding:0;order:0}.tags{margin-top:var(--sm-space-1)}
+  .post{gap:var(--sm-space-2)}
+  .trail .arrow{opacity:1;transform:none}.trail .chev{display:none}.trail{min-width:0}
+  .pill span.label{display:none}
+}
+@media (prefers-reduced-motion:reduce){.trail svg{transition-delay:0ms!important}}
+</style></head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="#"><span class="logo" aria-hidden="true"></span>Still Making</a>
+    <nav class="nav" aria-label="메인 메뉴"><a href="#" aria-current="page">Posts</a><a href="#">Tags</a><a href="#">About</a><button class="toggle" type="button" onclick="document.documentElement.classList.toggle('dark')" aria-label="다크 모드 전환">◐</button></nav>
+  </header>
+  <main>
+    <header class="page-head">
+      <p class="eyebrow">ARCHIVE</p>
+      <h1>전체 글 <span class="count">10</span></h1>
+      <p class="lead">개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각, 직접 만든 도구 이야기를 시간순으로 모았습니다.</p>
+      <nav class="tagbar" aria-label="자주 쓰는 태그"><a class="chip" href="#">React Native</a><a class="chip" href="#">Agile</a><a class="chip" href="#">Algorithm</a><a class="chip" href="#">AWS</a><a class="chip" href="#">Big O Notation</a><a class="chip" href="#">book</a><a class="chip more" href="#">모든 태그 →</a></nav>
+    </header>
+    <ol class="list"><li class="year" aria-hidden="true"><span>2025</span></li><li class="post">
+  <time class="date" datetime="2025-07-06">2025.07.06</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">npm</a></div>
+    <h2 class="title"><a href="#">npm Deep Dive 스터디, 1장</a></h2>
+    <p class="desc">새로운 사실을 많이 알게 돼서 재미있었다.</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="post">
+  <time class="date" datetime="2025-02-05">2025.02.05</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">Flutter</a><a class="tag" href="#">React Native</a></div>
+    <h2 class="title"><a href="#">Flutter vs React Native</a></h2>
+    <p class="desc">나름대로 치열하게 고민했다..</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="year" aria-hidden="true"><span>2024</span></li><li class="post">
+  <time class="date" datetime="2024-10-20">2024.10.20</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">Datadog</a><a class="tag" href="#">AWS</a><a class="tag" href="#">Monitoring Tool</a></div>
+    <h2 class="title"><a href="#">241020 Datadog으로 완성하는 AWS 모니터링 끝판왕 세미나 후기</a></h2>
+    <p class="desc">모니터링 툴, 어떻게 써야 효율적일까?</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="post">
+  <time class="date" datetime="2024-08-30">2024.08.30</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">React Native</a><a class="tag" href="#">Upgrade</a><a class="tag" href="#">Troubleshooting</a></div>
+    <h2 class="title"><a href="#">React Native 0.73 업그레이드 후기</a></h2>
+    <p class="desc">아마 내년에도 또 해야겠지?...</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="post">
+  <time class="date" datetime="2024-03-27">2024.03.27</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">Typescript</a><a class="tag" href="#">OOP</a><a class="tag" href="#">FP</a></div>
+    <h2 class="title"><a href="#">240327 인프런 타입스크립트 밋업 후기</a></h2>
+    <p class="desc">오랜만의 밋업, 유익한 시간이었다.</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="post">
+  <time class="date" datetime="2024-01-12">2024.01.12</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">Next.js</a><a class="tag" href="#">React</a></div>
+    <h2 class="title"><a href="#">블로그 업데이트(feat.Next14/React18) 후기</a></h2>
+    <p class="desc">제법 끔찍한 시간을 보냈다..😫</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="year" aria-hidden="true"><span>2023</span></li><li class="post">
+  <time class="date" datetime="2023-12-03">2023.12.03</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">Algorithm</a><a class="tag" href="#">Big O Notation</a></div>
+    <h2 class="title"><a href="#">빅오 표기법(Big O Notation)</a></h2>
+    <p class="desc">빅오 표기법? 시간 복잡도?</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li><li class="post">
+  <time class="date" datetime="2023-11-29">2023.11.29</time>
+  <div class="body">
+    <div class="tags"><a class="tag" href="#">book</a><a class="tag" href="#">UX</a></div>
+    <h2 class="title"><a href="#">&lt;UX 원칙: 사용자를 행복하게 만드는 101가지 솔루션&gt;을 읽고</a></h2>
+    <p class="desc">사용성 개선은 늘 어렵다...</p>
+    <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
+  </div>
+</li></ol>
+    <nav class="pager" aria-label="페이지 이동">
+      <a class="pill" href="#" aria-disabled="true">← <span class="label">이전 페이지</span></a>
+      <span class="where"><b>1</b> / 2</span>
+      <a class="pill" href="#"><span class="label">다음 페이지</span> →</a>
+    </nav>
+  </main>
+  <footer class="footer">© 2026 makim</footer>
+</div>
+</body></html>
