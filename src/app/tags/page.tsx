@@ -2,7 +2,7 @@ import { getAllTags } from "../../lib/Post";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Tags - 개발이 재밌는 날",
+  title: "Tags",
   description: "블로그의 모든 태그 목록",
 };
 

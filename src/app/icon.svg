@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Still Making 로고: 보라 원 위에 주황(75%) 원을 겹친다. Header.module.css 의 CSS 로고와 동일한 비율. -->
+  <circle cx="20.5" cy="12.5" r="11.5" fill="#8B5CF6"/>
+  <circle cx="11.5" cy="24.5" r="11.5" fill="#FB923C" fill-opacity="0.75"/>
+</svg>

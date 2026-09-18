@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
   return {
-    title: `#${decodedTag} - 개발이 재밌는 날`,
+    title: `#${decodedTag}`,
     description: `${decodedTag} 태그가 포함된 글 목록`,
   };
 }

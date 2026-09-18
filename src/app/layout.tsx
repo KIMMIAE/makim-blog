@@ -3,27 +3,35 @@ import LayoutWrapper from "../components/LayoutWrapper";
 import { Metadata } from "next";
 import { Providers } from "../components/Provider";
 
+const SITE_NAME = "Still Making";
+const SITE_DESCRIPTION =
+  "개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각, 직접 만든 도구와 에이전트 이야기를 기록합니다.";
+
 export const metadata: Metadata = {
-  title: 'applejam',
-  description: 'https://applejam.monster',
-  authors: [{ name: 'makim' }],
-  referrer: 'origin-when-cross-origin',
-  creator: 'makim',
-  publisher: 'makim',
-  metadataBase: new URL('https://applejam.monster'),
+  title: {
+    default: SITE_NAME,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: "makim" }],
+  referrer: "origin-when-cross-origin",
+  creator: "makim",
+  publisher: "makim",
+  metadataBase: new URL("https://applejam.monster"),
+  manifest: "/manifest.json",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  icons: {
-    icon: '/favicon/apple-icon.png',
-    shortcut: '/favicon/apple-icon.png',
-    apple: '/favicon/apple-icon.png',
-    other: {
-      rel: '/favicon/apple-icon-precomposed',
-      url: '/favicon/apple-icon-precomposed.png',
-    },
+  // 파비콘·애플 아이콘은 src/app/icon.svg, src/app/apple-icon.png 파일 규약으로 자동 생성된다.
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -33,7 +41,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-}
+};
 
 
 export default function RootLayout({
