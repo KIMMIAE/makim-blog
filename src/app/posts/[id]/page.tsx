@@ -8,10 +8,11 @@ export const dynamic = "error";
 const DEFAULT_NUMBER_OF_POSTS = 4;
 
 export async function generateMetadata({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   return {
     title: `Page ${id}`,
   };
@@ -30,10 +31,11 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const allPosts = await getSortedPostsData();
-  const pageNo = parseInt(params.id);
+  const pageNo = parseInt(id);
   if (
     isNaN(pageNo) ||
     pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||

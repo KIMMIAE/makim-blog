@@ -8,10 +8,11 @@ export const dynamic = "force-dynamic";
 const POSTS_PER_PAGE = 4;
 
 export async function generateMetadata({
-  params: { tag },
+  params,
 }: {
-  params: { tag: string };
+  params: Promise<{ tag: string }>;
 }) {
+  const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
   return {
     title: `#${decodedTag} - 개발이 재밌는 날`,
@@ -30,17 +31,19 @@ export default async function TagPage({
   params,
   searchParams,
 }: {
-  params: { tag: string };
-  searchParams: { page?: string };
+  params: Promise<{ tag: string }>;
+  searchParams: Promise<{ page?: string }>;
 }) {
-  const decodedTag = decodeURIComponent(params.tag);
+  const { tag } = await params;
+  const { page } = await searchParams;
+  const decodedTag = decodeURIComponent(tag);
   const allPosts = await getPostsByTag(decodedTag);
 
   if (allPosts.length === 0) {
     return notFound();
   }
 
-  const currentPage = parseInt(searchParams.page || "1");
+  const currentPage = parseInt(page || "1");
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;

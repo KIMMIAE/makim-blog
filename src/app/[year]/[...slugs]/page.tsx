@@ -11,10 +11,11 @@ import { Card } from "../../../components/Card";
 export const dynamic = "error";
 
 export async function generateMetadata({
-  params: { year, slugs },
+  params,
 }: {
-  params: { year: string; slugs: string[] };
+  params: Promise<{ year: string; slugs: string[] }>;
 }) {
+  const { year, slugs } = await params;
   const post = await findPost(year, slugs);
 
   if (!post) {
@@ -41,10 +42,11 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({
-  params: { year, slugs },
+  params,
 }: {
-  params: { year: string; slugs: string[] };
+  params: Promise<{ year: string; slugs: string[] }>;
 }) {
+  const { year, slugs } = await params;
   const post = await findPost(year, slugs);
   if (!post) {
     return notFound();
