@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/applejam_logo.png";
+import styles from "./Header.module.css";
 import ModeToggle from "./ModeToggle";
 import MobileNav from "./MobileNav";
 
@@ -8,20 +7,9 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between py-10">
       <div>
-        <Link href="/" passHref>
-          <div className="flex items-center">
-            <Image
-              src={logo}
-              width={64}
-              height={64}
-              placeholder="blur"
-              className="w-16 h-16"
-              alt="logo"
-            />
-            <span className="text-xl font-semibold cursor-pointer md:text-3xl">
-              개발이 재밌는 날
-            </span>
-          </div>
+        <Link href="/" className={styles.brand}>
+          <span className={styles.logo} aria-hidden="true" />
+          <span>Still Making</span>
         </Link>
       </div>
       <div className="flex items-center">
