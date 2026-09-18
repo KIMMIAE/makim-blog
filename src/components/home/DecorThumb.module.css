@@ -34,9 +34,11 @@
 }
 
 .caption {
-  position: relative;
-  margin-left: 80px;
-  max-width: 45%;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
   font-size: 9px;
   letter-spacing: 1.3px;
   line-height: 1.9;
@@ -77,5 +79,8 @@
 
 @media (max-width: 767px) {
   .thumb { height: 110px; }
-  .caption { margin-left: 70px; }
+  .orb { left: 12px; bottom: -16px; width: 60px; height: 60px; }
+  .orb::after { top: -22px; right: -14px; width: 26px; height: 26px; }
+  .caption { display: none; }
+  .miniWindow b { font-size: 12px; }
 }

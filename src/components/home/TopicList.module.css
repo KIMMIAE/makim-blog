@@ -1,0 +1,93 @@
+.topics {
+  align-self: start;
+  padding: var(--sm-space-6) var(--sm-space-6) var(--sm-space-4);
+  border-radius: var(--sm-radius-card);
+  background: var(--sm-surface);
+  color: var(--sm-text);
+  font-family: var(--sm-font-body);
+}
+
+.heading {
+  margin: 0 0 var(--sm-space-3);
+  font-family: var(--sm-font-heading);
+  font-size: var(--sm-text-card);
+  font-weight: 800;
+  letter-spacing: var(--sm-tracking-heading);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li + li .topic { border-top: 1px solid var(--sm-surface-border); }
+
+.topic {
+  display: flex;
+  align-items: center;
+  gap: var(--sm-space-3);
+  padding: var(--sm-space-4) 0;
+  font-size: var(--sm-text-small);
+  border-radius: var(--sm-radius-small);
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sm-topic-icon-bg);
+  color: var(--sm-topic-icon-ink);
+  font-family: var(--sm-font-heading);
+  font-size: var(--sm-text-body);
+  font-weight: 700;
+}
+
+.label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.count {
+  margin-left: auto;
+  padding: 0 var(--sm-space-2);
+  border-radius: var(--sm-radius-pill);
+  background: var(--sm-topic-icon-bg);
+  color: var(--sm-topic-icon-ink);
+  font-size: var(--sm-text-caption);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.chev { color: var(--sm-text-faint); font-size: var(--sm-text-body); }
+
+.topic:hover .label { color: var(--sm-action); }
+
+.all {
+  display: inline-block;
+  margin-top: var(--sm-space-3);
+  color: var(--sm-action);
+  font-size: var(--sm-text-caption);
+  font-weight: 700;
+  border-radius: var(--sm-radius-small);
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: var(--sm-space-2);
+  transition: transform var(--sm-duration-fast) var(--sm-ease);
+}
+
+.all:hover .arrow { transform: translateX(4px); }
+
+.topic:focus-visible, .all:focus-visible {
+  outline: 2px solid var(--sm-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1023px) {
+  .topics { padding: var(--sm-space-6) var(--sm-space-4) var(--sm-space-4); }
+}
