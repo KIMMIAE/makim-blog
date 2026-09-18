@@ -1,0 +1,6 @@
+{
+  "selectedVariant": "compactFace",
+  "originalFace": { "status": "alternative", "asset": "soft/eyes-spark.svg", "eyes": "2x3 with highlight" },
+  "compactFace": { "status": "confirmed", "asset": "compact/cat-awake.svg", "eyes": "2x3 with highlight", "neck": "softened white connection", "poses": "poses/c-*.svg" },
+  "wideRoundFace": { "status": "discarded", "directory": "round" }
+}
