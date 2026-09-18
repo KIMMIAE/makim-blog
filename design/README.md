@@ -6,7 +6,7 @@
 
 - `styles/tokens.css`: 색상, 서체, 크기, 간격, 모서리, 그림자, 움직임의 원본.
 - `styles/theme.css`: 동일 토큰을 Tailwind 유틸리티로 연결.
-- `design/pixel-cat/home/index.html`: 합의한 홈 배치의 HTML 시안. 실제 Next.js 홈은 아직 이전 버전이며 시안의 CSS는 토큰과 자동 동기화되지 않는다.
+- `design/pixel-cat/home/index.html`: 합의한 홈 배치의 HTML 시안. 실제 Next.js 홈에는 히어로만 적용했으며 시안의 CSS는 토큰과 자동 동기화되지 않는다.
 - `design/pixel-cat/selection.json`: 고양이 선택 기록.
 - `design/pixel-cat/poses/c-*.svg`: 선택한 고양이의 자세별 원본 SVG.
 

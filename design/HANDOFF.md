@@ -18,7 +18,7 @@ localhost 주소는 서버가 실행 중인 컴퓨터에서만 접근할 수 있
 
 ## 구현 기준과 작업 범위
 
-1. `design/pixel-cat/home/index.html`을 시각적 기준으로 사용한다. 현재 실제 `src/app/page.tsx`는 이전 홈이다.
+1. `design/pixel-cat/home/index.html`을 시각적 기준으로 사용한다. 실제 `src/app/page.tsx`에는 히어로만 적용했다. 헤더·최근 기록·주제·소개 영역은 후속 작업이다.
 2. `design/README.md`의 확정 사항과 `styles/tokens.css`, `styles/theme.css`를 읽는다. 시안의 인라인 CSS를 그대로 복제하기보다 공통 토큰으로 연결한다.
 3. 고양이는 `design/pixel-cat/selection.json`의 확정 C안과 `design/pixel-cat/poses/c-*.svg`만 사용한다. A 및 round/tabby/cute/soft 폴더는 작업 이력이며 최종 선택이 아니다. 생성 스크립트가 이전 폴더를 참조하므로 임의로 삭제하지 않는다.
 4. 원본 고양이 사진은 저장소에 포함되어 있지 않다. 확정한 고양이 SVG를 구현에 사용한다.

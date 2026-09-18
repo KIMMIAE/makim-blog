@@ -2,14 +2,16 @@ import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import { Card } from "../components/Card";
 import { Post, getSortedPostsData } from "../lib/Post";
+import { HomeHero } from "../components/home/HomeHero";
 
 export default async function Page() {
   const allPostsData: Post[] = await getSortedPostsData()
   const recentPosts = allPostsData.slice(0, 5);
   return (
     <div className={styles.container}>
-      <div>
-        <h1 className="text-3xl">Recent changes</h1>
+      <HomeHero />
+      <div id="recent-posts">
+        <h2 className="text-3xl">Recent changes</h2>
         <div className="my-6 border-b-2"></div>
         <div className="flex flex-col gap-4">
           {recentPosts.map((post: Post) => {
