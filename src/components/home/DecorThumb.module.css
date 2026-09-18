@@ -1,0 +1,81 @@
+.thumb {
+  position: relative;
+  height: 126px;
+  align-self: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--sm-radius-small);
+  background: var(--sm-thumb-violet);
+  color: var(--sm-thumb-violet-ink);
+  font: 11px/1.7 var(--sm-font-code);
+}
+
+.orb {
+  position: absolute;
+  left: 18px;
+  bottom: -21px;
+  width: 83px;
+  height: 83px;
+  border-radius: 50%;
+  background: var(--sm-thumb-orb);
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  top: -33px;
+  right: -20px;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  background: var(--sm-thumb-orb-dot);
+}
+
+.caption {
+  position: relative;
+  margin-left: 80px;
+  max-width: 45%;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.blue {
+  background: var(--sm-thumb-blue);
+  color: var(--sm-thumb-blue-muted);
+}
+
+.miniWindow {
+  width: 132px;
+  max-width: 85%;
+  padding: 11px;
+  border-radius: 7px;
+  background: rgb(255 255 255 / 60%);
+}
+
+
+:global(.dark) .miniWindow {
+  background: rgb(255 255 255 / 8%);
+}
+
+.dots {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.miniWindow b {
+  display: block;
+  margin-top: 9px;
+  color: var(--sm-thumb-blue-ink);
+  font-size: 14px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+  .thumb { height: 110px; }
+  .caption { margin-left: 70px; }
+}

@@ -27,6 +27,17 @@
   --sm-art-back: var(--sm-lavender-100);
   --sm-art-front: var(--sm-lavender-200);
   --sm-art-accent: var(--sm-lime-300);
+  --sm-text-faint: #939bbd;
+  --sm-surface-border: #e1e4f4;
+  --sm-thumb-violet: var(--sm-lavender-100);
+  --sm-thumb-violet-ink: #8880cf;
+  --sm-thumb-orb: #d3ccff;
+  --sm-thumb-orb-dot: #9374ff;
+  --sm-thumb-blue: #e4efff;
+  --sm-thumb-blue-ink: #526899;
+  --sm-thumb-blue-muted: #849bc1;
+  --sm-topic-icon-bg: #e0e5ff;
+  --sm-topic-icon-ink: #4c5fbc;
 
   /* System fonts only until licensed webfont files are added. */
   --sm-font-body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
@@ -82,6 +93,17 @@
   --sm-focus: #c1c7ff;
   --sm-art-back: #2d294a;
   --sm-art-front: #3c345f;
+  --sm-text-faint: #8b91b0;
+  --sm-surface-border: #393e5c;
+  --sm-thumb-violet: #2d294a;
+  --sm-thumb-violet-ink: #b7aefc;
+  --sm-thumb-orb: #4a4380;
+  --sm-thumb-orb-dot: #8c7cff;
+  --sm-thumb-blue: #23304a;
+  --sm-thumb-blue-ink: #c5d3ef;
+  --sm-thumb-blue-muted: #8a9cc0;
+  --sm-topic-icon-bg: #2c3358;
+  --sm-topic-icon-ink: #b9c3ff;
 }
 
 @media (prefers-reduced-motion: reduce) {
