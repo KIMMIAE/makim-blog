@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./tokens.css";
+@import "./theme.css";
 @plugin "@tailwindcss/typography";
 
 /* Tailwind v3 `darkMode: "class"` 대응 (next-themes attribute="class") */
