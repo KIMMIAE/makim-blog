@@ -1,6 +1,6 @@
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--sm-space-4);
   flex-wrap: wrap;
   margin-top: var(--sm-space-8);
