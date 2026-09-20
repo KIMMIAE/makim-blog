@@ -45,6 +45,15 @@
 - 설명(description)과 OpenGraph 기본값을 히어로 소개 문구로 맞췄다. 도메인(`applejam.monster`)은 그대로다.
 - 파비콘을 CSS 로고와 같은 비율의 두 원 SVG(`src/app/icon.svg`)로 교체했고, `src/app/apple-icon.png`(180)와 `public/icons/icon-192·512.png` 를 렌더링해 매니페스트에 연결했다. 옛 applejam 파비콘 세트와 로고 PNG 는 제거했다.
 
+## 8. 전체 글 · 태그 목록 페이지
+
+- 시안 `design/posts-list/index.html`(사용자 검토로 확정: 연도 구분선 없음, 태그는 연한 칩, 소개 문장·ARCHIVE 라벨 없음, 번호 pill 페이지네이션)을 기준으로 구현했다.
+- 공용 컴포넌트 `src/components/list/`: `PostList`(날짜 열 + 태그 칩·제목·설명·Read more), `TagChip`(sm/md), `ListHeader`/`ListHeaderLink`, `Pagination`(현재 페이지 강조, 양쪽 화살표 상시 배치·비활성 표시).
+- `/posts/[id]`: 페이지당 8개, 헤더에 태그 칩 상위 6개(홈과 같은 정렬) + 모든 태그. `generateStaticParams` 의 `Math.round` → `Math.ceil` 수정(8개 기준 2페이지 404 버그). 탭 제목 `전체 글` / `전체 글 · N페이지`.
+- `/tags/[tag]`: 같은 목록, `#태그 + 글 수 + 모든 태그`. 2페이지 이상일 때만 페이지네이션, 잘못된 `?page` 는 404. `force-dynamic` 유지.
+- `/tags`: 토큰 색 카드 그리드로 정리(구조 유지). `Card.tsx` 는 글 상세용 `Card.Tags` 만 남김.
+- 검증: 단계별 lint·tsc·build, CDP 로 상태 코드·행 수·링크·페이지네이션 상태·가로 넘침·다크 확인.
+
 ## 남은 일
 
 - 웹폰트 확정 및 라이선스 파일 추가(현재 시스템 폰트).
