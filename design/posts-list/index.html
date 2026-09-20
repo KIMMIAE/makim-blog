@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Still Making — 전체 글 시안</title>
+<title>Still Making — 전체 글 시안 v4</title>
 <style>
 /* Still Making: shared source for CSS and Tailwind utilities. */
 :root {
@@ -131,7 +131,7 @@ a{color:inherit;text-decoration:none}
 /* ---- 페이지 헤더 ---- */
 .page-head{padding:var(--sm-space-4) 0 var(--sm-space-8);border-bottom:1px solid var(--sm-border)}
 .eyebrow{margin:0 0 var(--sm-space-2);color:var(--sm-text-faint);font:600 var(--sm-text-caption)/1 var(--sm-font-code);letter-spacing:.16em}
-.page-head h1{display:flex;align-items:baseline;gap:var(--sm-space-3);margin:0 0 var(--sm-space-3);font-family:var(--sm-font-heading);font-size:clamp(1.75rem,3vw,2.375rem);font-weight:800;letter-spacing:var(--sm-tracking-heading);line-height:var(--sm-leading-heading)}
+.page-head h1{display:flex;align-items:baseline;gap:var(--sm-space-3);margin:0 0 var(--sm-space-6);font-family:var(--sm-font-heading);font-size:clamp(1.75rem,3vw,2.375rem);font-weight:800;letter-spacing:var(--sm-tracking-heading);line-height:var(--sm-leading-heading)}
 .count{padding:.15em .6em;border-radius:var(--sm-radius-pill);background:var(--sm-surface);color:var(--sm-action);font-size:var(--sm-text-small);font-weight:700;letter-spacing:0}
 .lead{margin:0 0 var(--sm-space-6);max-width:40rem;color:var(--sm-text-muted);font-size:var(--sm-text-body);line-height:var(--sm-leading-body)}
 .tagbar{display:flex;flex-wrap:wrap;gap:var(--sm-space-2);align-items:center}
@@ -148,8 +148,22 @@ a{color:inherit;text-decoration:none}
 .date{padding-top:.35rem;color:var(--sm-text-faint);font-size:var(--sm-text-caption);font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
 .body{min-width:0}
 .tags{display:flex;flex-wrap:wrap;gap:var(--sm-space-2);margin-bottom:var(--sm-space-2)}
-.tag{color:var(--sm-topic-icon-ink);background:var(--sm-topic-icon-bg);border-radius:var(--sm-radius-pill);padding:.1rem .55rem;font-size:var(--sm-text-caption);font-weight:700}
-.tag:hover{color:var(--sm-on-action);background:var(--sm-action)}
+/* B. 연한 칩 (기본) */
+.tag{color:var(--sm-action);background:var(--sm-surface);border-radius:var(--sm-radius-pill);padding:.15rem .6rem;font-size:var(--sm-text-caption);font-weight:600;letter-spacing:.01em}
+.tag:hover{background:var(--sm-topic-icon-bg)}
+/* A. 텍스트 메타 (홈 최근 기록과 동일) */
+.tags.text{gap:0;color:var(--sm-text-faint);font-size:var(--sm-text-caption);font-weight:600;letter-spacing:.4px}
+.tags.text .tag{background:none;color:inherit;padding:0;border-radius:0;font-weight:inherit;letter-spacing:inherit}
+.tags.text .tag+.tag::before{content:" · ";color:var(--sm-text-faint)}
+.tags.text .tag:hover{color:var(--sm-action)}
+/* C. 아웃라인 칩 */
+.tags.outline .tag{background:none;color:var(--sm-text-muted);border:1px solid var(--sm-border);font-weight:600}
+.tags.outline .tag:hover{color:var(--sm-action);border-color:var(--sm-action)}
+/* 비교 스트립 (시안 전용) */
+.compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sm-space-4);margin:var(--sm-space-8) 0 0;padding:var(--sm-space-4);border:1px dashed var(--sm-border);border-radius:var(--sm-radius-card)}
+.compare h3{margin:0 0 var(--sm-space-3);font-size:var(--sm-text-caption);font-weight:700;letter-spacing:.1em;color:var(--sm-text-faint);font-family:var(--sm-font-code)}
+.compare .title{font-size:var(--sm-text-body);margin-top:var(--sm-space-2)}
+@media (max-width:767px){.compare{grid-template-columns:1fr}}
 .title{margin:0 0 var(--sm-space-2);font-family:var(--sm-font-heading);font-size:var(--sm-text-card);font-weight:800;letter-spacing:-.03em;line-height:1.4;overflow-wrap:anywhere}
 .title a:hover{color:var(--sm-action)}
 .desc{margin:0 0 var(--sm-space-3);color:var(--sm-text-muted);font-size:var(--sm-text-small);line-height:1.7}
@@ -181,6 +195,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-o
   .pill span.label{display:none}
 }
 @media (prefers-reduced-motion:reduce){.trail svg{transition-delay:0ms!important}}
+
+.pager-compare{display:grid;gap:var(--sm-space-6);margin:var(--sm-space-8) 0 var(--sm-space-12)}
+.opt h3{margin:0 0 var(--sm-space-3);font:700 var(--sm-text-caption)/1 var(--sm-font-code);letter-spacing:.1em;color:var(--sm-text-faint)}
+.pager{padding:var(--sm-space-4) 0}
+.p1{justify-content:space-between}
+.link{display:inline-flex;align-items:center;gap:.4em;color:var(--sm-action);font-size:var(--sm-text-small);font-weight:700}
+.link.disabled{color:var(--sm-text-faint)}
+.ico{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.p1 .read{color:var(--sm-action)}
+.p2{justify-content:center;gap:var(--sm-space-2)}
+.num{display:inline-grid;place-items:center;min-width:2.5rem;height:2.5rem;padding:0 .75rem;border-radius:var(--sm-radius-pill);color:var(--sm-text-muted);font-size:var(--sm-text-small);font-weight:700;transition:background var(--sm-duration-fast) var(--sm-ease),color var(--sm-duration-fast) var(--sm-ease)}
+.num:hover{background:var(--sm-surface);color:var(--sm-action)}
+.num[aria-current]{background:var(--sm-action);color:var(--sm-on-action);box-shadow:var(--sm-shadow-action)}
+.num.next{color:var(--sm-action)}
+.num.prev,.num.next{color:var(--sm-action)}.num.disabled{color:var(--sm-text-faint);opacity:.5;pointer-events:none}
+.p2{gap:var(--sm-space-3)}
 </style></head>
 <body>
 <div class="wrap">
@@ -190,12 +220,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-o
   </header>
   <main>
     <header class="page-head">
-      <p class="eyebrow">ARCHIVE</p>
       <h1>전체 글 <span class="count">10</span></h1>
-      <p class="lead">개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각, 직접 만든 도구 이야기를 시간순으로 모았습니다.</p>
       <nav class="tagbar" aria-label="자주 쓰는 태그"><a class="chip" href="#">React Native</a><a class="chip" href="#">Agile</a><a class="chip" href="#">Algorithm</a><a class="chip" href="#">AWS</a><a class="chip" href="#">Big O Notation</a><a class="chip" href="#">book</a><a class="chip more" href="#">모든 태그 →</a></nav>
     </header>
-    <ol class="list"><li class="year" aria-hidden="true"><span>2025</span></li><li class="post">
+    <ol class="list"><li class="post">
   <time class="date" datetime="2025-07-06">2025.07.06</time>
   <div class="body">
     <div class="tags"><a class="tag" href="#">npm</a></div>
@@ -211,7 +239,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-o
     <p class="desc">나름대로 치열하게 고민했다..</p>
     <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
   </div>
-</li><li class="year" aria-hidden="true"><span>2024</span></li><li class="post">
+</li><li class="post">
   <time class="date" datetime="2024-10-20">2024.10.20</time>
   <div class="body">
     <div class="tags"><a class="tag" href="#">Datadog</a><a class="tag" href="#">AWS</a><a class="tag" href="#">Monitoring Tool</a></div>
@@ -243,7 +271,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-o
     <p class="desc">제법 끔찍한 시간을 보냈다..😫</p>
     <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
   </div>
-</li><li class="year" aria-hidden="true"><span>2023</span></li><li class="post">
+</li><li class="post">
   <time class="date" datetime="2023-12-03">2023.12.03</time>
   <div class="body">
     <div class="tags"><a class="tag" href="#">Algorithm</a><a class="tag" href="#">Big O Notation</a></div>
@@ -260,11 +288,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sm-focus);outline-o
     <a class="read" href="#">Read more<span class="trail" aria-hidden="true"><svg class="arrow" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg><svg class="chev" viewBox="7 5 10 14" width=".72em" height="1em"><path d="M9 6.5l5.5 5.5L9 17.5"/></svg></span></a>
   </div>
 </li></ol>
-    <nav class="pager" aria-label="페이지 이동">
-      <a class="pill" href="#" aria-disabled="true">← <span class="label">이전 페이지</span></a>
-      <span class="where"><b>1</b> / 2</span>
-      <a class="pill" href="#"><span class="label">다음 페이지</span> →</a>
-    </nav>
+    <section class="pager-compare" aria-label="페이지네이션 상태 (시안 전용)">
+      <div class="opt"><h3>1페이지 · 이전 없음</h3>
+        <nav class="pager p2" aria-label="페이지 이동"><span class="num prev disabled" aria-disabled="true"><svg class="ico" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M18 12H5M10 6.5 4.5 12l5.5 5.5"/></svg></span><a class="num" href="#" aria-current="page">1</a><a class="num" href="#">2</a><a class="num next" href="#" aria-label="다음 페이지"><svg class="ico" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg></a></nav>
+      </div>
+      <div class="opt"><h3>2페이지 · 마지막</h3>
+        <nav class="pager p2" aria-label="페이지 이동"><a class="num prev" href="#" aria-label="이전 페이지"><svg class="ico" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M18 12H5M10 6.5 4.5 12l5.5 5.5"/></svg></a><a class="num" href="#">1</a><a class="num" href="#" aria-current="page">2</a><span class="num next disabled" aria-disabled="true"><svg class="ico" viewBox="3 5 16 14" width="1.1em" height="1em"><path d="M4 12h13M12 6.5l5.5 5.5-5.5 5.5"/></svg></span></nav>
+      </div>
+    </section>
   </main>
   <footer class="footer">© 2026 makim</footer>
 </div>
