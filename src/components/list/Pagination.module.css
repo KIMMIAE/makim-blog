@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   gap: var(--sm-space-3);
-  padding: var(--sm-space-8) 0 var(--sm-space-12);
+  padding: 0 0 var(--sm-space-12);
   font-family: var(--sm-font-body);
 }
 

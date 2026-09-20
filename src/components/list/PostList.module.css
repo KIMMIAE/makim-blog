@@ -1,6 +1,6 @@
 .list {
   list-style: none;
-  margin: 0;
+  margin: 0 0 var(--sm-space-12);
   padding: 0;
   color: var(--sm-text);
   font-family: var(--sm-font-body);
