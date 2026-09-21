@@ -60,7 +60,7 @@ export default async function Page({
         <Card.Tags tags={post.tags} />
         <h1 className="text-3xl font-extrabold md:text-4xl">{post.title}</h1>
         <p className="mt-2 font-semibold text-gray-400">
-          posted by <span className="text-black">mia</span> · {post.date}
+          posted by <span className="text-ink font-bold">mia</span> · {post.date}
         </p>
       </header>
       <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
