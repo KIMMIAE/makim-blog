@@ -84,15 +84,6 @@
 .prose :where(code)::before, .prose :where(code)::after { content: none; }
 .prose :where(h2 code, h3 code, h4 code) { font-size: 0.85em; }
 
-/* 코드 블록 (3단계에서 CodeBlock 프레임으로 감쌈) */
-.prose :where(pre) {
-  border-radius: var(--sm-radius-small);
-  font-family: var(--sm-font-code);
-  font-size: 13.5px;
-  line-height: 1.7;
-  tab-size: 2;
-}
-
 /* 이미지·캡션 */
 .prose :where(img) {
   margin: 1.5em auto;

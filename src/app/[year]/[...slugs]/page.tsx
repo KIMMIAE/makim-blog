@@ -4,6 +4,7 @@ import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { PostHeader } from "../../../components/post/PostHeader";
 import { PostImage } from "../../../components/post/PostImage";
+import { CodeBlock } from "../../../components/post/CodeBlock";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
 
@@ -55,7 +56,7 @@ export default async function Page({
   const { content } = await compileMDX({
     source: post.content,
     options: buildMdxOptions(toc),
-    components: { img: PostImage },
+    components: { img: PostImage, pre: CodeBlock },
   });
 
   return (
