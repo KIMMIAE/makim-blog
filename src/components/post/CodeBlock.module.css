@@ -1,0 +1,58 @@
+.block {
+  margin: 1.6em 0;
+  overflow: hidden;
+  border: 1px solid var(--sm-code-border);
+  border-radius: var(--sm-radius-small);
+  background: var(--sm-code-bg);
+  box-shadow: var(--sm-shadow-art);
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.5rem 0.45rem 1rem;
+  border-bottom: 1px solid var(--sm-code-border);
+  background: var(--sm-code-bar);
+  color: var(--sm-code-muted);
+  font-family: var(--sm-font-code);
+  font-size: 12px;
+}
+
+.lang { letter-spacing: 0.06em; }
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--sm-code-muted);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    color var(--sm-duration-fast) var(--sm-ease),
+    background var(--sm-duration-fast) var(--sm-ease);
+}
+
+.copy:hover { color: var(--sm-code-fg); background: #2a2d2e; }
+.copy:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 1px; }
+.done, .done:hover { color: var(--sm-code-inserted); }
+
+/* typography 의 pre 규칙(배경·여백·모서리)을 프레임 안에서는 되돌린다 */
+.pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0;
+  background: transparent;
+  color: var(--sm-code-fg);
+  overflow-x: auto;
+  font-family: var(--sm-font-code);
+  font-size: 13.5px;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.pre ::selection { background: var(--sm-code-selection); }

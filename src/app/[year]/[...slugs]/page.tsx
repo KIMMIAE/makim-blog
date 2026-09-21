@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
-import {
-  findPost,
-  getSortedPostsData,
-  parseCodeSnippet,
-} from "../../../lib/Post";
-import prism from "@mapbox/rehype-prism";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { Card } from "../../../components/Card";
+import { findPost, getAdjacentPosts, getSortedPostsData } from "../../../lib/Post";
+import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { PostHeader } from "../../../components/post/PostHeader";
+import { PostImage } from "../../../components/post/PostImage";
+import { CodeBlock } from "../../../components/post/CodeBlock";
+import { TableOfContents } from "../../../components/post/TableOfContents";
+import { PostNav } from "../../../components/post/PostNav";
+import body from "../../../components/post/PostBody.module.css";
+import layout from "../../../components/post/PostLayout.module.css";
 
 export const dynamic = "error";
 
@@ -24,6 +26,15 @@ export async function generateMetadata({
 
   return {
     title: post.title,
+    description: post.description,
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      tags: post.tags,
+      url: `/${post.slug}`,
+    },
   };
 }
 
@@ -52,23 +63,39 @@ export default async function Page({
     return notFound();
   }
 
-  const source = post.content;
+  const toc: TocItem[] = [];
+  const { previous, next } = await getAdjacentPosts(post.slug);
+  const { content } = await compileMDX({
+    source: post.content,
+    options: buildMdxOptions(toc),
+    components: { img: PostImage, pre: CodeBlock },
+  });
 
   return (
-    <div>
-      <header className="py-6 border-b">
-        <Card.Tags tags={post.tags} />
-        <h1 className="text-3xl font-extrabold md:text-4xl">{post.title}</h1>
-        <p className="mt-2 font-semibold text-gray-400">
-          posted by <span className="text-ink font-bold">mia</span> · {post.date}
-        </p>
-      </header>
-      <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
-        <MDXRemote
-          source={source}
-          options={{ mdxOptions: { rehypePlugins: [prism, parseCodeSnippet] } }}
-        />
-      </article>
+    <div className={layout.layout}>
+      <div className={layout.main}>
+        <PostHeader post={post} />
+        {toc.length > 0 ? (
+          <>
+            <div className={layout.tocTop}>
+              <p className={layout.tocTopTitle}>목차</p>
+              <TableOfContents items={toc} />
+            </div>
+            <details className={layout.tocMobile}>
+              <summary>목차</summary>
+              <TableOfContents items={toc} />
+            </details>
+          </>
+        ) : null}
+        <article className={`prose ${body.prose}`}>{content}</article>
+        <PostNav previous={previous} next={next} />
+      </div>
+      {toc.length > 0 ? (
+        <aside className={layout.aside}>
+          <p className={layout.asideTitle}>목차</p>
+          <TableOfContents items={toc} ariaLabel="목차 (우측)" />
+        </aside>
+      ) : null}
     </div>
   );
 }

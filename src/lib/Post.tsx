@@ -1,8 +1,6 @@
 import fs from "fs";
 import { globSync } from "glob";
 import matter from "gray-matter";
-import { visit } from "unist-util-visit";
-import type { Node as UnistNode } from "unist";
 import path from "path";
 
 const postsDirectory = path.resolve('./posts');
@@ -17,52 +15,6 @@ export interface Post {
   published: boolean;
   slug: string;
   date: string;
-}
-
-type TokenType =
-  | "tag"
-  | "attr-name"
-  | "attr-value"
-  | "deleted"
-  | "inserted"
-  | "punctuation"
-  | "keyword"
-  | "string"
-  | "function"
-  | "boolean"
-  | "comment";
-
-const tokenClassNames: { [key in TokenType]: string } = {
-  tag: "text-code-blue",
-  "attr-name": "text-code-sky",
-  "attr-value": "text-code-orange",
-  deleted: "text-code-orange",
-  inserted: "text-code-lime",
-  punctuation: "text-code-stone",
-  keyword: "text-code-blue",
-  string: "text-code-orange",
-  function: "text-code-yellow",
-  boolean: "text-code-lime",
-  comment: "text-code-green",
-};
-
-// rehype-prism 이 생성하는 hast element 중 이 플러그인이 참조하는 최소 형태
-type HastElementLike = {
-  properties?: { className?: unknown };
-};
-
-export function parseCodeSnippet() {
-  return (tree: UnistNode) => {
-    visit(tree, "element", (node: HastElementLike) => {
-      const className = Array.isArray(node.properties?.className)
-        ? node.properties.className
-        : [];
-      const [token, type] = className as [string?, TokenType?];
-      if (token === "token" && type && node.properties) {
-        node.properties.className = [tokenClassNames[type]];
-      }
-    });
-  };
 }
 
 export async function findPost(year: string, slugs: string[]) {
@@ -161,4 +113,15 @@ export async function getTagSummaries(): Promise<TagSummary[]> {
   return [...map.values()].sort(
     (a, b) => b.count - a.count || b.latest.localeCompare(a.latest) || a.name.localeCompare(b.name)
   );
+}
+
+/**
+ * 날짜순(최신 → 과거) 목록에서 현재 글의 이웃을 돌려준다.
+ * previous = 더 오래된 글(이전 글), next = 더 새로운 글(다음 글)
+ */
+export async function getAdjacentPosts(slug: string): Promise<{ previous: Post | null; next: Post | null }> {
+  const posts = await getSortedPostsData();
+  const index = posts.findIndex((p) => p.slug === slug);
+  if (index === -1) return { previous: null, next: null };
+  return { previous: posts[index + 1] ?? null, next: posts[index - 1] ?? null };
 }

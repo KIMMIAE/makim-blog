@@ -1,0 +1,18 @@
+/* 코드 하이라이트 토큰 색. 클래스는 src/lib/mdx/rehypeCodeTokens.ts 가 붙인다. */
+.token-comment { color: var(--sm-code-comment); font-style: italic; }
+.token-punctuation { color: var(--sm-code-punctuation); }
+.token-operator { color: var(--sm-code-operator); }
+.token-keyword { color: var(--sm-code-keyword); }
+.token-control { color: var(--sm-code-control); }
+.token-string { color: var(--sm-code-string); }
+.token-number { color: var(--sm-code-number); }
+.token-function { color: var(--sm-code-function); }
+.token-type { color: var(--sm-code-type); }
+.token-variable { color: var(--sm-code-variable); }
+.token-constant { color: var(--sm-code-constant); }
+.token-tag { color: var(--sm-code-tag); }
+.token-attr { color: var(--sm-code-attr); }
+.token-regex { color: var(--sm-code-regex); }
+.token-selector { color: var(--sm-code-selector); }
+.token-inserted { color: var(--sm-code-inserted); }
+.token-deleted { color: var(--sm-code-deleted); }

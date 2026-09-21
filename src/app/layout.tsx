@@ -2,6 +2,7 @@ import "../../styles/globals.css";
 import LayoutWrapper from "../components/LayoutWrapper";
 import { Metadata } from "next";
 import { Providers } from "../components/Provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const SITE_NAME = "Still Making";
 const SITE_DESCRIPTION =
@@ -55,6 +56,8 @@ export default function RootLayout({
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
+        {/* Vercel Web Analytics: 배포 환경에서만 수집. 대시보드 Analytics 탭에서 Enable 필요 */}
+        <Analytics />
       </body>
     </html>
   );

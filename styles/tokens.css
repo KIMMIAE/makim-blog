@@ -75,6 +75,31 @@
   --sm-duration-fast: 160ms;
   --sm-duration-normal: 240ms;
   --sm-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* 코드 블록: VS Code Dark+ 팔레트. 라이트·다크 공통(항상 어두운 블록) */
+  --sm-code-bg: #1e1e1e;
+  --sm-code-bar: #252526;
+  --sm-code-border: #333333;
+  --sm-code-fg: #d4d4d4;
+  --sm-code-muted: #858585;
+  --sm-code-selection: #264f78;
+  --sm-code-comment: #6a9955;
+  --sm-code-punctuation: #d4d4d4;
+  --sm-code-operator: #d4d4d4;
+  --sm-code-keyword: #569cd6;
+  --sm-code-control: #c586c0;
+  --sm-code-string: #ce9178;
+  --sm-code-number: #b5cea8;
+  --sm-code-function: #dcdcaa;
+  --sm-code-type: #4ec9b0;
+  --sm-code-variable: #9cdcfe;
+  --sm-code-constant: #4fc1ff;
+  --sm-code-tag: #569cd6;
+  --sm-code-attr: #9cdcfe;
+  --sm-code-regex: #d16969;
+  --sm-code-selector: #d7ba7d;
+  --sm-code-inserted: #b5cea8;
+  --sm-code-deleted: #f44747;
+
   --sm-cat-size: 8rem;
   --sm-cat-icon-size: 4rem;
 }
