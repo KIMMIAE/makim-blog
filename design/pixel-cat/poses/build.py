@@ -102,7 +102,7 @@ for variant,base,eyes in [('a',a,(8,15)),('c',c,(9,14))]:
         if pose=='tilt':
             # Rotate the intact head as one rigid group, never shear pixel rows.
             content=rects(pixels,16)+rects(pixels,0,16,23)+ '<g transform="rotate(-8 12.5 15)">'+rects(pixels,0,16,0,23)+'</g>'
-        (ROOT/f'{variant}-{pose}.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 32 32" shape-rendering="crispEdges">'+content+'</svg>')
+        if variant == 'c': (ROOT/f'{variant}-{pose}.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 32 32" shape-rendering="crispEdges">'+content+'</svg>')
 (ROOT/'pixels.json').write_text(json.dumps({'palette':palette,'variants':allframes},indent=2))
 sections=[]
 for variant,title in [('c','최종 선택 · 작고 둥근 얼굴 / 반짝이는 눈')]:
@@ -130,4 +130,4 @@ document.querySelectorAll('.draggable').forEach(button=>{
 </script>'''
 html=html.replace('A · C 고양이 포즈 비교','Still Making · 선택한 고양이').replace('C는 턱 아래 진한 선을 덜어냈어요. 아래 체험 영역에서 고양이를 잡고 움직여보세요.','작고 둥근 얼굴과 반짝이는 눈으로 확정했어요. 아래에서 고양이를 잡고 움직여보세요.')
 play=play.replace('grid-template-columns:1fr 1fr','grid-template-columns:1fr').replace('<b>C</b>','<b>선택한 고양이</b>')
-(ROOT/'index.html').write_text(html+''.join(sections)+play+'<p><a href="../compact/">이전 얼굴 비교 보기 →</a></p></main></html>')
+(ROOT/'index.html').write_text(html+''.join(sections)+play+'</main></html>')

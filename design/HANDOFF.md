@@ -20,7 +20,7 @@ localhost 주소는 서버가 실행 중인 컴퓨터에서만 접근할 수 있
 
 1. `design/pixel-cat/home/index.html`을 시각적 기준으로 사용한다. 실제 `src/app/page.tsx`에는 히어로만 적용했다. 헤더·최근 기록·주제·소개 영역은 후속 작업이다.
 2. `design/README.md`의 확정 사항과 `styles/tokens.css`, `styles/theme.css`를 읽는다. 시안의 인라인 CSS를 그대로 복제하기보다 공통 토큰으로 연결한다.
-3. 고양이는 `design/pixel-cat/selection.json`의 확정 C안과 `design/pixel-cat/poses/c-*.svg`만 사용한다. A 및 round/tabby/cute/soft 폴더는 작업 이력이며 최종 선택이 아니다. 생성 스크립트가 이전 폴더를 참조하므로 임의로 삭제하지 않는다.
+3. 고양이는 `design/pixel-cat/selection.json`의 확정 C안과 `design/pixel-cat/poses/c-*.svg`만 사용한다. 탐색 이력(A안, round/tabby/cute 폴더, 초기 스크립트)은 2026-09-21 정리해 삭제했다(Git 히스토리에 남음). `poses/build.py` 재생성에 필요한 입력 `soft/pixels.json`, `soft/eye-variants.json`, `compact/pixels.json` 세 파일만 유지한다. `design/` 은 Tailwind 스캔(`@source not`), tsconfig, ESLint, Vercel 업로드(`.vercelignore`)에서 제외되어 빌드에 영향이 없다.
 4. 원본 고양이 사진은 저장소에 포함되어 있지 않다. 확정한 고양이 SVG를 구현에 사용한다.
 5. 기존 글 데이터와 글 URL, 태그, 다크 모드 기능을 유지하며 실제 Next.js 홈에 적용한다. 시안의 글은 두 개를 수동 배치한 것이므로 실제 홈에서는 기존 데이터 함수를 사용한다.
 6. 시안의 주제 링크는 현재 모두 태그 목록으로 연결되어 있다. 실제 구현 시 존재하는 태그와 콘텐츠에 맞춰 연결하고, 가짜 카테고리나 게시글을 만들지 않는다.

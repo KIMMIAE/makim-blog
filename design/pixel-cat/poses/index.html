@@ -11,4 +11,4 @@ document.querySelectorAll('.draggable').forEach(button=>{
  button.addEventListener('pointerup',release);button.addEventListener('pointercancel',release);button.addEventListener('lostpointercapture',release);
  button.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();const up=button.getAttribute('aria-pressed')!=='true';pose(up);button.style.transform=up?'translateY(-16px)':'';}if(e.key==='Escape')release();});
 });
-</script><p><a href="../compact/">이전 얼굴 비교 보기 →</a></p></main></html>
+</script></main></html>

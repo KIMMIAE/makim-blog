@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./theme.css";
+
+/* 디자인 시안·문서(design/)는 Tailwind 클래스 스캔 대상에서 제외 */
+@source not "../design";
 @plugin "@tailwindcss/typography";
 
 /* Tailwind v3 `darkMode: "class"` 대응 (next-themes attribute="class") */
