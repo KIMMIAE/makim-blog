@@ -1,4 +1,5 @@
 .section {
+  padding-bottom: var(--sm-space-8);
   color: var(--sm-text);
   font-family: var(--sm-font-body);
 }
@@ -49,6 +50,8 @@
 }
 
 .post:first-child { padding-top: 0; }
+/* 홈에서는 이 섹션 다음이 바로 푸터(위 구분선)라 마지막 행의 선은 뺀다 */
+.post:last-child { border-bottom: 0; }
 
 .body { min-width: 0; }
 
