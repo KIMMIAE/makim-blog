@@ -114,3 +114,14 @@ export async function getTagSummaries(): Promise<TagSummary[]> {
     (a, b) => b.count - a.count || b.latest.localeCompare(a.latest) || a.name.localeCompare(b.name)
   );
 }
+
+/**
+ * 날짜순(최신 → 과거) 목록에서 현재 글의 이웃을 돌려준다.
+ * previous = 더 오래된 글(이전 글), next = 더 새로운 글(다음 글)
+ */
+export async function getAdjacentPosts(slug: string): Promise<{ previous: Post | null; next: Post | null }> {
+  const posts = await getSortedPostsData();
+  const index = posts.findIndex((p) => p.slug === slug);
+  if (index === -1) return { previous: null, next: null };
+  return { previous: posts[index + 1] ?? null, next: posts[index - 1] ?? null };
+}
