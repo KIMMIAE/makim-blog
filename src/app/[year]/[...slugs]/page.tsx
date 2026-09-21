@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
-import {
-  findPost,
-  getSortedPostsData,
-  parseCodeSnippet,
-} from "../../../lib/Post";
-import prism from "@mapbox/rehype-prism";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { findPost, getSortedPostsData } from "../../../lib/Post";
+import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
+import { compileMDX } from "next-mdx-remote/rsc";
 import { Card } from "../../../components/Card";
 
 export const dynamic = "error";
@@ -52,7 +48,8 @@ export default async function Page({
     return notFound();
   }
 
-  const source = post.content;
+  const toc: TocItem[] = [];
+  const { content } = await compileMDX({ source: post.content, options: buildMdxOptions(toc) });
 
   return (
     <div>
@@ -64,10 +61,7 @@ export default async function Page({
         </p>
       </header>
       <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
-        <MDXRemote
-          source={source}
-          options={{ mdxOptions: { rehypePlugins: [prism, parseCodeSnippet] } }}
-        />
+        {content}
       </article>
     </div>
   );

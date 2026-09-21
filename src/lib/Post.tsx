@@ -1,8 +1,6 @@
 import fs from "fs";
 import { globSync } from "glob";
 import matter from "gray-matter";
-import { visit } from "unist-util-visit";
-import type { Node as UnistNode } from "unist";
 import path from "path";
 
 const postsDirectory = path.resolve('./posts');
@@ -17,52 +15,6 @@ export interface Post {
   published: boolean;
   slug: string;
   date: string;
-}
-
-type TokenType =
-  | "tag"
-  | "attr-name"
-  | "attr-value"
-  | "deleted"
-  | "inserted"
-  | "punctuation"
-  | "keyword"
-  | "string"
-  | "function"
-  | "boolean"
-  | "comment";
-
-const tokenClassNames: { [key in TokenType]: string } = {
-  tag: "text-code-blue",
-  "attr-name": "text-code-sky",
-  "attr-value": "text-code-orange",
-  deleted: "text-code-orange",
-  inserted: "text-code-lime",
-  punctuation: "text-code-stone",
-  keyword: "text-code-blue",
-  string: "text-code-orange",
-  function: "text-code-yellow",
-  boolean: "text-code-lime",
-  comment: "text-code-green",
-};
-
-// rehype-prism 이 생성하는 hast element 중 이 플러그인이 참조하는 최소 형태
-type HastElementLike = {
-  properties?: { className?: unknown };
-};
-
-export function parseCodeSnippet() {
-  return (tree: UnistNode) => {
-    visit(tree, "element", (node: HastElementLike) => {
-      const className = Array.isArray(node.properties?.className)
-        ? node.properties.className
-        : [];
-      const [token, type] = className as [string?, TokenType?];
-      if (token === "token" && type && node.properties) {
-        node.properties.className = [tokenClassNames[type]];
-      }
-    });
-  };
 }
 
 export async function findPost(year: string, slugs: string[]) {

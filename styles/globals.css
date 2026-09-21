@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./theme.css";
+@import "./code.css";
 
 /* 디자인 시안·문서(design/)는 Tailwind 클래스 스캔 대상에서 제외 */
 @source not "../design";
@@ -8,20 +9,6 @@
 
 /* Tailwind v3 `darkMode: "class"` 대응 (next-themes attribute="class") */
 @custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-  /* 코드 하이라이트 토큰 색상 (src/lib/Post.tsx parseCodeSnippet 에서 text-code-* 로 사용) */
-  --color-code-lime: #b5cea8;
-  --color-code-green: #6a9955;
-  --color-code-stone: #808080;
-  --color-code-orange: #ce9178;
-  --color-code-purple: #d9a9ff;
-  --color-code-red: #ff8383;
-  --color-code-blue: #569cd6;
-  --color-code-yellow: #dcdcaa;
-  --color-code-white: #fff;
-  --color-code-sky: #9cdcfe;
-}
 
 /* Tailwind v3 시각 호환: 기본 border 색(gray-200), button cursor:pointer */
 @layer base {
