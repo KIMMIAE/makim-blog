@@ -27,7 +27,7 @@
   --sm-art-back: var(--sm-lavender-100);
   --sm-art-front: var(--sm-lavender-200);
   --sm-art-accent: var(--sm-lime-300);
-  --sm-text-faint: #939bbd;
+  --sm-text-faint: #666e8b; /* 흰 배경 5.0:1, surface 4.6:1 (이전 #939bbd 는 2.74 로 WCAG AA 미달) */
   --sm-surface-border: #e1e4f4;
   --sm-thumb-violet: var(--sm-lavender-100);
   --sm-thumb-violet-ink: #8880cf;
@@ -80,7 +80,7 @@
   --sm-code-bar: #252526;
   --sm-code-border: #333333;
   --sm-code-fg: #d4d4d4;
-  --sm-code-muted: #858585;
+  --sm-code-muted: #9a9a9a; /* 코드 바 위 5.4:1 (이전 #858585 는 4.15) */
   --sm-code-selection: #264f78;
   --sm-code-comment: #6a9955;
   --sm-code-punctuation: #d4d4d4;

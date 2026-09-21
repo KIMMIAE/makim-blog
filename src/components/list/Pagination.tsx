@@ -39,7 +39,8 @@ function ArrowLink({ href, label, direction }: { href: string | null; label: str
     </svg>
   );
   if (!href) {
-    return <span className={`${styles.num} ${styles.arrow} ${styles.disabled}`} aria-disabled="true" aria-label={label}>{icon}</span>;
+    // 비활성 화살표는 동작이 없으므로 보조기술에서는 숨긴다(자리만 유지)
+    return <span className={`${styles.num} ${styles.arrow} ${styles.disabled}`} aria-hidden="true">{icon}</span>;
   }
   return <Link href={href} className={`${styles.num} ${styles.arrow}`} aria-label={label}>{icon}</Link>;
 }
