@@ -51,13 +51,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="antialiased bg-canvas text-ink">
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
         {/* Vercel Web Analytics: 배포 환경에서만 수집. 대시보드 Analytics 탭에서 Enable 필요 */}
-        <Analytics />
+        <Analytics debug={false} />
       </body>
     </html>
   );
