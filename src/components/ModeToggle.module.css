@@ -17,3 +17,8 @@
 .toggle:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 2px; }
 
 .icon { width: 1.25rem; height: 1.25rem; }
+
+/* 라이트: 해 / 다크: 달. 전환은 .dark 클래스만 보고 CSS 로 처리 */
+.moon { display: none; }
+:global(.dark) .sun { display: none; }
+:global(.dark) .moon { display: block; }

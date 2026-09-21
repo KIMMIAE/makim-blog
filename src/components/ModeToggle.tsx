@@ -6,12 +6,12 @@ import styles from "./ModeToggle.module.css";
 const MoonIcon = () => {
   return (
     <svg
+      className={`${styles.icon} ${styles.moon}`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={styles.icon}
     >
       <path
         strokeLinecap="round"
@@ -25,12 +25,12 @@ const MoonIcon = () => {
 const SunIcon = () => {
   return (
     <svg
+      className={`${styles.icon} ${styles.sun}`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={styles.icon}
     >
       <path
         strokeLinecap="round"
@@ -42,21 +42,19 @@ const SunIcon = () => {
 };
 
 const ModeToggle = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  const { resolvedTheme, setTheme } = useTheme();
 
-  function handleModeClick() {
-    setTheme(currentTheme === "dark" ? "light" : "dark");
-  }
-
+  // 서버에서는 테마를 알 수 없어 아이콘을 JS 로 고르면 하이드레이션 불일치가 난다.
+  // 두 아이콘을 모두 렌더링하고 표시는 CSS(.dark)로 전환한다.
   return (
     <button
       type="button"
-      aria-label="Toggle Dark Mode"
+      aria-label="테마 전환"
       className={styles.toggle}
-      onClick={handleModeClick}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
-      {theme === "light" ? <SunIcon /> : <MoonIcon />}
+      <SunIcon />
+      <MoonIcon />
     </button>
   );
 };
