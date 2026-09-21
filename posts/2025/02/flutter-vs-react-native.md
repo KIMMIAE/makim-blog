@@ -52,26 +52,38 @@ date: "2025-02-05"
 
 - 테스트 기기 및 환경 - M1 Mac, 안드로이드 Oneplus7 디바이스, iOS iPhone8/15
 - 프레임워크 버전 - React Native : **0.74.1** | Flutter: **3.19.5** | Dart: **3.3.3**
-![image](https://github.com/user-attachments/assets/0ccbc453-090c-4b81-b0f3-a588f567fc41)
+
+![Android list items benchmark, Flutter vs React Native (2024.08.13)](/2025/02/images/android-list-items-benchmark.png)
 *Android list items benchmark, Flutter Vs React Native 2024.08.13*
+
 - 플러터는 멈춤현상이 없는데 비해 리액트 네이티브는 눈에 띄는 끊김 현상이 발생함
 - APK 사이즈가 플러터가 더 작고 플러터는 빌드하는데 약 7.6초 걸린데 비해 리액트 네이티브는 23초 걸림
 - 플러터는 빠른 스크롤시 멈춤, 프레임 드롭이 발생하지 않는데 리액트 네이티브는 발생할 확률이 높다.
-![image](https://github.com/user-attachments/assets/f799c999-8981-4148-b54e-8131529a763c)
+
+![iOS list items benchmark, Flutter vs React Native (2024.08.13)](/2025/02/images/ios-list-items-benchmark.png)
 *IOS list items benchmark, Flutter Vs React Native 2024.08.13*
+
 - 아이폰도 비슷한 결과
-![image](https://github.com/user-attachments/assets/c50e9488-8e02-4d0f-b236-01aaf04457e1)
+
+![대량 이미지 애니메이션 안드로이드 테스트, Flutter vs React Native](/2025/02/images/animation-android.png)
 *대량 이미지 애니메이션 안드로이드 테스트, Flutter Vs React Native 2024.08.13*
+
 - APK 크기 차이가 약 10mb, 하지만 빌드에는 플러터 19.6초, 리액트 네이티브 20초 거렸다고 함.
 - 메모리와 CPU 차이가 크다.
-![image](https://github.com/user-attachments/assets/995a4ac5-f2f9-45ff-84bf-ba4f6b689e39)
+
+![대량 이미지 애니메이션 iOS 테스트, Flutter vs React Native](/2025/02/images/animation-ios.png)
 *대량 이미지 애니메이션 iOS 테스트, Flutter Vs React Native 2024.08.13*
+
 - 좀 더 심각한 차이. 아이폰9에서 리액트 네이티브는 심각한 멈춤, 프레임 드롭 및 충돌이 발생했다고 함.
-![image](https://github.com/user-attachments/assets/4c4b0491-1321-40f5-82b9-b34f60d5d9a4)
+
+![대량 Lottie 애니메이션 안드로이드 테스트, Flutter vs React Native](/2025/02/images/lottie-android.png)
 *대량 Lottie 애니메이션 안드로이드 테스트, Flutter Vs React Native 2024.08.13*
+
 - 프레임과 APK크기, CPU에서 큰 차이가 보임.
-![image](https://github.com/user-attachments/assets/251929a0-4ba4-4590-b6d7-828814e4cbaa)
+
+![대량 Lottie 애니메이션 iOS 테스트, Flutter vs React Native](/2025/02/images/lottie-ios.png)
 *대량 Lottie 애니메이션 iOS 테스트, Flutter Vs React Native 2024.08.13*
+
 - 의외로 플러터보다 리액트 네이티브가 더 나은 성능을 보여줌. 하지만 빌드 타임이 끔찍한…
 
 **결론**
@@ -82,11 +94,12 @@ date: "2025-02-05"
 
 ## 커뮤니티 / 관심도 크기
 
-![image](https://github.com/user-attachments/assets/0abc7b01-332b-4921-87b9-b59fc4a0a036)
+![Stack Overflow 월별 질문 비율 추이, react-native vs flutter (2010–2024)](/2025/02/images/stackoverflow-questions.png)
 *[Stack Overflow, Flutter vs React Native 질문 수 추이](https://trends.stackoverflow.co/?tags=react-native,flutter)*
 
-![image](https://github.com/user-attachments/assets/4b5fa458-7d47-4d1c-8f98-fc19cff75f77)
+![Google Trends 시간 흐름에 따른 관심도 변화, Flutter vs React Native (2024–2025)](/2025/02/images/google-trends.png)
 *Google Trends, Flutter vs React Native*
+
 - 플러터 승리. 플러터에 대한 관심도는 계속해서 높아지고 있습니다.
     - 하지만 리액트 네이티브는 오래 된 만큼 찾아볼 정보가 더 많음. 더이상 사용되지 않는 문법들로 혼란스러울 수도 있지만…
 
