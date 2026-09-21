@@ -5,6 +5,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { PostHeader } from "../../../components/post/PostHeader";
 import { PostImage } from "../../../components/post/PostImage";
 import { CodeBlock } from "../../../components/post/CodeBlock";
+import { TableOfContents } from "../../../components/post/TableOfContents";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
 
@@ -63,8 +64,26 @@ export default async function Page({
     <div className={layout.layout}>
       <div className={layout.main}>
         <PostHeader post={post} />
+        {toc.length > 0 ? (
+          <>
+            <div className={layout.tocTop}>
+              <p className={layout.tocTopTitle}>목차</p>
+              <TableOfContents items={toc} />
+            </div>
+            <details className={layout.tocMobile}>
+              <summary>목차</summary>
+              <TableOfContents items={toc} />
+            </details>
+          </>
+        ) : null}
         <article className={`prose ${body.prose}`}>{content}</article>
       </div>
+      {toc.length > 0 ? (
+        <aside className={layout.aside}>
+          <p className={layout.asideTitle}>목차</p>
+          <TableOfContents items={toc} ariaLabel="목차 (우측)" />
+        </aside>
+      ) : null}
     </div>
   );
 }

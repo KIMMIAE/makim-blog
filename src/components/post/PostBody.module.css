@@ -32,6 +32,7 @@
 
 /* 제목 */
 .prose :where(h2, h3, h4) {
+  scroll-margin-top: var(--sm-space-8);
   font-family: var(--sm-font-heading);
   letter-spacing: var(--sm-tracking-heading);
   overflow-wrap: anywhere;

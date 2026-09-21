@@ -1,4 +1,4 @@
-/* 글 상세 레이아웃: 읽기 폭 본문 + (4단계) 우측 고정 목차 */
+/* 글 상세 레이아웃: 읽기 폭 본문 + 우측 고정 목차(≥1100px). 좁은 화면은 본문 상단 목차 */
 .layout {
   display: grid;
   grid-template-columns: minmax(0, var(--sm-reading-width)) minmax(0, 1fr);
@@ -8,6 +8,69 @@
 
 .main { min-width: 0; }
 
+/* 우측 고정 목차 */
+.aside {
+  position: sticky;
+  top: var(--sm-space-8);
+  max-height: calc(100vh - var(--sm-space-16));
+  overflow: auto;
+  padding-left: var(--sm-space-6);
+  border-left: 1px solid var(--sm-border);
+}
+
+.asideTitle {
+  margin: 0 0 var(--sm-space-3);
+  color: var(--sm-text-faint);
+  font-size: var(--sm-text-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* 상단 목차(펼침: 768~1099px) / 상단 목차(접이식: ≤767px). 기본은 모두 숨김 */
+.tocTop, .tocMobile { display: none; }
+
+.tocTop, .tocMobile {
+  margin: var(--sm-space-6) 0 var(--sm-space-2);
+  padding: var(--sm-space-4) var(--sm-space-6);
+  border-radius: var(--sm-radius-card);
+  background: var(--sm-surface);
+}
+
+.tocTopTitle {
+  margin: 0 0 var(--sm-space-2);
+  color: var(--sm-text);
+  font-size: var(--sm-text-small);
+  font-weight: 700;
+}
+
+.tocMobile summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  cursor: pointer;
+  color: var(--sm-text);
+  font-size: var(--sm-text-small);
+  font-weight: 700;
+}
+.tocMobile summary::-webkit-details-marker { display: none; }
+.tocMobile summary::after {
+  content: "›";
+  color: var(--sm-text-faint);
+  transform: rotate(90deg);
+  transition: transform var(--sm-duration-fast) var(--sm-ease);
+}
+.tocMobile[open] summary::after { transform: rotate(-90deg); }
+.tocMobile[open] summary { margin-bottom: var(--sm-space-3); }
+.tocMobile summary:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 2px; border-radius: var(--sm-radius-small); }
+
 @media (max-width: 1099px) {
   .layout { grid-template-columns: minmax(0, var(--sm-reading-width)); }
+  .aside { display: none; }
+  .tocTop { display: block; }
+}
+
+@media (max-width: 767px) {
+  .tocTop { display: none; }
+  .tocMobile { display: block; padding: var(--sm-space-3) var(--sm-space-4); }
 }
