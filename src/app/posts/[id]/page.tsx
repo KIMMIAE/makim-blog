@@ -1,107 +1,52 @@
 import { notFound } from "next/navigation";
-import { Post, getSortedPostsData } from "../../../lib/Post";
-import { Card } from "../../../components/Card";
-import Link from "next/link";
+import { getSortedPostsData, getTagSummaries } from "../../../lib/Post";
+import { ListHeader, ListHeaderLink } from "../../../components/list/ListHeader";
+import { PostList } from "../../../components/list/PostList";
+import { Pagination } from "../../../components/list/Pagination";
+import { TagChip } from "../../../components/list/TagChip";
 
 export const dynamic = "error";
 
-const DEFAULT_NUMBER_OF_POSTS = 4;
+const POSTS_PER_PAGE = 8;
+const HEADER_TAG_COUNT = 6;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+const pageCount = (total: number) => Math.max(1, Math.ceil(total / POSTS_PER_PAGE));
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const pageNo = Number(id);
   return {
-    title: `Page ${id}`,
+    title: pageNo > 1 ? `전체 글 · ${pageNo}페이지` : "전체 글",
+    description: "Still Making 의 모든 글을 시간순으로 모았습니다.",
   };
 }
 
 export async function generateStaticParams() {
   const posts = await getSortedPostsData();
-
-  const paths = [
-    ...new Array(Math.round(posts.length / DEFAULT_NUMBER_OF_POSTS)).keys(),
-  ].map((i) => ({ id: `${i + 1}` }));
-
-  return paths;
+  return Array.from({ length: pageCount(posts.length) }, (_, i) => ({ id: `${i + 1}` }));
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const allPosts = await getSortedPostsData();
-  const pageNo = parseInt(id);
-  if (
-    isNaN(pageNo) ||
-    pageNo > Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) ||
-    pageNo < 1
-  ) {
+  const [allPosts, tagSummaries] = await Promise.all([getSortedPostsData(), getTagSummaries()]);
+  const totalPages = pageCount(allPosts.length);
+  const pageNo = Number(id);
+  if (!Number.isInteger(pageNo) || pageNo < 1 || pageNo > totalPages) {
     return notFound();
   }
 
-  const startIndex = (pageNo - 1) * DEFAULT_NUMBER_OF_POSTS;
-  const endIndex = startIndex + DEFAULT_NUMBER_OF_POSTS;
-
-  const posts = allPosts.slice(startIndex, endIndex);
-
-  const hasNextPage =
-    Math.ceil(allPosts.length / DEFAULT_NUMBER_OF_POSTS) > pageNo;
+  const start = (pageNo - 1) * POSTS_PER_PAGE;
+  const posts = allPosts.slice(start, start + POSTS_PER_PAGE);
+  const headerTags = tagSummaries.slice(0, HEADER_TAG_COUNT);
 
   return (
     <div>
-      <h1 className="text-3xl">Page {pageNo}</h1>
-      <div className="my-6 border-b-2"></div>
-      {posts.map((post: Post) => {
-        return (
-          <div
-            key={post.id}
-            className="md:grid md:grid-cols-5 md:items-baseline md:border-l md:border-gray-100 md:dark:border-gray-700/40"
-          >
-            <Card.Time
-              dateTime={post.date}
-              className="hidden md:block"
-              horizontal
-            ></Card.Time>
-            <Card href={post.slug} className="md:col-span-4">
-              <Card.Time
-                dateTime={post.date}
-                className="md:hidden"
-                decorate
-              ></Card.Time>
-              <Card.Title title={post.title} className="text-2xl" />
-              <Card.Tags tags={post.tags} />
-              <Card.Description desc={post.description} className="mb-2" />
-              <Card.Cta name="Read More &rarr;" ariaLabel="Read More" />
-            </Card>
-          </div>
-        );
-      })}
-      <div className="flex mt-2">
-        <div className="flex justify-start w-1/2 text-base font-medium leading-6">
-          {pageNo !== 1 && (
-            <Link href={`/posts/${pageNo - 1}`} aria-label="all posts" passHref>
-              <span className="text-blue-500 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
-                &larr; Page {pageNo - 1}
-              </span>
-            </Link>
-          )}
-        </div>
-
-        <div className="flex justify-end w-1/2 text-base font-medium leading-6">
-          {hasNextPage && (
-            <Link href={`/posts/${pageNo + 1}`} aria-label="all posts" passHref>
-              <span className="text-blue-500 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
-                Page {pageNo + 1} &rarr;
-              </span>
-            </Link>
-          )}
-        </div>
-      </div>
+      <ListHeader title="전체 글" count={allPosts.length}>
+        {headerTags.map((tag) => <TagChip key={tag.name} name={tag.name} size="md" />)}
+        <ListHeaderLink href="/tags">모든 태그</ListHeaderLink>
+      </ListHeader>
+      <PostList posts={posts} />
+      <Pagination current={pageNo} total={totalPages} hrefFor={(n) => `/posts/${n}`} />
     </div>
   );
 }

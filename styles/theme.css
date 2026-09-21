@@ -1,0 +1,37 @@
+/* Aliases reference semantic tokens at the element, including in .dark. */
+@theme inline {
+  --color-canvas: var(--sm-canvas);
+  --color-surface: var(--sm-surface);
+  --color-surface-raised: var(--sm-surface-raised);
+  --color-ink: var(--sm-text);
+  --color-muted: var(--sm-text-muted);
+  --color-divider: var(--sm-border);
+  --color-action: var(--sm-action);
+  --color-action-hover: var(--sm-action-hover);
+  --color-on-action: var(--sm-on-action);
+  --color-focus: var(--sm-focus);
+  --color-logo-purple: var(--sm-logo-purple);
+  --color-logo-orange: var(--sm-logo-orange);
+  --color-art-back: var(--sm-art-back);
+  --color-art-front: var(--sm-art-front);
+  --color-art-accent: var(--sm-art-accent);
+  --font-body: var(--sm-font-body);
+  --font-heading: var(--sm-font-heading);
+  --font-code: var(--sm-font-code);
+  --text-caption: var(--sm-text-caption);
+  --text-small: var(--sm-text-small);
+  --text-body: var(--sm-text-body);
+  --text-lead: var(--sm-text-lead);
+  --text-card: var(--sm-text-card);
+  --text-section: var(--sm-text-section);
+  --text-hero: var(--sm-text-hero);
+  --radius-card: var(--sm-radius-card);
+  --radius-control: var(--sm-radius-small);
+  --radius-pill: var(--sm-radius-pill);
+  --shadow-action: var(--sm-shadow-action);
+  --shadow-art: var(--sm-shadow-art);
+  --container-site: var(--sm-content-width);
+  --container-reading: var(--sm-reading-width);
+  --spacing-gutter: var(--sm-page-gutter);
+  --spacing-cat: var(--sm-cat-size);
+}

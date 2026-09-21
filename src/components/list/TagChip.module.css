@@ -1,0 +1,36 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--sm-radius-pill);
+  background: var(--sm-surface);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    color var(--sm-duration-fast) var(--sm-ease),
+    background var(--sm-duration-fast) var(--sm-ease);
+}
+
+.sm {
+  padding: 0.15rem 0.6rem;
+  color: var(--sm-action);
+  font-size: var(--sm-text-caption);
+}
+
+.sm:hover { background: var(--sm-topic-icon-bg); }
+
+.md {
+  padding: 0.4rem 0.8rem;
+  color: var(--sm-text);
+  font-size: var(--sm-text-small);
+}
+
+.md:hover {
+  color: var(--sm-action);
+  background: var(--sm-topic-icon-bg);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--sm-focus);
+  outline-offset: 2px;
+}

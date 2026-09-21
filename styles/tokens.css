@@ -1,0 +1,114 @@
+/* Still Making: shared source for CSS and Tailwind utilities. */
+:root {
+  --sm-white: #ffffff;
+  --sm-navy-950: #131735;
+  --sm-slate-600: #656d86;
+  --sm-blue-500: #4053ff;
+  --sm-blue-600: #3041df;
+  --sm-violet-500: #8b5cf6;
+  --sm-orange-400: #fb923c;
+  --sm-lavender-50: #f3f4ff;
+  --sm-lavender-100: #eeecff;
+  --sm-lavender-200: #e4e1ff;
+  --sm-lime-300: #c3f979;
+
+  --sm-canvas: var(--sm-white);
+  --sm-surface: var(--sm-lavender-50);
+  --sm-surface-raised: var(--sm-white);
+  --sm-text: var(--sm-navy-950);
+  --sm-text-muted: var(--sm-slate-600);
+  --sm-border: #e8eaf3;
+  --sm-action: var(--sm-blue-500);
+  --sm-action-hover: var(--sm-blue-600);
+  --sm-on-action: var(--sm-white);
+  --sm-focus: var(--sm-blue-500);
+  --sm-logo-purple: var(--sm-violet-500);
+  --sm-logo-orange: rgb(251 146 60 / 75%);
+  --sm-art-back: var(--sm-lavender-100);
+  --sm-art-front: var(--sm-lavender-200);
+  --sm-art-accent: var(--sm-lime-300);
+  --sm-text-faint: #939bbd;
+  --sm-surface-border: #e1e4f4;
+  --sm-thumb-violet: var(--sm-lavender-100);
+  --sm-thumb-violet-ink: #8880cf;
+  --sm-thumb-orb: #d3ccff;
+  --sm-thumb-orb-dot: #9374ff;
+  --sm-thumb-blue: #e4efff;
+  --sm-thumb-blue-ink: #526899;
+  --sm-thumb-blue-muted: #849bc1;
+  --sm-topic-icon-bg: #e0e5ff;
+  --sm-topic-icon-ink: #4c5fbc;
+
+  /* System fonts only until licensed webfont files are added. */
+  --sm-font-body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  --sm-font-heading: ui-rounded, var(--sm-font-body);
+  --sm-font-code: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --sm-text-caption: 0.75rem;
+  --sm-text-small: 0.875rem;
+  --sm-text-body: 1rem;
+  --sm-text-lead: 1.0625rem;
+  --sm-text-card: 1.3125rem;
+  --sm-text-section: 1.625rem;
+  --sm-text-hero: clamp(2.5rem, 4.7vw, 3.875rem);
+  --sm-leading-body: 1.8;
+  --sm-leading-heading: 1.25;
+  --sm-leading-hero: 1.16;
+  --sm-tracking-heading: -0.035em;
+
+  --sm-space-1: 0.25rem;
+  --sm-space-2: 0.5rem;
+  --sm-space-3: 0.75rem;
+  --sm-space-4: 1rem;
+  --sm-space-6: 1.5rem;
+  --sm-space-8: 2rem;
+  --sm-space-12: 3rem;
+  --sm-space-16: 4rem;
+  --sm-space-20: 5rem;
+  --sm-radius-small: 0.75rem;
+  --sm-radius-card: 1.5rem;
+  --sm-radius-pill: 9999px;
+  --sm-content-width: 75rem;
+  --sm-reading-width: 46rem;
+  --sm-page-gutter: clamp(1.375rem, 3vw, 2.25rem);
+  --sm-shadow-action: 0 5px 14px rgb(64 83 255 / 13%);
+  --sm-shadow-art: 0 12px 35px rgb(110 96 207 / 8%);
+  --sm-duration-fast: 160ms;
+  --sm-duration-normal: 240ms;
+  --sm-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --sm-cat-size: 8rem;
+  --sm-cat-icon-size: 4rem;
+}
+
+/* Functional dark baseline; the final dark composition is still to be designed. */
+.dark {
+  --sm-canvas: #141629;
+  --sm-surface: #20233c;
+  --sm-surface-raised: #292d49;
+  --sm-text: #f3f4ff;
+  --sm-text-muted: #b1b7d0;
+  --sm-border: #393e5c;
+  --sm-action: #a5adff;
+  --sm-action-hover: #c1c7ff;
+  --sm-on-action: #141629;
+  --sm-focus: #c1c7ff;
+  --sm-art-back: #2d294a;
+  --sm-art-front: #3c345f;
+  --sm-text-faint: #8b91b0;
+  --sm-surface-border: #393e5c;
+  --sm-thumb-violet: #2d294a;
+  --sm-thumb-violet-ink: #b7aefc;
+  --sm-thumb-orb: #4a4380;
+  --sm-thumb-orb-dot: #8c7cff;
+  --sm-thumb-blue: #23304a;
+  --sm-thumb-blue-ink: #c5d3ef;
+  --sm-thumb-blue-muted: #8a9cc0;
+  --sm-topic-icon-bg: #2c3358;
+  --sm-topic-icon-ink: #b9c3ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sm-duration-fast: 0ms;
+    --sm-duration-normal: 0ms;
+  }
+}

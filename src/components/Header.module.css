@@ -1,0 +1,45 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sm-space-3);
+  color: var(--sm-text);
+  font-family: var(--sm-font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-weight: 800;
+  letter-spacing: var(--sm-tracking-heading);
+  white-space: nowrap;
+  border-radius: var(--sm-radius-small);
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--sm-focus);
+  outline-offset: 5px;
+}
+
+.logo {
+  position: relative;
+  width: 35px;
+  height: 36px;
+  flex: none;
+}
+
+.logo::before,
+.logo::after {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+}
+
+.logo::before {
+  top: 1px;
+  left: 9px;
+  background: var(--sm-logo-purple);
+}
+
+.logo::after {
+  top: 13px;
+  left: 0;
+  background: var(--sm-logo-orange);
+}
