@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { ABOUT_LINK, NAV_ITEMS, SITE_NAME } from "../lib/nav";
+import { NAV_ITEMS, SITE_NAME } from "../lib/nav";
 import ModeToggle from "./ModeToggle";
 import styles from "./MobileNav.module.css";
 
 /**
- * 모바일(≤639px) 메뉴. 햄버거 → 전체 화면 패널(메뉴 항목, 하단에 소개 링크·테마 토글).
+ * 모바일(≤639px) 메뉴. 햄버거 → 전체 화면 패널(메뉴 항목, 하단에 테마 토글).
  * Escape 또는 메뉴 항목 클릭 시 닫히고, 열려 있는 동안 body 스크롤을 잠근다.
  */
 const MobileNav = () => {
@@ -57,8 +57,16 @@ const MobileNav = () => {
         <nav className={styles.menu} aria-label="메인 메뉴">
           {NAV_ITEMS.map((item) => {
             const active = item.isActive(pathname);
+            const className = `${styles.item} ${active ? styles.active : ""}`;
+            if (item.external) {
+              return (
+                <a key={item.key} href={item.href} className={className} target="_blank" rel="noopener noreferrer" onClick={close} tabIndex={open ? 0 : -1}>
+                  {item.label} <span className={styles.ext} aria-hidden="true">↗</span><span className="sr-only"> (새 탭)</span>
+                </a>
+              );
+            }
             return (
-              <Link key={item.key} href={item.href} className={`${styles.item} ${active ? styles.active : ""}`} aria-current={active ? "page" : undefined} onClick={close} tabIndex={open ? 0 : -1}>
+              <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined} onClick={close} tabIndex={open ? 0 : -1}>
                 {item.label}
               </Link>
             );
@@ -66,9 +74,6 @@ const MobileNav = () => {
         </nav>
 
         <div className={styles.bottom}>
-          <a href={ABOUT_LINK.href} className={styles.about} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1}>
-            {ABOUT_LINK.label} <span aria-hidden="true">↗</span><span className="sr-only"> (새 탭)</span>
-          </a>
           <ModeToggle />
         </div>
       </div>

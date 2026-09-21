@@ -87,23 +87,12 @@
   margin-top: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-top: var(--sm-space-6);
   border-top: 1px solid var(--sm-border);
 }
 
-.about {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
-  padding: var(--sm-space-2) var(--sm-space-2);
-  border-radius: var(--sm-radius-small);
-  color: var(--sm-text-muted);
-  font-size: var(--sm-text-small);
-  font-weight: 600;
-}
-.about:hover { color: var(--sm-action); }
-.about:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 2px; }
+.ext { font-size: 0.6em; color: var(--sm-text-faint); vertical-align: 0.15em; }
 
 /* 데스크톱에서는 트리거·패널 모두 숨김 */
 @media (min-width: 640px) {
