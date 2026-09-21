@@ -1,0 +1,19 @@
+.toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: var(--sm-radius-small);
+  background: transparent;
+  color: var(--sm-text);
+  cursor: pointer;
+  transition:
+    background var(--sm-duration-fast) var(--sm-ease),
+    color var(--sm-duration-fast) var(--sm-ease);
+}
+
+.toggle:hover { background: var(--sm-surface); color: var(--sm-action); }
+.toggle:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 2px; }
+
+.icon { width: 1.25rem; height: 1.25rem; }

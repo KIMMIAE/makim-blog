@@ -104,7 +104,7 @@
   --sm-cat-icon-size: 4rem;
 }
 
-/* Functional dark baseline; the final dark composition is still to be designed. */
+/* Dark tokens. 2026-09-21 시각 확정: 코드 블록만 페이지와 같은 남색 톤, 나머지는 초안 유지. */
 .dark {
   --sm-canvas: #141629;
   --sm-surface: #20233c;
@@ -129,6 +129,12 @@
   --sm-thumb-blue-muted: #8a9cc0;
   --sm-topic-icon-bg: #2c3358;
   --sm-topic-icon-ink: #b9c3ff;
+  /* 코드 블록: 라이트는 VS Code 원색(#1e1e1e), 다크는 페이지 배경(#141629)과 명도가 거의 같아
+     회색 사각형이 떠 보이므로 남색 톤으로 맞춘다. 토큰 색(--sm-code-keyword 등)은 그대로 */
+  --sm-code-bg: #1a1d33;
+  --sm-code-bar: #202441;
+  --sm-code-border: #2f3455;
+  --sm-code-selection: #2e3a6b;
 }
 
 @media (prefers-reduced-motion: reduce) {

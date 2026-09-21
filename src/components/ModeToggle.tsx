@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import styles from "./ModeToggle.module.css";
 
 const MoonIcon = () => {
   return (
@@ -10,7 +11,7 @@ const MoonIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className={styles.icon}
     >
       <path
         strokeLinecap="round"
@@ -29,7 +30,7 @@ const SunIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className={styles.icon}
     >
       <path
         strokeLinecap="round"
@@ -52,7 +53,7 @@ const ModeToggle = () => {
     <button
       type="button"
       aria-label="Toggle Dark Mode"
-      className="w-8 h-8 p-1 ml-1 mr-1 rounded-sm sm:ml-4"
+      className={styles.toggle}
       onClick={handleModeClick}
     >
       {theme === "light" ? <SunIcon /> : <MoonIcon />}
