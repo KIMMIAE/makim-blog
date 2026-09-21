@@ -1,0 +1,117 @@
+/*
+ * @tailwindcss/typography(.prose) 위에 덧씌우는 본문 스타일.
+ * 1) 색은 --tw-prose-* 변수를 토큰에 연결해 라이트·다크를 tokens.css 한 곳에서 관리한다.
+ * 2) 시안과 구조가 다른 부분만 규칙으로 덧씌운다. (CSS 모듈은 unlayered 라 플러그인 utilities 레이어보다 우선)
+ */
+.prose {
+  --tw-prose-body: var(--sm-text);
+  --tw-prose-headings: var(--sm-text);
+  --tw-prose-lead: var(--sm-text-muted);
+  --tw-prose-links: var(--sm-action);
+  --tw-prose-bold: var(--sm-text);
+  --tw-prose-counters: var(--sm-text-faint);
+  --tw-prose-bullets: var(--sm-text-faint);
+  --tw-prose-hr: var(--sm-border);
+  --tw-prose-quotes: var(--sm-text-muted);
+  --tw-prose-quote-borders: var(--sm-action);
+  --tw-prose-captions: var(--sm-text-faint);
+  --tw-prose-kbd: var(--sm-text);
+  --tw-prose-kbd-shadows: 19 23 53;
+  --tw-prose-code: var(--sm-text);
+  --tw-prose-pre-code: var(--sm-code-fg);
+  --tw-prose-pre-bg: var(--sm-code-bg);
+  --tw-prose-th-borders: var(--sm-border);
+  --tw-prose-td-borders: var(--sm-border);
+
+  max-width: none;
+  padding: var(--sm-space-8) 0 var(--sm-space-12);
+  font-family: var(--sm-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+/* 제목 */
+.prose :where(h2, h3, h4) {
+  font-family: var(--sm-font-heading);
+  letter-spacing: var(--sm-tracking-heading);
+  overflow-wrap: anywhere;
+}
+.prose :where(h2) {
+  margin-top: 2.6em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--sm-border);
+  font-size: 1.625rem;
+  line-height: 1.3;
+}
+.prose :where(h2):first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose :where(h3) { font-size: 1.25rem; letter-spacing: -0.02em; }
+.prose :where(h4) { font-size: 1.0625rem; }
+
+/* 링크 (globals.css 의 전역 a { color: inherit; text-decoration: none } 보다 우선해야 하므로 명시) */
+.prose :where(a) {
+  color: var(--tw-prose-links);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--sm-action) 35%, transparent);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--sm-duration-fast) var(--sm-ease);
+}
+.prose :where(a):hover { text-decoration-color: var(--sm-action); }
+
+/* 인용: 강조색 왼쪽 선 + surface 배경, 플러그인의 따옴표 장식 제거 */
+.prose :where(blockquote) {
+  margin: 1.5em 0;
+  padding: var(--sm-space-3) var(--sm-space-6);
+  border-left-width: 3px;
+  border-radius: 0 var(--sm-radius-small) var(--sm-radius-small) 0;
+  background: var(--sm-surface);
+  font-style: normal;
+  font-weight: 400;
+}
+.prose :where(blockquote p:first-of-type)::before,
+.prose :where(blockquote p:last-of-type)::after { content: none; }
+
+/* 인라인 코드: surface 칩, 백틱 장식 제거, 긴 코드는 줄바꿈 */
+.prose :where(code):not(:where(pre code)) {
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+  background: var(--sm-surface);
+  font-family: var(--sm-font-code);
+  font-size: 0.875em;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.prose :where(code)::before, .prose :where(code)::after { content: none; }
+.prose :where(h2 code, h3 code, h4 code) { font-size: 0.85em; }
+
+/* 코드 블록 (3단계에서 CodeBlock 프레임으로 감쌈) */
+.prose :where(pre) {
+  border-radius: var(--sm-radius-small);
+  font-family: var(--sm-font-code);
+  font-size: 13.5px;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+/* 이미지·캡션 */
+.prose :where(img) {
+  margin: 1.5em auto;
+  border: 1px solid var(--sm-border);
+  border-radius: var(--sm-radius-small);
+  background: #fff;
+}
+.prose :where(figure) { margin: 1.5em 0; }
+.prose :where(figure img) { margin: 0 auto; }
+.prose :where(figcaption) { margin-top: 0.6em; text-align: center; font-size: var(--sm-text-caption); }
+
+/* 표 */
+.prose :where(table) { display: block; overflow-x: auto; font-size: var(--sm-text-small); }
+.prose :where(thead th) { background: var(--sm-surface); color: var(--sm-text-muted); }
+.prose :where(th, td) { padding: 0.6em 0.9em; }
+
+.prose :where(hr) { margin: 3em 0; }
+.prose :where(li)::marker { color: var(--sm-text-faint); }
+
+@media (max-width: 767px) {
+  .prose { font-size: 1rem; padding-top: var(--sm-space-6); }
+}

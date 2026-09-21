@@ -1,0 +1,13 @@
+/* 글 상세 레이아웃: 읽기 폭 본문 + (4단계) 우측 고정 목차 */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--sm-reading-width)) minmax(0, 1fr);
+  gap: var(--sm-space-12);
+  align-items: start;
+}
+
+.main { min-width: 0; }
+
+@media (max-width: 1099px) {
+  .layout { grid-template-columns: minmax(0, var(--sm-reading-width)); }
+}

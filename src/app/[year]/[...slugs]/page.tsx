@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 import { findPost, getSortedPostsData } from "../../../lib/Post";
 import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { Card } from "../../../components/Card";
+import { PostHeader } from "../../../components/post/PostHeader";
+import { PostImage } from "../../../components/post/PostImage";
+import body from "../../../components/post/PostBody.module.css";
+import layout from "../../../components/post/PostLayout.module.css";
 
 export const dynamic = "error";
 
@@ -49,20 +52,18 @@ export default async function Page({
   }
 
   const toc: TocItem[] = [];
-  const { content } = await compileMDX({ source: post.content, options: buildMdxOptions(toc) });
+  const { content } = await compileMDX({
+    source: post.content,
+    options: buildMdxOptions(toc),
+    components: { img: PostImage },
+  });
 
   return (
-    <div>
-      <header className="py-6 border-b">
-        <Card.Tags tags={post.tags} />
-        <h1 className="text-3xl font-extrabold md:text-4xl">{post.title}</h1>
-        <p className="mt-2 font-semibold text-gray-400">
-          posted by <span className="text-ink font-bold">mia</span> · {post.date}
-        </p>
-      </header>
-      <article className="pt-8 pb-10 prose border-b prose-slate dark:prose-invert max-w-none">
-        {content}
-      </article>
+    <div className={layout.layout}>
+      <div className={layout.main}>
+        <PostHeader post={post} />
+        <article className={`prose ${body.prose}`}>{content}</article>
+      </div>
     </div>
   );
 }
