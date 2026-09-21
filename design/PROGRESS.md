@@ -54,10 +54,20 @@
 - `/tags`: 토큰 색 카드 그리드로 정리(구조 유지). `Card.tsx` 는 글 상세용 `Card.Tags` 만 남김.
 - 검증: 단계별 lint·tsc·build, CDP 로 상태 코드·행 수·링크·페이지네이션 상태·가로 넘침·다크 확인.
 
+## 9. 글 상세 페이지
+
+- 시안 `design/post-detail/index.html` 기준. 읽기 폭 46rem 본문 + 우측 고정 목차(≥1100px), 좁은 화면은 본문 상단 목차(태블릿 펼침, 모바일 접이식).
+- 렌더링 파이프라인(`src/lib/mdx/`): `remark-cjk-friendly`(한글 옆 `**` 강조), 제목 레벨 정규화(최상위 → h2), `rehype-slug` + 목차 수집, 이미지(+이탤릭 캡션) 문단 → figure/figcaption, Prism 토큰 → 의미 단위 클래스(`token-*`, VS Code Dark+ 팔레트 `--sm-code-*`).
+- 본문: `@tailwindcss/typography` 유지, `--tw-prose-*` 변수를 토큰에 매핑(다크는 tokens.css 한 곳), 시안과 다른 구조만 덧씌움(`PostBody.module.css`). 헤더는 태그 칩 · 제목 · `makim · 날짜`.
+- 코드 블록(`CodeBlock`, client): 언어 라벨 + 복사 버튼(1.5초 "복사됨"). 목차(`TableOfContents`, client): 스크롤 위치로 현재 섹션 강조, 앵커 부드러운 이동.
+- 하단 `PostNav`: 이전(더 오래된)·다음(더 새로운) 글 카드, 전체 글 보기. 메타데이터에 description·OpenGraph(article) 추가.
+- 함께 고친 것: 모바일 가로 넘침(제목 안 긴 인라인 코드 줄바꿈), `<p>` 안 `<figure>` 로 생기던 하이드레이션 오류, 페이지 h1 중복. 미사용 `Card.tsx` 제거, `LayoutWrapper` 의 `<article>` → `<main>`.
+- Vercel Web Analytics(`@vercel/analytics`) 추가. 배포 후 대시보드에서 Enable 필요.
+- 검증: 단계별 lint·tsc·build, CDP 로 10편 하이드레이션 오류 0·가로 넘침 0, 복사 버튼 클립보드 일치, 목차 활성/이동, 메타 태그.
+
 ## 남은 일
 
 - 웹폰트 확정 및 라이선스 파일 추가(현재 시스템 폰트).
 - 헤더 메뉴 정리(시안: 글 / 소개) — 사용자 검토 대기.
-- 다크 토큰 시각 확정. 글 상세 헤더의 `posted by` 이름이 `text-black` 이라 다크에서 보이지 않는 기존 문제.
-- 글 본문 이미지 상대 경로(`./images/...`) 가 404 를 내는 기존 콘텐츠 문제(`2024/08/upgrading-to-react-native-0.73.md`).
+- 다크 토큰 시각 확정.
 - 검증 방법: `npm run build` → `npx next start -p 3123` → Chrome headless(CDP)로 390/768/1024/1280, 라이트/다크 캡처 및 입력 테스트.
