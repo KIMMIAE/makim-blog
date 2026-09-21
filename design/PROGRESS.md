@@ -78,7 +78,17 @@
 - 대비율 점검: 본문 16.3, 보조 9.0, 메타 5.8, 링크 8.5, 칩·배지 7 이상으로 전 항목 기준 충족.
 - 유일한 문제였던 코드 블록 배경(`#1e1e1e`)과 페이지 배경(`#141629`)의 명도 차 1.07 → 다크에서만 코드 배경·바·테두리·선택 색을 남색 톤(`#1a1d33` 계열)으로 조정(후보 A/B/C 중 B 선택). 하이라이트 팔레트와 라이트 모드는 그대로.
 
+## 12. 성능·접근성 개선
+
+- 기준선(Lighthouse 모바일): 성능 96~99, 접근성 91~96, 권장사항 96, SEO 100. 성능 점수는 이미 높아 감점 항목 제거에 집중.
+- 접근성 100: `--sm-text-faint` 라이트 `#939bbd` → `#666e8b`(대비 2.74 → 5.0), 코드 바 `--sm-code-muted` `#858585` → `#9a9a9a`, Read more 는 `aria-label` 대신 sr-only 접미(": 제목"), 페이지네이션 비활성 화살표는 `aria-hidden`.
+- 이미지: `rehypeImageSize` 가 로컬 이미지의 width/height 를 빌드 시 부여, `PostImage` 가 next/image 로 리사이즈·WebP. 글 상세 이미지 67 → 17KB, unsized-images·image-delivery 통과.
+- CSS 인라인(`experimental.inlineCss`): 렌더 차단 0, 홈 모바일 LCP 2.79 → 2.24s. 첫 로드 HTML +15KB(순증).
+- 손대지 않은 것: 프레임워크 청크의 미사용 JS 27KB(앱 코드 아님), RSC 프리페치(체감 이동 속도 우선, 기본 유지), 로컬 한정 Analytics 404.
+- 검증 도구: `next start` 에 Lighthouse 13.5(`npx lighthouse … --preset=desktop|mobile`)와 Chrome headless 전송량 측정. 배포 후 PageSpeed Insights 로 재확인 권장.
+
 ## 남은 일
 
-- 웹폰트 확정 및 라이선스 파일 추가(현재 시스템 폰트).
+- 웹폰트 확정 및 라이선스 파일 추가(현재 시스템 폰트). 당분간 시스템 서체 유지로 결정.
+- 콘텍스트: `2025/02/flutter-vs-react-native.md` 의 이미지 8장이 GitHub 첨부 URL(`github.com/user-attachments/…`)이라 로그인 페이지로 리다이렉트되어 독자에게 깨져 보임. 이미지를 내려받아 `public/2025/02/images/` 에 두고 절대 경로로 바꿔야 한다(작성자 GitHub 세션 필요).
 - 검증 방법: `npm run build` → `npx next start -p 3123` → Chrome headless(CDP)로 390/768/1024/1280, 라이트/다크 캡처 및 입력 테스트.
