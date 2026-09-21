@@ -28,7 +28,7 @@ targetSdkVersion 34
 
 (여기서도 볼 수 있음 [Android 14 Support](https://reactnative.dev/blog/2023/12/06/0.73-debugging-improvements-stable-symlinks#android-14-support))
 
-![0.73 버전은 SDK34까지 지원한다는 변경 로그](./images/change-log.png)
+![0.73 버전은 SDK34까지 지원한다는 변경 로그](/2024/08/images/change-log.png)
 *0.73 버전은 SDK34까지 지원한다는 변경 로그*
 
 원인을 파악했으니 이제 해결을 해보자.
@@ -83,7 +83,7 @@ A problem occurred evaluating project ':app'.
 - Android Gradle Plugin이 Java 17을 요구하지만, 현재 Java 11을 사용하고 있기 때문에 발생한다.
 - Android Studio -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle 에서 버전을 변경해주면 된다.(없으면 다운로드 후 변경)
 
-![Android Studio Settings](./images/android-settings.png)
+![Android Studio Settings](/2024/08/images/android-settings.png)
 *Android Studio -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle*
 
 ```bash

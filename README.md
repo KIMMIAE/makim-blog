@@ -27,6 +27,16 @@ date: "2023-11-29" # 작성일
 ---
 ```
 
+## 이미지 경로
+
+- 이미지는 `public/YYYY/MM/images/` 에 두고, 본문에서는 절대 경로로 참조한다.
+
+```markdown
+![설명](/2024/08/images/change-log.png)
+```
+
+- 상대 경로(`./images/…`)는 글 페이지 URL 구조에 우연히 의존하고 RSS·미리보기 등 다른 컨텍스트에서 깨지므로 쓰지 않는다.
+
 ## Getting Started
 
 First, run the development server:

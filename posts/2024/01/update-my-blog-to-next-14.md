@@ -21,7 +21,7 @@ date: "2024-01-12"
 
 ### Posts, 글 상세 페이지 404에러
 
-![blog-404-error](./images/blog-404-error.png)
+![blog-404-error](/2024/01/images/blog-404-error.png)
 
 ```bash
 $ npm run dev
@@ -109,11 +109,11 @@ export async function getSortedPostsData(): Promise<Post[]> {
 
 1. vercel에서 로그 확인했을 때 `getSortedPostsData`에서 `undefined` 리턴해서 `notFound()`로 빠지고 있었다는 걸 확인했기 때문에, 포스트 데이터 가져오는 쪽에서 문제가 되고 있다는 건 알았지만 정확한 원인은 파악하지 못했다. 하지만 예상 원인으로 build한 source코드에 posts 파일이 없어서 가져올 데이터가 없어서 문제가 발생하고 있을 거란 가설을 세웠다. vercel에는 마침 해당 빌드의 source와 output을 확인할 수 있는 gui가 있어서 확인해보았다.
 
-![vercel-source](./images/vercel-source.png)
+![vercel-source](/2024/01/images/vercel-source.png)
 
 아니나 다를까, source에는 있는 posts 파일들이
 
-![vercel-output](./images/vercel-output.png)
+![vercel-output](/2024/01/images/vercel-output.png)
 
 실제 빌드 결과물에는 없었다.
 
