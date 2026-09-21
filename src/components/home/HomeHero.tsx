@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ABOUT_LINK } from "../../lib/nav";
 import { InteractiveCat } from "./InteractiveCat";
 import styles from "./HomeHero.module.css";
 
@@ -17,7 +18,7 @@ export function HomeHero() {
         </p>
         <div className={styles.actions}>
           <a href="#recent-posts" className={styles.primary}>글 둘러보기 <span aria-hidden="true">→</span></a>
-          <Link className={styles.secondary} href="https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4" target="_blank" rel="noopener noreferrer">
+          <Link className={styles.secondary} href={ABOUT_LINK.href} target="_blank" rel="noopener noreferrer">
             저를 소개합니다 <span aria-hidden="true">→</span><span className="sr-only"> (새 탭)</span>
           </Link>
         </div>

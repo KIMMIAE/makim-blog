@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { ABOUT_LINK } from "../../lib/nav";
 import styles from "./HomeAbout.module.css";
 
-const ABOUT_URL = "https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4";
 
 export function HomeAbout() {
   return (
@@ -12,7 +12,7 @@ export function HomeAbout() {
         <br className={styles.desktopBreak} />
         새로운 도구를 직접 써보고 만들어보며, 그 과정에서 배운 것을 이곳에 남깁니다.
       </p>
-      <Link href={ABOUT_URL} className={styles.link} target="_blank" rel="noopener noreferrer">
+      <Link href={ABOUT_LINK.href} className={styles.link} target="_blank" rel="noopener noreferrer">
         소개 페이지 보기 <span className={styles.arrow} aria-hidden="true">→</span>
         <span className="sr-only"> (새 탭)</span>
       </Link>
