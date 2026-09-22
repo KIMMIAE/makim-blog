@@ -34,8 +34,8 @@ function PostListRow({ post }: { post: Post }) {
           <Link href={href}>{post.title}</Link>
         </h2>
         {post.description ? <p className={styles.desc}>{post.description}</p> : null}
-        <Link href={href} className={styles.read} aria-label={`${post.title} 읽기`}>
-          Read more
+        <Link href={href} className={styles.read}>
+          Read more<span className="sr-only">: {post.title}</span>
           <ReadMoreTrail />
         </Link>
       </div>

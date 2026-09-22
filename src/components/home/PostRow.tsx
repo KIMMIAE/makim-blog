@@ -19,8 +19,8 @@ export function PostRow({ post, variant }: { post: Post; variant: ThumbVariant }
           <Link href={href}>{post.title}</Link>
         </h3>
         {post.description ? <p className={styles.description}>{post.description}</p> : null}
-        <Link href={href} className={styles.read} aria-label={`${post.title} 읽기`}>
-          Read more
+        <Link href={href} className={styles.read}>
+          Read more<span className="sr-only">: {post.title}</span>
           <ReadMoreTrail />
         </Link>
       </div>
