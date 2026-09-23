@@ -3,7 +3,7 @@ import LayoutWrapper from "../components/LayoutWrapper";
 import { Metadata } from "next";
 import { Providers } from "../components/Provider";
 import { Analytics } from "@vercel/analytics/next";
-import { AUTHOR, SITE_DESCRIPTION, SITE_LOCALE, SITE_NAME, SITE_URL, alternatesFor } from "../lib/site";
+import { AUTHOR, SITE_DESCRIPTION, SITE_LOCALE, SITE_NAME, SITE_OG_IMAGE, SITE_URL, alternatesFor } from "../lib/site";
 
 export const metadata: Metadata = {
   title: {
@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
+    images: [SITE_OG_IMAGE],
+  },
+  // 제목·설명·이미지는 각 페이지의 title/description/openGraph.images 에서 자동으로 채워진다
+  twitter: {
+    card: "summary_large_image",
   },
   robots: {
     index: true,

@@ -10,7 +10,7 @@ import { TableOfContents } from "../../../components/post/TableOfContents";
 import { PostNav } from "../../../components/post/PostNav";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
-import { AUTHOR, SITE_NAME, alternatesFor } from "../../../lib/site";
+import { AUTHOR, SITE_NAME, alternatesFor, ogImagePath } from "../../../lib/site";
 
 export const dynamic = "error";
 
@@ -27,6 +27,7 @@ export async function generateMetadata({
   }
 
   const pathname = `/${post.slug}`;
+  const image = { url: ogImagePath(post.slug), width: 1200, height: 630, alt: post.title };
   return {
     title: post.title,
     description: post.description,
@@ -41,6 +42,7 @@ export async function generateMetadata({
       authors: [AUTHOR.url],
       tags: post.tags,
       url: pathname,
+      images: [image],
     },
   };
 }

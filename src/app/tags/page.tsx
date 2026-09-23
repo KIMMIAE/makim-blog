@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTagSummaries } from "../../lib/Post";
 import { ListHeader } from "../../components/list/ListHeader";
-import { SITE_NAME, alternatesFor } from "../../lib/site";
+import { SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../../lib/site";
 import styles from "./TagIndex.module.css";
 
 const TITLE = "태그";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: alternatesFor("/tags"),
-  openGraph: { type: "website", title: `${TITLE} · ${SITE_NAME}`, description: DESCRIPTION, url: "/tags" },
+  openGraph: { type: "website", title: `${TITLE} · ${SITE_NAME}`, description: DESCRIPTION, url: "/tags", images: [SITE_OG_IMAGE] },
 };
 
 export default async function TagsPage() {

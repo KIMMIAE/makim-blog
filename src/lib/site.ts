@@ -42,3 +42,11 @@ export function alternatesFor(pathname: string): NonNullable<Metadata["alternate
     },
   };
 }
+
+/** 글별 공유 카드 경로. app/og/[...slug]/route.ts 가 생성한다 */
+export function ogImagePath(slug: string): string {
+  return `/og/${slug}.png`;
+}
+
+/** 사이트 공통 공유 카드. app/og/site.png/route.ts 가 생성한다 */
+export const SITE_OG_IMAGE = { url: "/og/site.png", width: 1200, height: 630, alt: SITE_NAME } as const;

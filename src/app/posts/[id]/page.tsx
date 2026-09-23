@@ -5,7 +5,7 @@ import { ListHeader, ListHeaderLink } from "../../../components/list/ListHeader"
 import { PostList } from "../../../components/list/PostList";
 import { Pagination } from "../../../components/list/Pagination";
 import { TagChip } from "../../../components/list/TagChip";
-import { SITE_NAME, alternatesFor } from "../../../lib/site";
+import { SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../../../lib/site";
 
 export const dynamic = "error";
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     title,
     description,
     alternates: alternatesFor(`/posts/${pageNo}`),
-    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: `/posts/${pageNo}` },
+    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: `/posts/${pageNo}`, images: [SITE_OG_IMAGE] },
   };
 }
 

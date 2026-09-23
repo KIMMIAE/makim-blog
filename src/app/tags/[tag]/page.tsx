@@ -4,7 +4,7 @@ import { getPostsByTag, getAllTagNames } from "../../../lib/Post";
 import { ListHeader, ListHeaderLink } from "../../../components/list/ListHeader";
 import { PostList } from "../../../components/list/PostList";
 import { Pagination } from "../../../components/list/Pagination";
-import { SITE_NAME, alternatesFor } from "../../../lib/site";
+import { SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../../../lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
     title,
     description,
     alternates: alternatesFor(pathname),
-    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: pathname },
+    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: pathname, images: [SITE_OG_IMAGE] },
   };
 }
 
