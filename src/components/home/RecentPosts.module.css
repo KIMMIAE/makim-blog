@@ -113,3 +113,13 @@
   .post { grid-template-columns: minmax(0, 1fr) 116px; gap: var(--sm-space-4); padding: var(--sm-space-4) 0 var(--sm-space-6); }
   .postTitle { font-size: 1.125rem; }
 }
+
+/* 좁은 화면에서는 요약을 3줄까지만. 전문은 글 상단 "한눈에 보기" 에서 읽는다 */
+@media (max-width: 767px) {
+  .description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}

@@ -3,7 +3,7 @@ title: "Flutter vs React Native"
 tags:
   - Flutter
   - React Native
-description: "나름대로 치열하게 고민했다.."
+description: "새 앱을 시작하며 Flutter와 React Native를 놓고 딥링크, 웹뷰 캐싱, 권한, 성능, 커뮤니티, 학습 비용까지 하나씩 비교했다. 성능은 Flutter가 앞섰지만 결국 React Native를 택했다. 나름대로 치열하게 고민했다.."
 published: true
 slug: 2025/02/flutter-vs-react-native
 date: "2025-02-05"

@@ -4,7 +4,7 @@ tags:
   - Typescript
   - OOP
   - FP
-description: "오랜만의 밋업, 유익한 시간이었다."
+description: "유인동 님의 인프런 밋업 '타입스크립트로 하는 함수형 프로그래밍 & 객체지향 FE 개발'에 다녀왔다. rune-ts로 보여준 제네릭 추상화, 상속은 언제 써야 하는지, import type이 뭔지, 성급한 추상화를 피하는 법 같은 이야기를 내가 이해한 대로 정리했다."
 published: true
 slug: 2024/03/inflearn-typescript-meetup-recap
 date: "2024-03-27"

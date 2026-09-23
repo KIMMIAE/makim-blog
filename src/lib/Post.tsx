@@ -15,6 +15,8 @@ export interface Post {
   published: boolean;
   slug: string;
   date: string;
+  /** 마지막 수정일(선택). 있으면 dateModified·article:modified_time 에 쓴다 */
+  updated?: string;
 }
 
 export async function findPost(year: string, slugs: string[]) {

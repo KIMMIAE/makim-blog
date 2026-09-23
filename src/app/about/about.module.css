@@ -1,0 +1,89 @@
+.wrap {
+  max-width: var(--sm-reading-width);
+  padding: var(--sm-space-4) 0 var(--sm-space-16);
+  color: var(--sm-text);
+  font-family: var(--sm-font-body);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--sm-space-6);
+  margin-bottom: var(--sm-space-8);
+}
+
+.avatar {
+  width: 6rem;
+  height: 6rem;
+  flex: none;
+  border-radius: var(--sm-radius-card);
+  background: var(--sm-surface);
+  image-rendering: pixelated;
+  padding: var(--sm-space-2);
+}
+
+.title {
+  margin: 0 0 var(--sm-space-2);
+  font-family: var(--sm-font-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: var(--sm-tracking-heading);
+  line-height: 1.25;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--sm-text-muted);
+  font-size: var(--sm-text-lead);
+  line-height: var(--sm-leading-body);
+}
+
+.section { margin-top: var(--sm-space-8); }
+
+.heading {
+  margin: 0 0 var(--sm-space-3);
+  font-family: var(--sm-font-heading);
+  font-size: var(--sm-text-card);
+  font-weight: 800;
+  letter-spacing: var(--sm-tracking-heading);
+}
+
+.body {
+  margin: 0;
+  font-size: var(--sm-text-body);
+  line-height: var(--sm-leading-body);
+}
+.body + .body { margin-top: var(--sm-space-3); }
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sm-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sm-space-2);
+  padding: var(--sm-space-2) var(--sm-space-4);
+  border: 1px solid var(--sm-surface-border);
+  border-radius: var(--sm-radius-pill);
+  background: var(--sm-surface);
+  color: var(--sm-text);
+  font-size: var(--sm-text-small);
+  font-weight: 700;
+  transition: border-color var(--sm-duration-fast) var(--sm-ease), color var(--sm-duration-fast) var(--sm-ease);
+}
+.link:hover { color: var(--sm-action); border-color: var(--sm-action); }
+.link:focus-visible { outline: 2px solid var(--sm-focus); outline-offset: 3px; }
+.ext { color: var(--sm-text-faint); font-weight: 600; }
+
+@media (max-width: 639px) {
+  .head { flex-direction: column; align-items: flex-start; gap: var(--sm-space-4); }
+}
+
+.body a { color: var(--sm-action); text-decoration: underline; text-underline-offset: 0.15em; }
+.body a:hover { color: var(--sm-action-hover); }

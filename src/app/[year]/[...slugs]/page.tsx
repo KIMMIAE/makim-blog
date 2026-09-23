@@ -1,14 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { findPost, getAdjacentPosts, getSortedPostsData } from "../../../lib/Post";
 import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { PostHeader } from "../../../components/post/PostHeader";
+import { PostSummary } from "../../../components/post/PostSummary";
 import { PostImage } from "../../../components/post/PostImage";
 import { CodeBlock } from "../../../components/post/CodeBlock";
 import { TableOfContents } from "../../../components/post/TableOfContents";
 import { PostNav } from "../../../components/post/PostNav";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
+import { AUTHOR, SITE_NAME, alternatesFor, ogImagePath } from "../../../lib/site";
+import { JsonLd } from "../../../components/seo/JsonLd";
+import { blogPostingJsonLd, breadcrumbJsonLd } from "../../../lib/jsonld";
 
 export const dynamic = "error";
 
@@ -16,7 +21,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ year: string; slugs: string[] }>;
-}) {
+}): Promise<Metadata> {
   const { year, slugs } = await params;
   const post = await findPost(year, slugs);
 
@@ -24,16 +29,23 @@ export async function generateMetadata({
     return {};
   }
 
+  const pathname = `/${post.slug}`;
+  const image = { url: ogImagePath(post.slug), width: 1200, height: 630, alt: post.title };
   return {
     title: post.title,
     description: post.description,
+    alternates: alternatesFor(pathname),
     openGraph: {
       type: "article",
-      title: post.title,
+      title: `${post.title} · ${SITE_NAME}`,
       description: post.description,
       publishedTime: post.date,
+      // 수정일은 프런트매터 updated 가 있을 때만. 없으면 발행일과 같다고 우기지 않는다
+      ...(post.updated ? { modifiedTime: post.updated } : {}),
+      authors: [AUTHOR.url],
       tags: post.tags,
-      url: `/${post.slug}`,
+      url: pathname,
+      images: [image],
     },
   };
 }
@@ -73,8 +85,19 @@ export default async function Page({
 
   return (
     <div className={layout.layout}>
+      <JsonLd
+        data={[
+          blogPostingJsonLd(post),
+          breadcrumbJsonLd([
+            { name: "홈", pathname: "/" },
+            { name: "전체 글", pathname: "/posts/1" },
+            { name: post.title, pathname: `/${post.slug}` },
+          ]),
+        ]}
+      />
       <div className={layout.main}>
         <PostHeader post={post} />
+        <PostSummary text={post.description} />
         {toc.length > 0 ? (
           <>
             <div className={layout.tocTop}>

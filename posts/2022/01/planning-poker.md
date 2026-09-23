@@ -3,7 +3,7 @@ title: "Planning poker 기법"
 tags:
   - Agile
   - Planning Poker
-description: "효과가 좋은진 모르겠지만 일단 치면 재밌는 포커~"
+description: "스크럼에서 공수 산정할 때 쓰는 플래닝 포커. 왜 하는지부터 어떻게 진행하는지, 하다 보면 걸리는 점까지 한 번 정리해봤다. 점수 기준은 뭘로 잡냐 같은, 처음 도입할 때 꼭 나오는 질문들은 FAQ로 모아뒀다."
 published: true
 slug: 2022/01/planning-poker
 date: "2022-01-03"

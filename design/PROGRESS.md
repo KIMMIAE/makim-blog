@@ -88,6 +88,18 @@
 - 손대지 않은 것: 프레임워크 청크의 미사용 JS 27KB(앱 코드 아님), RSC 프리페치(체감 이동 속도 우선, 기본 유지), 로컬 한정 Analytics 404.
 - 검증 도구: `next start` 에 Lighthouse 13.5(`npx lighthouse … --preset=desktop|mobile`)와 Chrome headless 전송량 측정. 배포 후 PageSpeed Insights 로 재확인 권장.
 
+## 13. SEO · GEO · AEO 기반 구축 (2026-09-23)
+
+- 도메인: `applejam.monster` 를 내리고 `stillmaking.blog` 를 Vercel 에 연결. **대표 호스트는 `www.stillmaking.blog`**(Vercel 권장 구성, apex 는 308 → www). `src/lib/site.ts` 의 `SITE_URL` 하나가 metadataBase·canonical·sitemap·RSS·JSON-LD 의 기준이며 `NEXT_PUBLIC_SITE_URL` 로 대체 가능.
+- 크롤링 기반: `app/robots.ts`(전체 허용 + GPTBot·ClaudeBot·PerplexityBot 등 AI 크롤러 명시 허용), `app/sitemap.ts`(홈·글 10·목록 2·소개·태그 목록·태그 21 = 36 URL, lastModified 는 글 날짜 KST), `app/rss.xml/route.ts`(RSS 2.0, 요약만), 모든 페이지에 canonical(www 절대 URL)과 RSS alternate. 태그 `?page=` 는 1페이지로 canonical.
+- 공유 카드: `src/lib/og/` 가 `next/og` 로 1200×630 카드를 그린다. 글별 `/og/{slug}.png`(`app/og/[...slug]/route.ts`, 빌드 시 정적 10장), 공통 `/og/site.png`. `opengraph-image.tsx` 파일 규약은 catch-all 아래에 둘 수 없고, 페이지가 `openGraph` 를 직접 정의하면 상위 파일 규약 이미지가 주입되지 않아 Route Handler + `site.ts` 의 `ogImagePath()`·`SITE_OG_IMAGE` 명시 참조로 통일했다. 한글 폰트는 `assets/fonts/pretendard/`(Pretendard Bold·SemiBold woff, OFL 1.1, LICENSE 동봉) — 카드 생성 전용이며 웹폰트로는 쓰지 않는다. twitter 는 layout 에 `card=summary_large_image` 만 두면 제목·설명·이미지가 페이지 값에서 상속된다.
+- 구조화 데이터(`src/lib/jsonld.ts`, `components/seo/JsonLd.tsx`): WebSite·Person(`#website`·`#person`, sameAs GitHub) 은 layout 에 한 번, 글은 BlogPosting + BreadcrumbList, 목록·태그는 CollectionPage(+Breadcrumb), 소개는 ProfilePage. `rehypeExternalLinks` 가 본문 외부 링크에 `rel="noopener noreferrer"` 를 붙인다(새 탭은 열지 않음).
+- 생성형 검색 대응: `/llms.txt`(사이트 설명·저자·글 목록·태그 마크다운). `/about` 저자 페이지 신설 — 헤더 `소개` 가 내부 링크가 되어 ↗·새 탭이 사라졌고 Notion 이력은 소개 페이지 안 링크(`NOTION_URL`). 글 상단 "한눈에 보기" 박스(`PostSummary`)가 description 을 보여준다.
+- 콘텐츠: 글 10편 description 을 한 줄 감상 → 2~3문장 요약(일기체, 검색 키워드 포함, 감상은 끝에)으로 재작성. 검색 스니펫·카드·RSS·llms.txt·목록·요약 박스가 같은 문장을 쓴다. 목록 요약은 ≤767px 에서 3줄 클램프.
+- 검증: 단계별 lint·tsc·build, `next start` 에서 robots/sitemap/RSS XML 파싱, 모든 페이지 canonical·og:image·twitter 메타, ld+json 파싱, 외부 앵커 27개 rel, OG 카드 PNG 1200×630 렌더 확인, about·글·홈 캡처(1280 라이트/390 다크).
+- 배포 후 사용자 작업: (1) Vercel Domains 에서 `makim-blog.vercel.app` → `www.stillmaking.blog` 리다이렉트(현재 200 으로 중복 서빙) (2) Google Search Console 에 `https://www.stillmaking.blog` 도메인 속성 등록 후 `sitemap.xml` 제출 (3) 네이버 서치어드바이저 사이트 등록·소유 확인 후 사이트맵·RSS 제출 (4) Rich Results Test 로 글 1편 BlogPosting 확인 (5) 카카오톡·트위터 카드 미리보기 확인(카카오 디벨로퍼스 캐시 초기화 도구). 색인 반영은 수 일~수 주.
+- 계획서: `~/playground/dev-notes/blog/plans/20260923-seo-geo-aeo.md`.
+
 ## 남은 일
 
 - 웹폰트 확정 및 라이선스 파일 추가(현재 시스템 폰트). 당분간 시스템 서체 유지로 결정.

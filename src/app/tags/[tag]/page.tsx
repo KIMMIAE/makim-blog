@@ -1,19 +1,30 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPostsByTag, getAllTagNames } from "../../../lib/Post";
 import { ListHeader, ListHeaderLink } from "../../../components/list/ListHeader";
 import { PostList } from "../../../components/list/PostList";
 import { Pagination } from "../../../components/list/Pagination";
+import { SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../../../lib/site";
+import { JsonLd } from "../../../components/seo/JsonLd";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "../../../lib/jsonld";
 
 export const dynamic = "force-dynamic";
 
 const POSTS_PER_PAGE = 8;
 
-export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
+  const posts = await getPostsByTag(decodedTag);
+  const title = `#${decodedTag}`;
+  const description = `${decodedTag} 태그가 붙은 글 ${posts.length}편을 모았습니다.`;
+  // ?page=N 은 같은 목록의 일부이므로 canonical 은 항상 1페이지
+  const pathname = `/tags/${encodeURIComponent(decodedTag)}`;
   return {
-    title: `#${decodedTag}`,
-    description: `${decodedTag} 태그가 붙은 글 목록`,
+    title,
+    description,
+    alternates: alternatesFor(pathname),
+    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: pathname, images: [SITE_OG_IMAGE] },
   };
 }
 
@@ -47,8 +58,24 @@ export default async function TagPage({
   const posts = allPosts.slice(start, start + POSTS_PER_PAGE);
   const hrefFor = (n: number) => `/tags/${encodeURIComponent(decodedTag)}${n > 1 ? `?page=${n}` : ""}`;
 
+  const pathname = `/tags/${encodeURIComponent(decodedTag)}`;
   return (
     <div>
+      <JsonLd
+        data={[
+          collectionPageJsonLd({
+            name: `#${decodedTag}`,
+            description: `${decodedTag} 태그가 붙은 글 ${allPosts.length}편을 모았습니다.`,
+            pathname,
+            posts,
+          }),
+          breadcrumbJsonLd([
+            { name: "홈", pathname: "/" },
+            { name: "태그", pathname: "/tags" },
+            { name: `#${decodedTag}`, pathname },
+          ]),
+        ]}
+      />
       <ListHeader title={`#${decodedTag}`} count={allPosts.length}>
         <ListHeaderLink href="/tags">모든 태그</ListHeaderLink>
       </ListHeader>
