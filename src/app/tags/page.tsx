@@ -1,11 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getTagSummaries } from "../../lib/Post";
 import { ListHeader } from "../../components/list/ListHeader";
+import { SITE_NAME, alternatesFor } from "../../lib/site";
 import styles from "./TagIndex.module.css";
 
-export const metadata = {
-  title: "태그",
-  description: "블로그의 모든 태그 목록",
+const TITLE = "태그";
+const DESCRIPTION = `${SITE_NAME} 의 글을 주제별로 모은 태그 목록입니다.`;
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: alternatesFor("/tags"),
+  openGraph: { type: "website", title: `${TITLE} · ${SITE_NAME}`, description: DESCRIPTION, url: "/tags" },
 };
 
 export default async function TagsPage() {

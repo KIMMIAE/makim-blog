@@ -1,19 +1,28 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPostsByTag, getAllTagNames } from "../../../lib/Post";
 import { ListHeader, ListHeaderLink } from "../../../components/list/ListHeader";
 import { PostList } from "../../../components/list/PostList";
 import { Pagination } from "../../../components/list/Pagination";
+import { SITE_NAME, alternatesFor } from "../../../lib/site";
 
 export const dynamic = "force-dynamic";
 
 const POSTS_PER_PAGE = 8;
 
-export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
+  const posts = await getPostsByTag(decodedTag);
+  const title = `#${decodedTag}`;
+  const description = `${decodedTag} 태그가 붙은 글 ${posts.length}편을 모았습니다.`;
+  // ?page=N 은 같은 목록의 일부이므로 canonical 은 항상 1페이지
+  const pathname = `/tags/${encodeURIComponent(decodedTag)}`;
   return {
-    title: `#${decodedTag}`,
-    description: `${decodedTag} 태그가 붙은 글 목록`,
+    title,
+    description,
+    alternates: alternatesFor(pathname),
+    openGraph: { type: "website", title: `${title} · ${SITE_NAME}`, description, url: pathname },
   };
 }
 

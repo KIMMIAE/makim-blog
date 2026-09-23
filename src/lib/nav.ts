@@ -2,7 +2,8 @@
  * 사이트 내비게이션 상수. 헤더·모바일 메뉴가 같은 목록을 쓴다.
  * 나중에 en/ko 를 제공할 때는 label 을 언어별로 나누면 된다.
  */
-export const SITE_NAME = "Still Making";
+// 사이트 이름은 site.ts 가 원본. 기존 import 경로를 유지하기 위해 다시 내보낸다.
+export { SITE_NAME } from "./site";
 
 export interface NavItem {
   key: string;

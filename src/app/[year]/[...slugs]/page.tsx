@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { findPost, getAdjacentPosts, getSortedPostsData } from "../../../lib/Post";
 import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
@@ -9,6 +10,7 @@ import { TableOfContents } from "../../../components/post/TableOfContents";
 import { PostNav } from "../../../components/post/PostNav";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
+import { AUTHOR, SITE_NAME, alternatesFor } from "../../../lib/site";
 
 export const dynamic = "error";
 
@@ -16,7 +18,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ year: string; slugs: string[] }>;
-}) {
+}): Promise<Metadata> {
   const { year, slugs } = await params;
   const post = await findPost(year, slugs);
 
@@ -24,16 +26,21 @@ export async function generateMetadata({
     return {};
   }
 
+  const pathname = `/${post.slug}`;
   return {
     title: post.title,
     description: post.description,
+    alternates: alternatesFor(pathname),
     openGraph: {
       type: "article",
-      title: post.title,
+      title: `${post.title} · ${SITE_NAME}`,
       description: post.description,
       publishedTime: post.date,
+      // 수정일은 프런트매터 updated 가 있을 때만. 없으면 발행일과 같다고 우기지 않는다
+      ...(post.updated ? { modifiedTime: post.updated } : {}),
+      authors: [AUTHOR.url],
       tags: post.tags,
-      url: `/${post.slug}`,
+      url: pathname,
     },
   };
 }

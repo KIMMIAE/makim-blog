@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Post, getSortedPostsData, getTagSummaries } from "../lib/Post";
+import { alternatesFor } from "../lib/site";
 import { HomeHero } from "../components/home/HomeHero";
 import { RecentPosts } from "../components/home/RecentPosts";
 import { TopicList } from "../components/home/TopicList";
+
+export const metadata: Metadata = {
+  alternates: alternatesFor("/"),
+};
 
 const RECENT_POST_COUNT = 4;
 const TOPIC_COUNT = 5;
