@@ -1,0 +1,24 @@
+.box {
+  margin: var(--sm-space-6) 0 0;
+  padding: var(--sm-space-4) var(--sm-space-6);
+  border-left: 3px solid var(--sm-action);
+  border-radius: var(--sm-radius-small);
+  background: var(--sm-surface);
+  color: var(--sm-text);
+  font-family: var(--sm-font-body);
+}
+
+.label {
+  margin: 0 0 var(--sm-space-2);
+  color: var(--sm-text-faint);
+  font-size: var(--sm-text-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.text {
+  margin: 0;
+  font-size: var(--sm-text-body);
+  line-height: var(--sm-leading-body);
+  overflow-wrap: anywhere;
+}

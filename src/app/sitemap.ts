@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.5,
     })),
+    { url: absoluteUrl("/about"), lastModified: latest, changeFrequency: "yearly", priority: 0.6 },
     { url: absoluteUrl("/tags"), lastModified: latest, changeFrequency: "monthly", priority: 0.5 },
     ...tags.map((tag) => ({
       url: absoluteUrl(`/tags/${encodeURIComponent(tag.name)}`),

@@ -50,3 +50,6 @@ export function ogImagePath(slug: string): string {
 
 /** 사이트 공통 공유 카드. app/og/site.png/route.ts 가 생성한다 */
 export const SITE_OG_IMAGE = { url: "/og/site.png", width: 1200, height: 630, alt: SITE_NAME } as const;
+
+/** 저자 이력(Notion). 소개 페이지 안에서만 링크한다 */
+export const NOTION_URL = "https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4";

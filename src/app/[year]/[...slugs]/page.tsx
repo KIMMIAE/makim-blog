@@ -4,6 +4,7 @@ import { findPost, getAdjacentPosts, getSortedPostsData } from "../../../lib/Pos
 import { buildMdxOptions, type TocItem } from "../../../lib/mdx";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { PostHeader } from "../../../components/post/PostHeader";
+import { PostSummary } from "../../../components/post/PostSummary";
 import { PostImage } from "../../../components/post/PostImage";
 import { CodeBlock } from "../../../components/post/CodeBlock";
 import { TableOfContents } from "../../../components/post/TableOfContents";
@@ -96,6 +97,7 @@ export default async function Page({
       />
       <div className={layout.main}>
         <PostHeader post={post} />
+        <PostSummary text={post.description} />
         {toc.length > 0 ? (
           <>
             <div className={layout.tocTop}>

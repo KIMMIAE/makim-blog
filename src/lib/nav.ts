@@ -32,11 +32,10 @@ export const NAV_ITEMS: NavItem[] = [
   {
     key: "about",
     label: "소개",
-    href: "https://substantial-celsius-cbb.notion.site/f6160283ae074dd698fe85873462701b?pvs=4",
-    external: true,
-    isActive: () => false,
+    href: "/about",
+    isActive: (pathname) => pathname.startsWith("/about"),
   },
 ];
 
-/** 소개 페이지(Notion). 홈 히어로 등 메뉴 밖에서 참조할 때 사용 */
+/** 소개 페이지(/about). 홈 히어로 등 메뉴 밖에서 참조할 때 사용. Notion 이력은 site.ts NOTION_URL */
 export const ABOUT_LINK = NAV_ITEMS.find((item) => item.key === "about")!;
