@@ -6,7 +6,7 @@ import { AUTHOR, NOTION_URL, SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../
 import styles from "./about.module.css";
 
 const TITLE = "소개";
-const DESCRIPTION = `${AUTHOR.name} 는 웹과 모바일 앱을 만드는 개발자입니다. ${SITE_NAME} 에 개발하며 마주한 문제와 선택, 책과 컨퍼런스에서 얻은 생각을 기록합니다.`;
+const DESCRIPTION = `${AUTHOR.name} 은 스타트업에서 기획부터 유지 보수까지 경험한 프론트엔드 개발자입니다. 소규모 팀을 리딩했고, 팀 생산성과 사용자 친화적인 서비스에 관심이 많습니다.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -49,8 +49,12 @@ export default function AboutPage() {
       <div className={styles.section}>
         <h2 className={styles.heading}>하는 일</h2>
         <p className={styles.body}>
-          웹과 모바일 앱을 만드는 개발자입니다. React Native 와 Flutter 같은 크로스 플랫폼 도구, Next.js 와 TypeScript 로
-          제품을 만들고, 모니터링과 배포처럼 만든 것을 오래 굴리는 일에도 관심이 많습니다.
+          스타트업에서 프론트엔드 개발자로 일하며 기획 단계부터 유지 보수까지 제품의 전 과정을 경험했고, 개발자·기획자·디자이너·CS
+          담당자로 이루어진 4~6인 소규모 팀을 리딩했습니다.
+        </p>
+        <p className={styles.body}>
+          기획한 내용이 팀원들과의 긴밀한 협력 속에서 실제 서비스가 되는 과정을 가장 즐거워합니다. 그래서 팀 전체의 생산성을 높이는 일과
+          사용자 친화적인 서비스를 만드는 데 관심이 많고, 좋은 사용자 경험을 위해 사용성 개선과 최적화에 꾸준히 힘을 쏟습니다.
         </p>
       </div>
 

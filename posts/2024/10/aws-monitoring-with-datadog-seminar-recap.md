@@ -4,7 +4,7 @@ tags:
   - Datadog
   - AWS
   - Monitoring Tool
-description: "모니터링 툴, 어떻게 써야 효율적일까?"
+description: "'Datadog으로 완성하는 AWS 모니터링' 세미나에 다녀왔다. Observability의 세 요소와 AWS에서 구현하는 패턴, VoC 대응·RDS DBM·DevSecOps 데모까지 들은 내용을 정리했다. 팀에서 막 Sentry를 도입한 시점이라, 어떤 상황에 어느 도구가 맞는지 계속 고민이 된다."
 published: true
 slug: 2024/10/aws-monitoring-with-datadog-seminar-recap
 date: "2024-10-20"

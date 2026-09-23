@@ -4,7 +4,7 @@ tags:
   - React Native
   - Upgrade
   - Troubleshooting
-description: "아마 내년에도 또 해야겠지?..."
+description: "Android 14 타겟이 의무가 되면서 React Native를 0.70에서 0.73으로 급하게 올렸다. Upgrade Helper로 진행한 순서와, Java 17·Gradle·code-push부터 iOS Pods·Fabric 헤더·PrivacyInfo까지 실제로 만난 에러와 해결 방법을 하나하나 남겼다. 다음에 또 올릴 나를 위해서."
 published: true
 slug: 2024/08/upgrading-to-react-native-0.73
 date: "2024-08-30"

@@ -3,7 +3,7 @@ title: '커밋 메시지 컨벤션'
 tags:
   - git
   - convention
-description: '편리하면서도 불편한 커밋 메시지 컨벤션. 꼭 지켜야 될까?'
+description: "feat, fix, refactor… 커밋 타입은 뭐가 있고 제목과 본문은 어떻게 쓰는지 예제와 함께 정리했다. 그런데 실제로 팀에 도입해보니 규칙보다 어려운 건 커밋 단위를 자르는 일이었다. 그 얘기도 조금 덧붙였다."
 published: true
 slug: 2022/11/commit-conventions
 date: '2022-11-13'

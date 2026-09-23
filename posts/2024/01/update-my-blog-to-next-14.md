@@ -3,7 +3,7 @@ title: "블로그 업데이트(feat.Next14/React18) 후기"
 tags:
   - Next.js
   - React
-description: "제법 끔찍한 시간을 보냈다..😫"
+description: "오래 방치한 블로그를 Next.js 14, React 18로 한 번에 올렸다가 프로덕션에서만 나는 404를 만났다. 로컬에선 멀쩡한데 Vercel에서만 터지는 원인을 generateStaticParams와 빌드 산출물 쪽에서 찾아내기까지의 기록. 의존성 업그레이드는 점진적으로 하자는, 알면서도 안 지킨 교훈을 다시 새겼다."
 published: true
 slug: 2024/01/update-my-blog-to-next-14
 date: "2024-01-12"

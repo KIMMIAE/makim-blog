@@ -3,7 +3,7 @@ title: "빅오 표기법(Big O Notation)"
 tags:
   - Algorithm
   - Big O Notation
-description: "빅오 표기법? 시간 복잡도?"
+description: "알고리즘 시간 복잡도를 말할 때 나오는 빅오 표기법을 정리했다. O(1)이 뭐고 O(n²)이 뭔지, 왜 실행 시간을 직접 재는 것만으로는 부족한지. 알고리즘 공부를 시작하기 전에 먼저 알아두면 좋은 개념이다."
 published: true
 slug: 2023/12/big-o-notation
 date: "2023-12-03"

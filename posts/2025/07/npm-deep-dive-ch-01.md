@@ -3,7 +3,7 @@ title: "npm Deep Dive 스터디, 1장"
 tags:
   - npm
 
-description: "새로운 사실을 많이 알게 돼서 재미있었다."
+description: "《npm Deep Dive》 1장 스터디 기록. npm이 Node Package Manager의 약자가 아니라는 얘기부터 초기 역사, 패키지 설치·배포 기능, 번들포비아와 npm trends 활용법, 유의적 버전(semver)이 왜 생겼고 어떤 규칙인지까지. 새로운 사실을 많이 알게 돼서 재미있었다."
 published: true
 slug: 2025/07/npm-deep-dive-ch-01
 date: "2025-07-06"
