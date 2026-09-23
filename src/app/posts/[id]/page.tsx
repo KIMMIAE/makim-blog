@@ -6,6 +6,8 @@ import { PostList } from "../../../components/list/PostList";
 import { Pagination } from "../../../components/list/Pagination";
 import { TagChip } from "../../../components/list/TagChip";
 import { SITE_NAME, SITE_OG_IMAGE, alternatesFor } from "../../../lib/site";
+import { JsonLd } from "../../../components/seo/JsonLd";
+import { collectionPageJsonLd } from "../../../lib/jsonld";
 
 export const dynamic = "error";
 
@@ -47,6 +49,14 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
   return (
     <div>
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: pageNo > 1 ? `전체 글 · ${pageNo}페이지` : "전체 글",
+          description: `${SITE_NAME} 의 모든 글을 시간순으로 모았습니다.`,
+          pathname: `/posts/${pageNo}`,
+          posts,
+        })}
+      />
       <ListHeader title="전체 글" count={allPosts.length}>
         {headerTags.map((tag) => <TagChip key={tag.name} name={tag.name} size="md" />)}
         <ListHeaderLink href="/tags">모든 태그</ListHeaderLink>

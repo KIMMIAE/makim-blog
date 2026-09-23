@@ -11,6 +11,8 @@ import { PostNav } from "../../../components/post/PostNav";
 import body from "../../../components/post/PostBody.module.css";
 import layout from "../../../components/post/PostLayout.module.css";
 import { AUTHOR, SITE_NAME, alternatesFor, ogImagePath } from "../../../lib/site";
+import { JsonLd } from "../../../components/seo/JsonLd";
+import { blogPostingJsonLd, breadcrumbJsonLd } from "../../../lib/jsonld";
 
 export const dynamic = "error";
 
@@ -82,6 +84,16 @@ export default async function Page({
 
   return (
     <div className={layout.layout}>
+      <JsonLd
+        data={[
+          blogPostingJsonLd(post),
+          breadcrumbJsonLd([
+            { name: "홈", pathname: "/" },
+            { name: "전체 글", pathname: "/posts/1" },
+            { name: post.title, pathname: `/${post.slug}` },
+          ]),
+        ]}
+      />
       <div className={layout.main}>
         <PostHeader post={post} />
         {toc.length > 0 ? (

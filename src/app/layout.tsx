@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import { Providers } from "../components/Provider";
 import { Analytics } from "@vercel/analytics/next";
 import { AUTHOR, SITE_DESCRIPTION, SITE_LOCALE, SITE_NAME, SITE_OG_IMAGE, SITE_URL, alternatesFor } from "../lib/site";
+import { JsonLd } from "../components/seo/JsonLd";
+import { personJsonLd, websiteJsonLd } from "../lib/jsonld";
 
 export const metadata: Metadata = {
   title: {
@@ -62,6 +64,8 @@ export default function RootLayout({
         <Providers>
           <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
+        {/* 사이트·저자 구조화 데이터. 페이지별(BlogPosting 등)은 각 페이지가 추가한다 */}
+        <JsonLd data={[websiteJsonLd(), personJsonLd()]} />
         {/* Vercel Web Analytics: 배포 환경에서만 수집. 대시보드 Analytics 탭에서 Enable 필요 */}
         <Analytics debug={false} />
       </body>
